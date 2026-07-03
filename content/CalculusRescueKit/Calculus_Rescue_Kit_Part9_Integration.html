@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>Calculus Rescue Kit — Part 9 Integration Rescue</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700;800&family=Sarabun:wght@400;500;600;700;800&display=swap');
+  :root{
+    --concept:#2563eb; --formula:#16a34a; --trigger:#ea580c; --mistake:#dc2626;
+    --tip:#9333ea; --checklist:#1f2937; --hack:#ca8a04; --bg:#f7f7fb;
+    --card-bg:#ffffff; --ink:#1f2330; --muted:#6b7280;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; padding:32px; background:var(--bg); font-family:'Sarabun','Noto Sans Thai',sans-serif; color:var(--ink);}
+  .grid{display:flex; flex-wrap:wrap; gap:28px; justify-content:center;}
+  .card{width:420px; background:var(--card-bg); border-radius:18px; box-shadow:0 6px 24px rgba(20,20,40,0.10); overflow:hidden; border:1px solid #ececf2; display:flex; flex-direction:column;}
+  .card-head{padding:18px 20px 14px; background:linear-gradient(135deg, var(--accent,#2563eb), color-mix(in srgb, var(--accent,#2563eb) 70%, black)); color:#fff; position:relative;}
+  .eyebrow{font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; opacity:.85; margin-bottom:4px;}
+  .title{font-size:21px; font-weight:800; line-height:1.25;}
+  .trigger-box{margin:14px 16px 0; background:#fff7ed; border:1.5px dashed var(--trigger); border-radius:12px; padding:10px 14px; display:flex; align-items:center; gap:10px;}
+  .trigger-box .ic{font-size:20px;}
+  .trigger-box .txt{font-weight:700; font-size:15px; color:#7c2d12;}
+  .section{margin:14px 16px 0; padding:12px 14px; border-radius:12px; background:#fafafa;}
+  .section:last-of-type{margin-bottom:16px;}
+  .sec-head{display:flex; align-items:center; gap:7px; font-weight:700; font-size:13.5px; margin-bottom:7px;}
+  .sec-head .dot{width:9px;height:9px;border-radius:50%;flex:none;}
+  .when{background:#eff6ff;} .when .dot{background:var(--concept);} .when ul{margin:0; padding-left:18px; font-size:14px; line-height:1.65;}
+  .how{background:#f0fdf4;} .how .dot{background:var(--formula);} .how ol{margin:0; padding-left:20px; font-size:14px; line-height:1.7; font-weight:500;}
+  .mistake{background:#fef2f2;} .mistake .dot{background:var(--mistake);} .mistake ul{margin:0; padding-left:18px; font-size:13.5px; line-height:1.65; color:#7f1d1d;}
+  .hack{background:#fffbeb;} .hack .dot{background:var(--hack);} .hack .txt{font-size:14.5px; font-weight:700; color:#854d0e;}
+  .examtip{background:#faf5ff;} .examtip .dot{background:var(--tip);} .examtip p{margin:0; font-size:13.5px; line-height:1.6; color:#581c87;}
+  .checklist{background:#f4f4f5;} .checklist .dot{background:var(--checklist);} .checklist ul{list-style:none; margin:0; padding:0; font-size:13.5px; line-height:1.9;} .checklist li::before{content:"☐  ";}
+  .card[data-accent="green"] .card-head{--accent:#16a34a;} .card[data-accent="blue"] .card-head{--accent:#2563eb;} .card[data-accent="orange"] .card-head{--accent:#ea580c;} .card[data-accent="purple"] .card-head{--accent:#9333ea;}
+  .pagefoot{text-align:center; font-size:11px; color:var(--muted); padding:10px 16px 14px;}
+  .katex { font-size: 1.05em; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+</head>
+<body>
+<div class="grid">
+
+  <!-- 1. Basic Integration -->
+  <div class="card" data-accent="blue">
+    <div class="card-head"><div class="eyebrow">PART 9 · Integration Rescue · 🔵 Concept</div><div class="title">Basic Integration</div></div>
+    <div class="trigger-box"><div class="ic">🎯</div><div class="txt">อินทิเกรตคือดิฟย้อนกลับ — "เพิ่มหนึ่ง หารด้วยกำลังใหม่ บวก C"</div></div>
+    <div class="section when"><div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div><ul>
+      <li>\( \int x^n\,dx \)</li>
+      <li>\( \int (3x^2+2x)\,dx \)</li>
+    </ul></div>
+    <div class="section how"><div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div><ol>
+      <li>\( \int x^n\,dx=\dfrac{x^{n+1}}{n+1}+C \) (n≠-1)</li>
+      <li>\( \int \dfrac{1}{x}\,dx=\ln|x|+C \)</li>
+      <li>\( \int e^x\,dx=e^x+C \)</li>
+      <li>อินทิเกรตทีละพจน์ได้ (linearity)</li>
+    </ol></div>
+    <div class="section mistake"><div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div><ul>
+      <li>ลืม +C เกือบทุกครั้ง</li>
+      <li>ใช้สูตร power rule กับ \( n=-1 \) (ต้องใช้ ln|x| แทน)</li>
+    </ul></div>
+    <div class="section hack"><div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div><div class="txt">"เพิ่มหนึ่ง หารด้วยกำลังใหม่ บวก C เสมอ"</div></div>
+    <div class="section examtip"><div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div><p>เป็นพื้นฐานที่ต้องคล่องก่อนไปเทคนิคขั้นสูงอย่าง u-substitution</p></div>
+    <div class="section checklist"><div class="sec-head"><span class="dot"></span>☑ Before You Submit</div><ul>
+      <li>เช็กว่าใส่ +C แล้ว</li>
+      <li>ดิฟผลลัพธ์กลับเพื่อตรวจคำตอบ</li>
+    </ul></div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 2. u-Substitution -->
+  <div class="card" data-accent="green">
+    <div class="card-head"><div class="eyebrow">PART 9 · Integration Rescue · 🟢 Formula</div><div class="title">u-Substitution</div></div>
+    <div class="trigger-box"><div class="ic">🎯</div><div class="txt">เห็นฟังก์ชันซ้อนกับอนุพันธ์ของไส้ → ตั้ง u = ไส้ ทันที</div></div>
+    <div class="section when"><div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div><ul>
+      <li>\( \int 2x(x^2+1)^5\,dx \)</li>
+      <li>\( \int \cos(3x)\,dx \)</li>
+    </ul></div>
+    <div class="section how"><div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div><ol>
+      <li>ตั้ง \( u = \) ฟังก์ชันชั้นใน</li>
+      <li>หา \( du = u'\,dx \) แล้วแก้หา dx</li>
+      <li>แทน u และ du ลงในอินทิเกรตเดิมทั้งหมด (ไม่เหลือ x)</li>
+      <li>อินทิเกรตในรูป u แล้วแทน u กลับเป็น x</li>
+    </ol></div>
+    <div class="section mistake"><div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div><ul>
+      <li>ลืมแทน u กลับเป็น x ในคำตอบสุดท้าย</li>
+      <li>เลือก u ผิดทำให้ยังเหลือ x ปนอยู่ แก้ไม่ได้</li>
+    </ul></div>
+    <div class="section hack"><div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div><div class="txt">"ตั้ง u จากไส้ แทน du ให้หมด x แล้วค่อยแทนกลับ"</div></div>
+    <div class="section examtip"><div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div><p>เป็นเทคนิคอินทิเกรตที่ใช้บ่อยที่สุด มักผสมกับฟังก์ชันตรีโกณและ exponential</p></div>
+    <div class="section checklist"><div class="sec-head"><span class="dot"></span>☑ Before You Submit</div><ul>
+      <li>เช็กว่าแทน u กลับเป็น x ครบแล้ว และมี +C</li>
+    </ul></div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 3. Integration by Parts -->
+  <div class="card" data-accent="orange">
+    <div class="card-head"><div class="eyebrow">PART 9 · Integration Rescue · 🟠 Trigger</div><div class="title">Integration by Parts</div></div>
+    <div class="trigger-box"><div class="ic">🎯</div><div class="txt">ผลคูณของฟังก์ชันต่างชนิดกัน → ใช้ LIATE เลือก u</div></div>
+    <div class="section when"><div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div><ul>
+      <li>\( \int x e^x\,dx \)</li>
+      <li>\( \int x\ln x\,dx \)</li>
+    </ul></div>
+    <div class="section how"><div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div><ol>
+      <li>\( \int u\,dv = uv-\int v\,du \)</li>
+      <li>เลือก u ตามลำดับ LIATE (Log, Inverse trig, Algebraic, Trig, Exponential)</li>
+      <li>หา du (ดิฟ u) และ v (อินทิเกรต dv)</li>
+      <li>แทนสูตรแล้วอินทิเกรต \( \int v\,du \) ต่อ (อาจต้องทำซ้ำ)</li>
+    </ol></div>
+    <div class="section mistake"><div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div><ul>
+      <li>เลือก u และ dv ผิดทำให้อินทิเกรตยากขึ้นแทนที่จะง่ายลง</li>
+      <li>ลืมเครื่องหมายลบหน้า \( \int v\,du \)</li>
+    </ul></div>
+    <div class="section hack"><div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div><div class="txt">LIATE: Log, Inverse trig, Algebraic, Trig, Exponential (เลือก u ตามลำดับนี้)</div></div>
+    <div class="section examtip"><div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div><p>มักออกกับ \( x\ln x \), \( xe^x \), \( x\sin x \) — บางข้อต้องทำซ้ำหลายรอบ</p></div>
+    <div class="section checklist"><div class="sec-head"><span class="dot"></span>☑ Before You Submit</div><ul>
+      <li>เช็กว่าใส่เครื่องหมายลบหน้า ∫v du แล้ว และมี +C</li>
+    </ul></div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 4. Partial Fraction (integration context) -->
+  <div class="card" data-accent="purple">
+    <div class="card-head"><div class="eyebrow">PART 9 · Integration Rescue · 🟣 Exam Tip</div><div class="title">Partial Fraction (อินทิเกรต)</div></div>
+    <div class="trigger-box"><div class="ic">🎯</div><div class="txt">เศษส่วนตรรกยะอินทิเกรตตรงไม่ได้ → แตกเป็นเศษส่วนย่อยก่อนเสมอ</div></div>
+    <div class="section when"><div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div><ul>
+      <li>\( \int \dfrac{1}{(x-1)(x+2)}\,dx \)</li>
+    </ul></div>
+    <div class="section how"><div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div><ol>
+      <li>แตกเป็นเศษส่วนย่อย \( \dfrac{A}{x-1}+\dfrac{B}{x+2} \) ตามเทคนิคใน Part 1</li>
+      <li>อินทิเกรตแต่ละพจน์แยกกัน (จะได้รูป ln)</li>
+      <li>รวมผลลัพธ์และใส่ +C</li>
+    </ol></div>
+    <div class="section mistake"><div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div><ul>
+      <li>ลืมใส่ \( |\,| \) ใน ln หลังอินทิเกรต \( \frac{1}{x-a} \)</li>
+      <li>แตกเศษส่วนย่อยผิดก่อนอินทิเกรต</li>
+    </ul></div>
+    <div class="section hack"><div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div><div class="txt">"แตกก่อน อินทิเกรตทีละพจน์ ได้ผลรวมของ ln"</div></div>
+    <div class="section examtip"><div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div><p>ใช้กับฟังก์ชันตรรกยะที่ตัวส่วน factor เป็นตัวประกอบเชิงเส้นแยกกันได้</p></div>
+    <div class="section checklist"><div class="sec-head"><span class="dot"></span>☑ Before You Submit</div><ul>
+      <li>เช็กว่าใส่ค่าสัมบูรณ์ใน ln ครบทุกพจน์</li>
+    </ul></div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 5. Trigonometric Integrals -->
+  <div class="card" data-accent="blue">
+    <div class="card-head"><div class="eyebrow">PART 9 · Integration Rescue · 🔵 Concept</div><div class="title">Trigonometric Integrals</div></div>
+    <div class="trigger-box"><div class="ic">🎯</div><div class="txt">เห็น \( \sin^n x\cos^m x \) → ใช้เอกลักษณ์ลดรูปก่อนอินทิเกรต</div></div>
+    <div class="section when"><div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div><ul>
+      <li>\( \int \sin^2 x\,dx \)</li>
+      <li>\( \int \sin^3 x\cos^2 x\,dx \)</li>
+    </ul></div>
+    <div class="section how"><div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div><ol>
+      <li>กำลังคู่ของ sin/cos → ใช้สูตรลดกำลัง (half-angle)</li>
+      <li>มีกำลังคี่อย่างน้อยหนึ่งตัว → แยกออกหนึ่งตัว แล้วใช้ \( \sin^2+\cos^2=1 \) จากนั้น u-sub</li>
+      <li>อินทิเกรตทีละพจน์หลังลดรูปแล้ว</li>
+    </ol></div>
+    <div class="section mistake"><div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div><ul>
+      <li>พยายามอินทิเกรตตรงๆ โดยไม่ลดรูปก่อน</li>
+      <li>เลือกใช้เทคนิคผิดระหว่างกำลังคู่กับกำลังคี่</li>
+    </ul></div>
+    <div class="section hack"><div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div><div class="txt">"คู่ใช้ half-angle / คี่แยกหนึ่งตัวแล้ว u-sub"</div></div>
+    <div class="section examtip"><div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div><p>มักผสมกับ u-substitution ในขั้นตอนสุดท้ายหลังลดรูปด้วยเอกลักษณ์แล้ว</p></div>
+    <div class="section checklist"><div class="sec-head"><span class="dot"></span>☑ Before You Submit</div><ul>
+      <li>เช็กว่าเลือกเทคนิคถูกต้องตามกำลังคู่/คี่</li>
+    </ul></div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 6. Trigonometric Substitution -->
+  <div class="card" data-accent="green">
+    <div class="card-head"><div class="eyebrow">PART 9 · Integration Rescue · 🟢 Formula</div><div class="title">Trigonometric Substitution</div></div>
+    <div class="trigger-box"><div class="ic">🎯</div><div class="txt">เห็น \( \sqrt{a^2-x^2} \) แบบนี้ → แทน x ด้วยฟังก์ชันตรีโกณตามรูปแบบ</div></div>
+    <div class="section when"><div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div><ul>
+      <li>\( \sqrt{a^2-x^2} \to x=a\sin\theta \)</li>
+      <li>\( \sqrt{a^2+x^2} \to x=a\tan\theta \)</li>
+      <li>\( \sqrt{x^2-a^2} \to x=a\sec\theta \)</li>
+    </ul></div>
+    <div class="section how"><div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div><ol>
+      <li>เลือกการแทนค่าตามรูปแบบรากที่ตรงกัน</li>
+      <li>แทน x และ dx ในรูป θ ทั้งหมด</li>
+      <li>ใช้เอกลักษณ์พีทาโกรัสกำจัดรากออก</li>
+      <li>อินทิเกรตในรูป θ แล้วใช้สามเหลี่ยมอ้างอิงแปลงกลับเป็น x</li>
+    </ol></div>
+    <div class="section mistake"><div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div><ul>
+      <li>เลือกรูปแบบการแทนค่าผิด (สลับ sin กับ sec)</li>
+      <li>ลืมวาดสามเหลี่ยมอ้างอิงตอนแปลง θ กลับเป็น x</li>
+    </ul></div>
+    <div class="section hack"><div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div><div class="txt">"a²-x² ใช้ sin / a²+x² ใช้ tan / x²-a² ใช้ sec"</div></div>
+    <div class="section examtip"><div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div><p>ใช้กับอินทิเกรตที่มีรากของผลบวก/ลบกำลังสองที่ไม่สามารถ u-sub ตรงๆ ได้</p></div>
+    <div class="section checklist"><div class="sec-head"><span class="dot"></span>☑ Before You Submit</div><ul>
+      <li>เช็กว่าแปลงกลับเป็น x ครบโดยใช้สามเหลี่ยมอ้างอิง</li>
+    </ul></div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 7. Improper Integrals -->
+  <div class="card" data-accent="orange">
+    <div class="card-head"><div class="eyebrow">PART 9 · Integration Rescue · 🟠 Trigger</div><div class="title">Improper Integrals</div></div>
+    <div class="trigger-box"><div class="ic">🎯</div><div class="txt">ขอบเขตเป็นอนันต์ หรือฟังก์ชันไม่ต่อเนื่อง → เขียนเป็นลิมิตก่อนเสมอ</div></div>
+    <div class="section when"><div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div><ul>
+      <li>\( \int_1^{\infty}\dfrac{1}{x^2}\,dx \)</li>
+      <li>\( \int_0^1\dfrac{1}{\sqrt{x}}\,dx \) (ไม่นิยามที่ x=0)</li>
+    </ul></div>
+    <div class="section how"><div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div><ol>
+      <li>เขียนขอบเขตอนันต์เป็นลิมิต: \( \int_1^{\infty}=\lim\limits_{t\to\infty}\int_1^t \)</li>
+      <li>หาแอนตี้เดริเวทีฟแล้วแทนขอบเขต</li>
+      <li>หาลิมิตเมื่อ \( t\to\infty \) หรือเข้าใกล้จุดไม่ต่อเนื่อง</li>
+      <li>ถ้าลิมิตมีค่าจำกัด → converge, ถ้าไม่มี → diverge</li>
+    </ol></div>
+    <div class="section mistake"><div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div><ul>
+      <li>แทนค่า \( \infty \) ลงในสูตรตรงๆ โดยไม่เขียนเป็นลิมิต</li>
+      <li>ลืมเช็กจุดที่ฟังก์ชันไม่ต่อเนื่องภายในขอบเขต</li>
+    </ul></div>
+    <div class="section hack"><div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div><div class="txt">"อนันต์หรือจุดขาด เขียนเป็นลิมิตก่อนเสมอ"</div></div>
+    <div class="section examtip"><div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div><p>มักถามว่า converge หรือ diverge มากกว่าหาค่าตัวเลขจริง</p></div>
+    <div class="section checklist"><div class="sec-head"><span class="dot"></span>☑ Before You Submit</div><ul>
+      <li>เช็กว่าเขียนเป็นลิมิตก่อนแทนขอบเขตอนันต์</li>
+      <li>สรุปชัดเจนว่า converge (พร้อมค่า) หรือ diverge</li>
+    </ul></div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+</div>
+</body>
+</html>

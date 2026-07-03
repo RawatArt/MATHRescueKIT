@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>TheLogicRescueKit Rescue Kit — Part 3</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700;800&family=Sarabun:wght@400;500;600;700;800&display=swap');
+  :root{
+    --concept:#2563eb;--formula:#16a34a;--trigger:#ea580c;--mistake:#dc2626;
+    --tip:#9333ea;--checklist:#1f2937;--hack:#ca8a04;--bg:#f7f7fb;
+    --card-bg:#ffffff;--ink:#1f2330;--muted:#6b7280;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;padding:32px;background:var(--bg);font-family:'Sarabun','Noto Sans Thai',sans-serif;color:var(--ink);}
+  .grid{display:flex;flex-wrap:wrap;gap:28px;justify-content:center;}
+  .card{width:420px;background:var(--card-bg);border-radius:18px;box-shadow:0 6px 24px rgba(20,20,40,.10);overflow:hidden;border:1px solid #ececf2;display:flex;flex-direction:column;}
+  .card-head{padding:18px 20px 14px;background:linear-gradient(135deg,var(--accent,#2563eb),color-mix(in srgb,var(--accent,#2563eb) 70%,black));color:#fff;}
+  .eyebrow{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.85;margin-bottom:4px;}
+  .title{font-size:21px;font-weight:800;line-height:1.25;}
+  .trigger-box{margin:14px 16px 0;background:#fff7ed;border:1.5px dashed var(--trigger);border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:10px;}
+  .trigger-box .ic{font-size:20px;}.trigger-box .txt{font-weight:700;font-size:15px;color:#7c2d12;}
+  .section{margin:14px 16px 0;padding:12px 14px;border-radius:12px;background:#fafafa;}.section:last-of-type{margin-bottom:16px;}
+  .sec-head{display:flex;align-items:center;gap:7px;font-weight:700;font-size:13.5px;margin-bottom:7px;}.sec-head .dot{width:9px;height:9px;border-radius:50%;flex:none;}
+  .when{background:#eff6ff;}.when .dot{background:var(--concept);}.when ul{margin:0;padding-left:18px;font-size:14px;line-height:1.65;}
+  .how{background:#f0fdf4;}.how .dot{background:var(--formula);}.how ol{margin:0;padding-left:20px;font-size:14px;line-height:1.7;font-weight:500;}
+  .mistake{background:#fef2f2;}.mistake .dot{background:var(--mistake);}.mistake ul{margin:0;padding-left:18px;font-size:13.5px;line-height:1.65;color:#7f1d1d;}
+  .hack{background:#fffbeb;}.hack .dot{background:var(--hack);}.hack .txt{font-size:14.5px;font-weight:700;color:#854d0e;}
+  .examtip{background:#faf5ff;}.examtip .dot{background:var(--tip);}.examtip p{margin:0;font-size:13.5px;line-height:1.6;color:#581c87;}
+  .checklist{background:#f4f4f5;}.checklist .dot{background:var(--checklist);}.checklist ul{list-style:none;margin:0;padding:0;font-size:13.5px;line-height:1.9;}.checklist li::before{content:"☐  ";}
+  .card[data-accent="green"]  .card-head{--accent:#16a34a;}
+  .card[data-accent="blue"]   .card-head{--accent:#2563eb;}
+  .card[data-accent="orange"] .card-head{--accent:#ea580c;}
+  .card[data-accent="purple"] .card-head{--accent:#9333ea;}
+  .pagefoot{text-align:center;font-size:11px;color:var(--muted);padding:10px 16px 14px;}
+  .katex{font-size:1.05em;}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+</head>
+<body>
+<div class="grid">
+
+  <div class="card" data-accent="blue">
+    <div class="card-head">
+      <div class="eyebrow">PART 3 · Logical Equivalences · 🟢 Formula</div>
+      <div class="title">เดอมอร์แกน</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">ไม่และ = ไม่แต่ละตัว หรือ</div>
+    </div>
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+      <li>แปลง $\sim(p \land q)$</li>
+      <li>แปลง $\sim(p \lor q)$</li>
+      </ul>
+    </div>
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+      <li>แจกนิเสธเข้าไปทีละตัว</li>
+      <li>สลับ $\land$ เป็น $\lor$</li>
+      <li>สลับ $\lor$ เป็น $\land$</li>
+      </ol>
+    </div>
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+      <li>นิเสธแค่ตัวหน้า</li>
+      <li>ลืมสลับตัวเชื่อม</li>
+      </ul>
+    </div>
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"ไม่ข้างใน สลับกลาง"</div>
+    </div>
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>โจทย์แปลงสมมูลและนิเสยมักออกตรงกฎนี้ ต้องจำว่าความไม่ใช่กระจายเข้าไปทีละตัวพร้อมสลับ 'และ' กับ 'หรือ'</p>
+    </div>
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+      <li>มี $\sim$ ครอบวงเล็บหรือไม่</li>
+      <li>สลับตัวเชื่อมแล้วหรือยัง</li>
+      </ul>
+    </div>
+    <div class="pagefoot">TheLogicRescueKit Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+
+  <div class="card" data-accent="green">
+    <div class="card-head">
+      <div class="eyebrow">PART 3 · Logical Equivalences · 🟢 Formula</div>
+      <div class="title">สูตรถ้า...แล้ว</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">ถ้า...แล้ว = ไม่หน้า หรือ หลัง</div>
+    </div>
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+      <li>แปลง $p \rightarrow q$</li>
+      <li>หานิเสธของประโยคแบบถ้า...แล้ว</li>
+      </ul>
+    </div>
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+      <li>แทน $p \rightarrow q$ ด้วย $\sim p \lor q$</li>
+      <li>ใช้แทนในโจทย์ทุกครั้ง</li>
+      <li>ถ้าต้องนิเสธ ให้เริ่มจากรูปนี้ก่อน</li>
+      </ol>
+    </div>
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+      <li>นิเสธ $p \rightarrow q$ ตรงๆ</li>
+      <li>ลืมแปลงเป็น 'ไม่หน้า หรือ หลัง'</li>
+      </ul>
+    </div>
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"ไม่หน้า หรือ หลัง"</div>
+    </div>
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>พาร์ทนิเสยมักให้แปลงจากภาษาไทยเป็นสัญลักษณ์ก่อน แล้วค่อยทำต่อ ถ้าลืมสูตรนี้จะตอบผิดทันที</p>
+    </div>
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+      <li>จำรูป $\sim p \lor q$ ได้ไหม</li>
+      <li>เริ่มจากแปลงก่อนหรือยัง</li>
+      </ul>
+    </div>
+    <div class="pagefoot">TheLogicRescueKit Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+
+  <div class="card" data-accent="orange">
+    <div class="card-head">
+      <div class="eyebrow">PART 3 · Logical Equivalences · 🟢 Formula</div>
+      <div class="title">สลับที่กลับด้าน</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">ชนิดเดียวกัน แต่สลับหน้าหลัง ยังจริงเท่าเดิม</div>
+    </div>
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+      <li>แปลง $p \rightarrow q$ เป็น $\sim q \rightarrow \sim p$</li>
+      <li>ตรวจสมมูลของประโยคเงื่อนไข</li>
+      </ul>
+    </div>
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+      <li>เขียน contrapositive ของประโยคเดิม</li>
+      <li>สลับและนิเสธทั้งหน้าและหลัง</li>
+      <li>เช็กว่าค่าความจริงเท่ากันเสมอ</li>
+      </ol>
+    </div>
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+      <li>สับสนกับ converse คือ $q \rightarrow p$</li>
+      <li>นิเสธไม่ครบทั้งสองข้าง</li>
+      </ul>
+    </div>
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"สลับหน้า-หลัง แล้วนิเสธ"</div>
+    </div>
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>ข้อสอบชอบออกให้เลือกประโยคที่สมมูลกับประโยคเดิม โดยใช้ contrapositive แทนประโยคต้นฉบับได้ทุกกรณี</p>
+    </div>
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+      <li>สลับตำแหน่งแล้วหรือยัง</li>
+      <li>นิเสธทั้งสองฝั่งครบไหม</li>
+      </ul>
+    </div>
+    <div class="pagefoot">TheLogicRescueKit Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+
+  <div class="card" data-accent="purple">
+    <div class="card-head">
+      <div class="eyebrow">PART 3 · Logical Equivalences · 🟢 Formula</div>
+      <div class="title">แจกแจง</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">หรือคูณวงเล็บ = แจกเข้าไป</div>
+    </div>
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+      <li>แปลง $p \lor (q \land r)$</li>
+      <li>แยกวงเล็บในรูปผสม</li>
+      </ul>
+    </div>
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+      <li>ดูว่ามี $\lor$ คู่กับวงเล็บ $\land$ หรือไม่</li>
+      <li>แจก $p$ เข้าไปทั้งสองตัว</li>
+      <li>ได้ $(p \lor q) \land (p \lor r)$</li>
+      </ol>
+    </div>
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+      <li>แจกผิดเป็น $ (p \lor q) \lor r$</li>
+      <li>ลืมว่าวงเล็บต้องเปลี่ยนรูป</li>
+      </ul>
+    </div>
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"หรือแจกเข้า และ"</div>
+    </div>
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>ข้อสอบชอบให้ย่อหรือขยายรูปสมมูล เพราะดูว่ารู้จักการแจกแจงจริงไหม โดยเฉพาะรูป $p \lor (q \land r)$</p>
+    </div>
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+      <li>เป็นรูป $\lor$ กับวงเล็บ $\land$ หรือไม่</li>
+      <li>แจกครบสองวงเล็บแล้วหรือยัง</li>
+      </ul>
+    </div>
+    <div class="pagefoot">TheLogicRescueKit Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+</div>
+</body>
+</html>

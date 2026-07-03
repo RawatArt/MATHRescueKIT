@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>TheMatrixRescueKit Rescue Kit — Part 4</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700;800&family=Sarabun:wght@400;500;600;700;800&display=swap');
+  :root{
+    --concept:#2563eb;--formula:#16a34a;--trigger:#ea580c;--mistake:#dc2626;
+    --tip:#9333ea;--checklist:#1f2937;--hack:#ca8a04;--bg:#f7f7fb;
+    --card-bg:#ffffff;--ink:#1f2330;--muted:#6b7280;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;padding:32px;background:var(--bg);font-family:'Sarabun','Noto Sans Thai',sans-serif;color:var(--ink);}
+  .grid{display:flex;flex-wrap:wrap;gap:28px;justify-content:center;}
+  .card{width:420px;background:var(--card-bg);border-radius:18px;box-shadow:0 6px 24px rgba(20,20,40,.10);overflow:hidden;border:1px solid #ececf2;display:flex;flex-direction:column;}
+  .card-head{padding:18px 20px 14px;background:linear-gradient(135deg,var(--accent,#2563eb),color-mix(in srgb,var(--accent,#2563eb) 70%,black));color:#fff;}
+  .eyebrow{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.85;margin-bottom:4px;}
+  .title{font-size:21px;font-weight:800;line-height:1.25;}
+  .trigger-box{margin:14px 16px 0;background:#fff7ed;border:1.5px dashed var(--trigger);border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:10px;}
+  .trigger-box .ic{font-size:20px;}.trigger-box .txt{font-weight:700;font-size:15px;color:#7c2d12;}
+  .section{margin:14px 16px 0;padding:12px 14px;border-radius:12px;background:#fafafa;}.section:last-of-type{margin-bottom:16px;}
+  .sec-head{display:flex;align-items:center;gap:7px;font-weight:700;font-size:13.5px;margin-bottom:7px;}.sec-head .dot{width:9px;height:9px;border-radius:50%;flex:none;}
+  .when{background:#eff6ff;}.when .dot{background:var(--concept);}.when ul{margin:0;padding-left:18px;font-size:14px;line-height:1.65;}
+  .how{background:#f0fdf4;}.how .dot{background:var(--formula);}.how ol{margin:0;padding-left:20px;font-size:14px;line-height:1.7;font-weight:500;}
+  .mistake{background:#fef2f2;}.mistake .dot{background:var(--mistake);}.mistake ul{margin:0;padding-left:18px;font-size:13.5px;line-height:1.65;color:#7f1d1d;}
+  .hack{background:#fffbeb;}.hack .dot{background:var(--hack);}.hack .txt{font-size:14.5px;font-weight:700;color:#854d0e;}
+  .examtip{background:#faf5ff;}.examtip .dot{background:var(--tip);}.examtip p{margin:0;font-size:13.5px;line-height:1.6;color:#581c87;}
+  .checklist{background:#f4f4f5;}.checklist .dot{background:var(--checklist);}.checklist ul{list-style:none;margin:0;padding:0;font-size:13.5px;line-height:1.9;}.checklist li::before{content:"☐  ";}
+  .card[data-accent="green"]  .card-head{--accent:#16a34a;}
+  .card[data-accent="blue"]   .card-head{--accent:#2563eb;}
+  .card[data-accent="orange"] .card-head{--accent:#ea580c;}
+  .card[data-accent="purple"] .card-head{--accent:#9333ea;}
+  .pagefoot{text-align:center;font-size:11px;color:var(--muted);padding:10px 16px 14px;}
+  .katex{font-size:1.05em;}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+</head>
+<body>
+<div class="grid">
+
+  <div class="card" data-accent="blue">
+    <div class="card-head">
+      <div class="eyebrow">PART 4 · DetProperties · 🟢 Formula</div>
+      <div class="title">สมบัติการคูณ</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">จำให้ขึ้นใจ: det(AB) แยกเป็น det(A)det(B)</div>
+    </div>
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+      <li>ให้ \(det(A)=2\), \(det(B)=3\) จงหา \(det(AB)\)</li>
+      <li>กำหนด \(det(A)=-1\), \(det(B)=4\) จงหา \(det(BA)\)</li>
+      </ul>
+    </div>
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+      <li>ใช้สมบัติ \(det(AB)=det(A)det(B)\)</li>
+      <li>คูณค่าที่ให้มาโดยตรง</li>
+      <li>สลับลำดับได้เพราะผลคูณ det เท่ากัน</li>
+      </ol>
+    </div>
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+      <li>คิดว่า det บวกกันได้</li>
+      <li>ลืมว่า AB กับ BA ได้ det เท่ากัน</li>
+      </ul>
+    </div>
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"คูณ det ไม่บวก det"</div>
+    </div>
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>ข้อสอบชอบให้ det ของผลคูณหลายชั้น ให้แตกทีละก้อนแล้วคูณค่าที่เหลือเร็วๆ</p>
+    </div>
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+      <li>เห็น AB แล้วแยก det ได้ไหม</li>
+      <li>คำนวณค่าตัวเลขครบหรือยัง</li>
+      </ul>
+    </div>
+    <div class="pagefoot">TheMatrixRescueKit Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+
+  <div class="card" data-accent="green">
+    <div class="card-head">
+      <div class="eyebrow">PART 4 · DetProperties · 🔵 Concept</div>
+      <div class="title">ทรานสโพสไม่เปลี่ยน</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">สลับแถวกับหลัก det เท่าเดิม</div>
+    </div>
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+      <li>ให้ \(det(A)=5\) จงหา \(det(A^t)\)</li>
+      <li>ถ้า \(det(3A^t)\) ของเมทริกซ์ \(3\times 3\)</li>
+      </ul>
+    </div>
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+      <li>จำว่า \(det(A^t)=det(A)\)</li>
+      <li>ถ้ามีตัวคูณหน้ามิได้ติดกับทรานสโพสให้ดึงออกก่อน</li>
+      <li>ใช้มิติช่วยยกกำลังเมื่อดึงสเกลาร์ออก</li>
+      </ol>
+    </div>
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+      <li>คิดว่า transpose ทำให้ค่า det เปลี่ยน</li>
+      <li>ลืมยกกำลังมิติเมื่อดึงเลขออก</li>
+      </ul>
+    </div>
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"Transpose ไม่แตะค่า det"</div>
+    </div>
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>ชอบออกคู่กับสมบัติการคูณหรือ inverse เพื่อหลอกให้สับสนเรื่องลำดับ</p>
+    </div>
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+      <li>เห็น \(t\) แล้วจำได้ไหมว่า det เท่าเดิม</li>
+      <li>มีสเกลาร์หน้าก่อนคำนวณหรือไม่</li>
+      </ul>
+    </div>
+    <div class="pagefoot">TheMatrixRescueKit Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+
+  <div class="card" data-accent="orange">
+    <div class="card-head">
+      <div class="eyebrow">PART 4 · DetProperties · 🟢 Formula</div>
+      <div class="title">อินเวอร์สของ det</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">det ของอินเวอร์ส คือส่วนกลับ</div>
+    </div>
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+      <li>ให้ \(det(A)=4\) จงหา \(det(A^{-1})\)</li>
+      <li>ถ้า \(det(A)=-2\) แล้ว \(det((A^{-1})^2)\)</li>
+      </ul>
+    </div>
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+      <li>ใช้ \(det(A^{-1})=\frac{1}{det(A)}\)</li>
+      <li>ถ้ามียกกำลัง ใช้ \(det((A^{-1})^2)=(det(A^{-1}))^2\)</li>
+      <li>แทนค่าตรงและระวังเครื่องหมายลบ</li>
+      </ol>
+    </div>
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+      <li>กลับเศษส่วนผิด</li>
+      <li>ลืมยกกำลังหลังหา det ของ inverse</li>
+      </ul>
+    </div>
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"Inverse det = ส่วนกลับ"</div>
+    </div>
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>ข้อสอบมักซ้อน inverse กับ power เพื่อเช็กว่าจำสมบัติเป็นชั้นๆ ได้ไหม</p>
+    </div>
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+      <li>หา det ก่อนกลับเศษส่วน</li>
+      <li>ยกกำลังของ det ครบหรือยัง</li>
+      </ul>
+    </div>
+    <div class="pagefoot">TheMatrixRescueKit Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+
+  <div class="card" data-accent="purple">
+    <div class="card-head">
+      <div class="eyebrow">PART 4 · DetProperties · 🟢 Formula</div>
+      <div class="title">ยกกำลังเมทริกซ์</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">det ยกกำลังข้างใน ดึงออกมาข้างนอกได้</div>
+    </div>
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+      <li>ให้ \(det(A)=2\) จงหา \(det(A^3)\)</li>
+      <li>ถ้า \(det(A)=-3\) จงหา \(det(A^2)\)</li>
+      </ul>
+    </div>
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+      <li>ใช้ \(det(A^n)=(det(A))^n\)</li>
+      <li>แทนค่าจาก det ของ A โดยตรง</li>
+      <li>คำนวณกำลังให้ครบ</li>
+      </ol>
+    </div>
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+      <li>เอา n ไปคูณ det แทนการยกกำลัง</li>
+      <li>ลืมว่า det ของค่าลบยกกำลังอาจเปลี่ยนเครื่องหมาย</li>
+      </ul>
+    </div>
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"Power ออกนอก det เป็น power ของ det"</div>
+    </div>
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>ชอบออกให้รวมกับ transpose หรือ inverse เพื่อวัดการเรียงสมบัติ</p>
+    </div>
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+      <li>เห็น \(A^n\) แล้วแปลงเป็น \((det A)^n\) ได้ไหม</li>
+      <li>เช็กเครื่องหมายของคำตอบ</li>
+      </ul>
+    </div>
+    <div class="pagefoot">TheMatrixRescueKit Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+
+  <div class="card" data-accent="blue">
+    <div class="card-head">
+      <div class="eyebrow">PART 4 · DetProperties · 🟠 Trigger</div>
+      <div class="title">ห้ามแจกบวก</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">det(A+B) ไม่เท่ากับ det(A)+det(B)</div>
+    </div>
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+      <li>ถ้า \(det(A)=1\) และ \(det(B)=2\) จงหา \(det(A+B)\)</li>
+      <li>มีคนบอกว่า \(det(2A+3B)=2det(A)+3det(B)\)</li>
+      </ul>
+    </div>
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+      <li>จำว่า det แจกได้เฉพาะการคูณ</li>
+      <li>อย่ากระจาย det เข้าเครื่องหมายบวกหรือ ลบ</li>
+      <li>ถ้าเป็นผลรวม ต้องหาวิธีอื่น ไม่ใช้สมบัติตรง</li>
+      </ol>
+    </div>
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+      <li>แจก det เข้าบวกแบบระบบจำนวนจริง</li>
+      <li>คิดว่า \(det(A-B)\) แยกได้เหมือนพจน์พีชคณิต</li>
+      </ul>
+    </div>
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"บวก ลบ det แจกไม่ได้"</div>
+    </div>
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>ข้อสอบชอบใส่ตัวหลอกในรูปผลรวมเพื่อเช็กว่ารู้ขอบเขตสมบัติหรือไม่</p>
+    </div>
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+      <li>มีเครื่องหมาย + หรือ - อยู่ข้างในไหม</li>
+      <li>ถ้ามี หยุดใช้สมบัติแจกทันที</li>
+      </ul>
+    </div>
+    <div class="pagefoot">TheMatrixRescueKit Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+</div>
+</body>
+</html>

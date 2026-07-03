@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>Calculus Rescue Kit — Part 7 Derivative Rescue</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700;800&family=Sarabun:wght@400;500;600;700;800&display=swap');
+
+  :root{
+    --concept:#2563eb;
+    --formula:#16a34a;
+    --trigger:#ea580c;
+    --mistake:#dc2626;
+    --tip:#9333ea;
+    --checklist:#1f2937;
+    --hack:#ca8a04;
+    --bg:#f7f7fb;
+    --card-bg:#ffffff;
+    --ink:#1f2330;
+    --muted:#6b7280;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0; padding:32px;
+    background:var(--bg);
+    font-family:'Sarabun','Noto Sans Thai',sans-serif;
+    color:var(--ink);
+  }
+
+  .grid{
+    display:flex; flex-wrap:wrap; gap:28px; justify-content:center;
+  }
+
+  .card{
+    width:420px;
+    background:var(--card-bg);
+    border-radius:18px;
+    box-shadow:0 6px 24px rgba(20,20,40,0.10);
+    overflow:hidden;
+    border:1px solid #ececf2;
+    display:flex; flex-direction:column;
+  }
+
+  .card-head{
+    padding:18px 20px 14px;
+    background:linear-gradient(135deg, var(--accent,#2563eb), color-mix(in srgb, var(--accent,#2563eb) 70%, black));
+    color:#fff;
+    position:relative;
+  }
+  .eyebrow{
+    font-size:11px; font-weight:700; letter-spacing:.08em;
+    text-transform:uppercase; opacity:.85; margin-bottom:4px;
+  }
+  .title{
+    font-size:21px; font-weight:800; line-height:1.25;
+  }
+
+  .trigger-box{
+    margin:14px 16px 0;
+    background:#fff7ed;
+    border:1.5px dashed var(--trigger);
+    border-radius:12px;
+    padding:10px 14px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .trigger-box .ic{font-size:20px;}
+  .trigger-box .txt{font-weight:700; font-size:15px; color:#7c2d12;}
+
+  .section{
+    margin:14px 16px 0;
+    padding:12px 14px;
+    border-radius:12px;
+    background:#fafafa;
+  }
+  .section:last-of-type{margin-bottom:16px;}
+  .sec-head{
+    display:flex; align-items:center; gap:7px;
+    font-weight:700; font-size:13.5px; margin-bottom:7px;
+  }
+  .sec-head .dot{width:9px;height:9px;border-radius:50%;flex:none;}
+
+  .when{background:#eff6ff;}
+  .when .dot{background:var(--concept);}
+  .when ul{margin:0; padding-left:18px; font-size:14px; line-height:1.65;}
+
+  .how{background:#f0fdf4;}
+  .how .dot{background:var(--formula);}
+  .how ol{margin:0; padding-left:20px; font-size:14px; line-height:1.7; font-weight:500;}
+
+  .mistake{background:#fef2f2;}
+  .mistake .dot{background:var(--mistake);}
+  .mistake ul{margin:0; padding-left:18px; font-size:13.5px; line-height:1.65; color:#7f1d1d;}
+
+  .hack{background:#fffbeb;}
+  .hack .dot{background:var(--hack);}
+  .hack .txt{font-size:14.5px; font-weight:700; color:#854d0e;}
+
+  .examtip{background:#faf5ff;}
+  .examtip .dot{background:var(--tip);}
+  .examtip p{margin:0; font-size:13.5px; line-height:1.6; color:#581c87;}
+
+  .checklist{background:#f4f4f5;}
+  .checklist .dot{background:var(--checklist);}
+  .checklist ul{list-style:none; margin:0; padding:0; font-size:13.5px; line-height:1.9;}
+  .checklist li::before{content:"☐  "; }
+
+  .card[data-accent="green"] .card-head{--accent:#16a34a;}
+  .card[data-accent="blue"] .card-head{--accent:#2563eb;}
+  .card[data-accent="orange"] .card-head{--accent:#ea580c;}
+  .card[data-accent="purple"] .card-head{--accent:#9333ea;}
+
+  .pagefoot{
+    text-align:center; font-size:11px; color:var(--muted);
+    padding:10px 16px 14px;
+  }
+
+  .katex { font-size: 1.05em; }
+</style>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+</head>
+<body>
+
+<div class="grid">
+
+  <!-- 1. Definition -->
+  <div class="card" data-accent="blue">
+    <div class="card-head">
+      <div class="eyebrow">PART 7 · Derivative Rescue · 🔵 Concept</div>
+      <div class="title">Definition (นิยามอนุพันธ์)</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">อนุพันธ์ = ลิมิตของอัตราการเปลี่ยนแปลงเฉลี่ย เมื่อ h เข้าใกล้ศูนย์</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>หา \( f'(x) \) จากนิยามลิมิตโดยตรง</li>
+        <li>โจทย์ที่ระบุว่า "ใช้นิยาม" หรือ "first principles"</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>\( f'(x)=\lim\limits_{h\to 0}\dfrac{f(x+h)-f(x)}{h} \)</li>
+        <li>เขียน \( f(x+h) \) แทนค่าในฟังก์ชัน</li>
+        <li>ขยาย จัดรูป simplify ตัวเศษให้มี h เป็นตัวร่วม</li>
+        <li>ตัด h แล้วแทน \( h\to 0 \)</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>แทนค่า \( h=0 \) ตั้งแต่ต้นโดยไม่จัดรูปก่อน (ได้ 0/0 ทันที)</li>
+        <li>ขยาย \( f(x+h) \) ผิด โดยเฉพาะฟังก์ชันกำลังสูง</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"f(x+h) ลบ f(x) หาร h แล้วค่อยส่ง h เข้าศูนย์"</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>มักให้พิสูจน์สูตรอนุพันธ์พื้นฐาน เช่น \( \frac{d}{dx}x^2=2x \) จากนิยามโดยตรง</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เช็กว่าตัด h ออกก่อนแทนค่า h→0</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 2. Power Rule -->
+  <div class="card" data-accent="green">
+    <div class="card-head">
+      <div class="eyebrow">PART 7 · Derivative Rescue · 🟢 Formula</div>
+      <div class="title">Power Rule</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">ดึงลง ลดหนึ่ง</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>\( x^n \), \( 5x^3 \), \( \dfrac{1}{x^2}=x^{-2} \)</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>\( \dfrac{d}{dx}x^n = nx^{n-1} \)</li>
+        <li>นำเลขชี้กำลังลงมาคูณข้างหน้า</li>
+        <li>ลดเลขชี้กำลังลง 1</li>
+        <li>ใช้กับเลขชี้กำลังลบ/เศษส่วนได้เหมือนกัน</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>ลืมแปลงรากและเศษส่วนเป็นเลขชี้กำลังก่อนดิฟ</li>
+        <li>ลืมคูณสัมประสิทธิ์เดิมกับเลขชี้กำลังที่ดึงลงมา</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"ดึงลง ลดหนึ่ง"</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>เป็นกฎพื้นฐานที่ใช้ร่วมกับแทบทุกกฎอื่น (chain, product, quotient)</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เช็กว่าแปลงรากและเศษส่วนเป็นเลขชี้กำลังครบแล้ว</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 3. Product Rule -->
+  <div class="card" data-accent="orange">
+    <div class="card-head">
+      <div class="eyebrow">PART 7 · Derivative Rescue · 🟠 Trigger</div>
+      <div class="title">Product Rule</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">เห็นฟังก์ชันคูณกัน → "ดิฟหน้า×หลัง บวก หน้า×ดิฟหลัง"</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>\( x^2\sin x \)</li>
+        <li>\( (3x+1)(x^2-2) \)</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>กำหนด \( u=f(x) \), \( v=g(x) \)</li>
+        <li>\( (uv)' = u'v + uv' \)</li>
+        <li>ดิฟ u และ v แยกกัน แล้วแทนสูตร</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>ดิฟแยก u และ v แล้วคูณกันตรงๆ (ผิด! ไม่ใช่ \( u'v' \))</li>
+        <li>ลืมพจน์ใดพจน์หนึ่งจาก 2 พจน์ของสูตร</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"ดิฟหน้าคูณหลัง บวก หน้าคูณดิฟหลัง"</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>มักผสมกับ chain rule เมื่อ u หรือ v เป็นฟังก์ชันประกอบ</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เช็กว่าใช้ครบทั้ง 2 พจน์ของสูตร</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 4. Quotient Rule -->
+  <div class="card" data-accent="purple">
+    <div class="card-head">
+      <div class="eyebrow">PART 7 · Derivative Rescue · 🟣 Exam Tip</div>
+      <div class="title">Quotient Rule</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">"ล่างดิฟบนลบบนดิฟล่าง หารล่างยกกำลังสอง" (Lo-D-Hi)</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>\( \dfrac{\sin x}{x} \)</li>
+        <li>\( \dfrac{x^2+1}{x-3} \)</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>กำหนด \( u \) = เศษ, \( v \) = ส่วน</li>
+        <li>\( \left(\dfrac{u}{v}\right)'=\dfrac{u'v-uv'}{v^2} \)</li>
+        <li>ระวังลำดับการลบ (เศษ-ดิฟลบ-ส่วน-ดิฟ ห้ามสลับ)</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>สลับลำดับการลบในตัวเศษ (u'v กับ uv' สลับที่)</li>
+        <li>ลืมยกกำลังสองตัวส่วน</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"Lo-D-Hi minus Hi-D-Lo over Lo-Lo"</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>ใช้บ่อยกับฟังก์ชันตรีโกณผกผัน เช่น tan = sin/cos เพื่อพิสูจน์สูตรอนุพันธ์ของ tan</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เช็กลำดับการลบในตัวเศษถูกต้อง</li>
+        <li>เช็กว่ายกกำลังสองตัวส่วนแล้ว</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 5. Chain Rule -->
+  <div class="card" data-accent="blue">
+    <div class="card-head">
+      <div class="eyebrow">PART 7 · Derivative Rescue · 🔵 Concept</div>
+      <div class="title">Chain Rule</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">ดิฟนอก... อย่าลืมดิฟไส้!</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>\( \sin(x^2) \)</li>
+        <li>\( e^{5x} \)</li>
+        <li>\( (3x+2)^8 \)</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>มองเป็นฟังก์ชันประกอบ: นอก(ใน(x))</li>
+        <li>ดิฟฟังก์ชันนอก (คงฟังก์ชันในไว้เหมือนเดิม)</li>
+        <li>คูณด้วยอนุพันธ์ของฟังก์ชันใน</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>ลืมดิฟไส้ (ฟังก์ชันชั้นใน) — ข้อผิดพลาดที่พบบ่อยที่สุด</li>
+        <li>ดิฟชั้นในผิดเมื่อมีหลายชั้นซ้อนกัน</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"ดิฟนอก...อย่าลืมดิฟไส้!" (Outside × Inside)</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>เป็นกฎที่ออกสอบบ่อยที่สุดในหมวดอนุพันธ์ มักซ้อนกับ product/quotient rule</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เช็กว่าดิฟครบทุกชั้นถ้ามีฟังก์ชันซ้อนหลายชั้น</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 6. Implicit Differentiation -->
+  <div class="card" data-accent="green">
+    <div class="card-head">
+      <div class="eyebrow">PART 7 · Derivative Rescue · 🟢 Formula</div>
+      <div class="title">Implicit Differentiation</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">y แยกจาก x ไม่ได้ → ดิฟทั้งสองข้าง แล้วใส่ dy/dx ทุกครั้งที่ดิฟ y</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>\( x^2+y^2=25 \)</li>
+        <li>\( xy+\sin y=x \) (y ปนอยู่กับ x แยกไม่ออก)</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>ดิฟทั้งสองข้างเทียบ x</li>
+        <li>ทุกครั้งที่ดิฟพจน์ที่มี y ให้คูณ \( \dfrac{dy}{dx} \) ด้วย (chain rule)</li>
+        <li>พจน์ที่มี xy ใช้ product rule ร่วมด้วย</li>
+        <li>ย้ายพจน์ที่มี \( dy/dx \) มารวมกัน แล้วแก้หา \( dy/dx \)</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>ลืมคูณ \( dy/dx \) เมื่อดิฟพจน์ที่มี y</li>
+        <li>ลืมใช้ product rule กับพจน์ที่มี xy ปนกัน</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"ดิฟ y ทุกครั้ง อย่าลืมคูณ dy/dx"</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>ใช้หาความชันของเส้นสัมผัสวงกลม วงรี หรือเส้นโค้งที่ y แยกจาก x ไม่ได้ตรงๆ</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เช็กว่าใส่ dy/dx ครบทุกพจน์ที่มี y</li>
+        <li>ย้ายพจน์ dy/dx มารวมฝั่งเดียวกันก่อนแก้สมการ</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 7. Log Differentiation -->
+  <div class="card" data-accent="orange">
+    <div class="card-head">
+      <div class="eyebrow">PART 7 · Derivative Rescue · 🟠 Trigger</div>
+      <div class="title">Log Differentiation</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">เห็น x ยกกำลัง x หรือผลคูณ/หารซับซ้อน → ln ทั้งสองข้างก่อนดิฟ</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>\( y = x^x \)</li>
+        <li>\( y=\dfrac{x^2\sqrt{x+1}}{(x-3)^4} \) (ผลคูณ/หารหลายพจน์)</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>ใส่ ln ทั้งสองข้าง: \( \ln y = \ln(\ldots) \)</li>
+        <li>ใช้กฎ log แตกผลคูณ/หาร/ยกกำลังเป็นบวก-ลบ-คูณ</li>
+        <li>ดิฟทั้งสองข้าง (ซ้ายได้ \( \frac{1}{y}\frac{dy}{dx} \))</li>
+        <li>คูณ y กลับทั้งสองข้าง แล้วแทน y เดิม</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>ลืมคูณ y กลับหลังดิฟ (เหลือคำตอบเป็น \( \frac{1}{y}y' \) ค้างไว้)</li>
+        <li>ใช้ power rule กับ \( x^x \) ตรงๆ (ผิด! เลขชี้กำลังไม่คงที่)</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"ln ก่อน แตก log แล้วค่อยดิฟ คูณ y กลับท้ายสุด"</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>ออกเฉพาะกับฟังก์ชันที่ตัวแปรอยู่ทั้งฐานและเลขชี้กำลัง (variable^variable)</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เช็กว่าคูณ y กลับและแทนค่า y เดิมแล้ว</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 8. Exponential Differentiation -->
+  <div class="card" data-accent="purple">
+    <div class="card-head">
+      <div class="eyebrow">PART 7 · Derivative Rescue · 🟣 Exam Tip</div>
+      <div class="title">Exponential Differentiation</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">\( e^x \) ดิฟแล้วเหมือนเดิม / ฐานอื่นต้องคูณ ln(ฐาน)</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>\( e^x \), \( e^{3x} \), \( 2^x \)</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>\( \dfrac{d}{dx}e^x = e^x \)</li>
+        <li>\( \dfrac{d}{dx}e^{g(x)} = e^{g(x)}\cdot g'(x) \) (chain rule)</li>
+        <li>\( \dfrac{d}{dx}a^x = a^x\ln a \) (ฐานอื่นที่ไม่ใช่ e ต้องคูณ ln a)</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>ลืมคูณ \( \ln a \) เมื่อฐานไม่ใช่ e</li>
+        <li>ลืม chain rule เมื่อเลขชี้กำลังเป็นฟังก์ชัน g(x)</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"e เฉยๆ ไม่ต้องคูณอะไร / ฐานอื่นคูณ ln ฐาน"</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>มักผสมกับ chain rule เมื่อเลขชี้กำลังซับซ้อน เช่น \( e^{\sin x} \)</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เช็กว่าคูณ ln a ครบถ้าฐานไม่ใช่ e</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 9. Inverse Trigonometric Differentiation -->
+  <div class="card" data-accent="blue">
+    <div class="card-head">
+      <div class="eyebrow">PART 7 · Derivative Rescue · 🔵 Concept</div>
+      <div class="title">Inverse Trig Differentiation</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">arcsin, arctan ฯลฯ → จำสูตรเฉพาะ ไม่ต้องพิสูจน์ใหม่</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>\( \arcsin x \), \( \arctan x \), \( \arccos x \)</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>\( \dfrac{d}{dx}\arcsin x = \dfrac{1}{\sqrt{1-x^2}} \)</li>
+        <li>\( \dfrac{d}{dx}\arccos x = -\dfrac{1}{\sqrt{1-x^2}} \)</li>
+        <li>\( \dfrac{d}{dx}\arctan x = \dfrac{1}{1+x^2} \)</li>
+        <li>ถ้าอินพุตเป็น g(x) ต้องคูณ \( g'(x) \) ด้วย (chain rule)</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>สับสนเครื่องหมายระหว่าง arcsin (บวก) กับ arccos (ลบ)</li>
+        <li>ลืม chain rule เมื่ออินพุตไม่ใช่ x เฉยๆ</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"arcsin บวก arccos ลบ ตัวเดียวกัน / arctan ส่วนคือ 1+x²"</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>มักผสม chain rule กับฟังก์ชันผกผันตรีโกณที่มี g(x) ซับซ้อนอยู่ข้างใน</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เช็กเครื่องหมายของสูตร arcsin/arccos ไม่สลับกัน</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 10. Higher-order Derivatives -->
+  <div class="card" data-accent="green">
+    <div class="card-head">
+      <div class="eyebrow">PART 7 · Derivative Rescue · 🟢 Formula</div>
+      <div class="title">Higher-order Derivatives</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">ดิฟซ้ำได้เรื่อยๆ — ดิฟผลลัพธ์เดิมต่อไปทีละชั้น</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>หา \( f''(x) \), \( f'''(x) \)</li>
+        <li>หาความเร่งจากตำแหน่ง (ดิฟสองครั้ง)</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>หา \( f'(x) \) ก่อนตามปกติ</li>
+        <li>นำ \( f'(x) \) มาดิฟต่ออีกครั้งเพื่อหา \( f''(x) \)</li>
+        <li>ทำซ้ำได้เรื่อยๆ ตามลำดับที่โจทย์ต้องการ</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>ดิฟจากฟังก์ชันเดิมซ้ำ แทนที่จะดิฟต่อจากอนุพันธ์ชั้นก่อนหน้า</li>
+        <li>ลืมใช้กฎที่ถูกต้อง (chain/product) ซ้ำในแต่ละชั้น</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"ดิฟผลลัพธ์ล่าสุด ไม่ใช่ดิฟของเดิมซ้ำ"</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>เชื่อมกับฟิสิกส์: ตำแหน่ง→ความเร็ว (f')→ความเร่ง (f'') และใช้หา concavity/inflection point</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เช็กว่าดิฟจากชั้นก่อนหน้าถูกต้องตามลำดับ</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+</div>
+</body>
+</html>

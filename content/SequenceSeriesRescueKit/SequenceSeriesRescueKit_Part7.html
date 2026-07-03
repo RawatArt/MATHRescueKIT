@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>SequenceSeriesRescueKit Rescue Kit — Part 7</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700;800&family=Sarabun:wght@400;500;600;700;800&display=swap');
+  :root{
+    --concept:#2563eb;--formula:#16a34a;--trigger:#ea580c;--mistake:#dc2626;
+    --tip:#9333ea;--checklist:#1f2937;--hack:#ca8a04;--bg:#f7f7fb;
+    --card-bg:#ffffff;--ink:#1f2330;--muted:#6b7280;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;padding:32px;background:var(--bg);font-family:'Sarabun','Noto Sans Thai',sans-serif;color:var(--ink);}
+  .grid{display:flex;flex-wrap:wrap;gap:28px;justify-content:center;}
+  .card{width:420px;background:var(--card-bg);border-radius:18px;box-shadow:0 6px 24px rgba(20,20,40,.10);overflow:hidden;border:1px solid #ececf2;display:flex;flex-direction:column;}
+  .card-head{padding:18px 20px 14px;background:linear-gradient(135deg,var(--accent,#2563eb),color-mix(in srgb,var(--accent,#2563eb) 70%,black));color:#fff;}
+  .eyebrow{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.85;margin-bottom:4px;}
+  .title{font-size:21px;font-weight:800;line-height:1.25;}
+  .trigger-box{margin:14px 16px 0;background:#fff7ed;border:1.5px dashed var(--trigger);border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:10px;}
+  .trigger-box .ic{font-size:20px;}.trigger-box .txt{font-weight:700;font-size:15px;color:#7c2d12;}
+  .section{margin:14px 16px 0;padding:12px 14px;border-radius:12px;background:#fafafa;}.section:last-of-type{margin-bottom:16px;}
+  .sec-head{display:flex;align-items:center;gap:7px;font-weight:700;font-size:13.5px;margin-bottom:7px;}.sec-head .dot{width:9px;height:9px;border-radius:50%;flex:none;}
+  .when{background:#eff6ff;}.when .dot{background:var(--concept);}.when ul{margin:0;padding-left:18px;font-size:14px;line-height:1.65;}
+  .how{background:#f0fdf4;}.how .dot{background:var(--formula);}.how ol{margin:0;padding-left:20px;font-size:14px;line-height:1.7;font-weight:500;}
+  .mistake{background:#fef2f2;}.mistake .dot{background:var(--mistake);}.mistake ul{margin:0;padding-left:18px;font-size:13.5px;line-height:1.65;color:#7f1d1d;}
+  .hack{background:#fffbeb;}.hack .dot{background:var(--hack);}.hack .txt{font-size:14.5px;font-weight:700;color:#854d0e;}
+  .examtip{background:#faf5ff;}.examtip .dot{background:var(--tip);}.examtip p{margin:0;font-size:13.5px;line-height:1.6;color:#581c87;}
+  .checklist{background:#f4f4f5;}.checklist .dot{background:var(--checklist);}.checklist ul{list-style:none;margin:0;padding:0;font-size:13.5px;line-height:1.9;}.checklist li::before{content:"☐  ";}
+  .card[data-accent="green"]  .card-head{--accent:#16a34a;}
+  .card[data-accent="blue"]   .card-head{--accent:#2563eb;}
+  .card[data-accent="orange"] .card-head{--accent:#ea580c;}
+  .card[data-accent="purple"] .card-head{--accent:#9333ea;}
+  .pagefoot{text-align:center;font-size:11px;color:var(--muted);padding:10px 16px 14px;}
+  .katex{font-size:1.05em;}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+</head>
+<body>
+<div class="grid">
+
+  <div class="card" data-accent="blue">
+    <div class="card-head">
+      <div class="eyebrow">PART 7 · TelescopingSeries · 🔵 Concept</div>
+      <div class="title">เศษส่วนย่อย</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">เห็นตัวส่วนเป็นผลคูณ ให้แยกแล้วตัดกัน</div>
+    </div>
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+      <li>\(\frac{1}{1\cdot 2}+\frac{1}{2\cdot 3}+\frac{1}{3\cdot 4}+...\)</li>
+      <li>\(\sum_{k=1}^{n} \frac{1}{k(k+1)}\)</li>
+      </ul>
+    </div>
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+      <li>แยกเป็นผลต่างเศษส่วนย่อย</li>
+      <li>เขียนพจน์ติดกันให้เห็นการตัดกัน</li>
+      <li>เหลือพจน์แรกกับพจน์ท้าย</li>
+      </ol>
+    </div>
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+      <li>ลืมแยกเป็นผลต่างก่อนบวก</li>
+      <li>ไม่เห็นว่าพจน์กลางหายไปหมด</li>
+      </ul>
+    </div>
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"ต้นลบปลาย แล้วตัดกลาง"</div>
+    </div>
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>ข้อสอบชอบให้ซิกมายาวๆ แต่ตัดกันสั้นมาก ดูรูปพจน์ก่อนคำนวณเสมอ</p>
+    </div>
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+      <li>ตัวส่วนเป็นรูป \(k(k+1)\) ไหม</li>
+      <li>พจน์กลางตัดกันจริงไหม</li>
+      </ul>
+    </div>
+    <div class="pagefoot">SequenceSeriesRescueKit Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+
+  <div class="card" data-accent="green">
+    <div class="card-head">
+      <div class="eyebrow">PART 7 · TelescopingSeries · 🟢 Formula</div>
+      <div class="title">สูตรแยกเศษส่วน</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">จำรูปนี้ไว้ ตัวหน้า ลบ ตัวหลัง</div>
+    </div>
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+      <li>\(\frac{1}{ab}=\frac{1}{b-a}\left(\frac{1}{a}-\frac{1}{b}\right)\)</li>
+      <li>\(\frac{1}{k(k+2)}=\frac{1}{2}\left(\frac{1}{k}-\frac{1}{k+2}\right)\)</li>
+      </ul>
+    </div>
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+      <li>ดูตัวส่วนเป็นผลคูณของสองพจน์</li>
+      <li>หาเลขต่างของตัวส่วน</li>
+      <li>เขียนเป็นผลต่างเศษส่วน</li>
+      </ol>
+    </div>
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+      <li>ใช้สูตรผิดเมื่อส่วนต่างไม่คงที่</li>
+      <li>ลืมตัวคูณหน้าวงเล็บ</li>
+      </ul>
+    </div>
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"ต่างเท่าไร หารเท่านั้น"</div>
+    </div>
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>โจทย์ชอบซ่อนรูปให้อ่านยาก แต่ถ้าแยกได้จะตัดกันทันที</p>
+    </div>
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+      <li>ตัวส่วนต่างกันกี่หน่วย</li>
+      <li>แยกแล้วตรวจย้อนกลับได้ไหม</li>
+      </ul>
+    </div>
+    <div class="pagefoot">SequenceSeriesRescueKit Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+
+  <div class="card" data-accent="orange">
+    <div class="card-head">
+      <div class="eyebrow">PART 7 · TelescopingSeries · 🟠 Trigger</div>
+      <div class="title">หาผลบวก</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">เขียนครบสามพจน์ แล้วดูว่าตัดอะไรหาย</div>
+    </div>
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+      <li>\(\sum_{k=1}^{5} \frac{1}{k(k+1)}\)</li>
+      <li>\(\sum_{k=1}^{n} \left(\frac{1}{k}-\frac{1}{k+1}\right)\)</li>
+      </ul>
+    </div>
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+      <li>เขียนพจน์แรกกลางท้าย</li>
+      <li>ขีดเส้นพจน์ที่ซ้ำ</li>
+      <li>เหลือเฉพาะหัวกับหาง</li>
+      </ol>
+    </div>
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+      <li>รีบรวมโดยไม่จัดรูป</li>
+      <li>ลืมแทนค่าพจน์ท้าย \(n\)</li>
+      </ul>
+    </div>
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"กลางหาย หัวท้ายอยู่"</div>
+    </div>
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>ข้อนี้มักให้พจน์เยอะเพื่อหลอกให้บวกตรงๆ แต่จริงๆ ต้องตัดกัน</p>
+    </div>
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+      <li>ได้รูปผลต่างแล้วหรือยัง</li>
+      <li>พจน์สุดท้ายเขียนถูกหรือไม่</li>
+      </ul>
+    </div>
+    <div class="pagefoot">SequenceSeriesRescueKit Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+
+  <div class="card" data-accent="purple">
+    <div class="card-head">
+      <div class="eyebrow">PART 7 · TelescopingSeries · 🟣 Exam Tip</div>
+      <div class="title">อนุกรมลู่เข้า</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">เทเลสโคปดูที่พจน์ท้าย ไม่ใช่ดูจำนวนพจน์</div>
+    </div>
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+      <li>\(\sum_{k=1}^{n} \frac{1}{k(k+1)}\)</li>
+      <li>\(\sum_{k=1}^{\infty} \frac{1}{k(k+1)}\)</li>
+      </ul>
+    </div>
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+      <li>หาผลรวมย่อย \(S_n\)</li>
+      <li>ดูค่าเมื่อ \(n\to\infty\)</li>
+      <li>ถ้าพจน์ท้ายหาย ผลรวมมีค่า</li>
+      </ol>
+    </div>
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+      <li>คิดว่าอนันต์ต้องบวกต่อไปไม่จบ</li>
+      <li>ลืมเช็กพฤติกรรมเมื่อ \(n\) ใหญ่</li>
+      </ul>
+    </div>
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"ท้ายหาย แปลว่าลู่"</div>
+    </div>
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>ข้อสอบชอบถามผลรวมอนันต์ของอนุกรมที่ตัดกันได้ ถ้ารู้รูปจะตอบเร็วมาก</p>
+    </div>
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+      <li>ตรวจ \(S_n\) ก่อนหา \(S_\infty\)</li>
+      <li>พจน์ท้ายเข้าใกล้ศูนย์ไหม</li>
+      </ul>
+    </div>
+    <div class="pagefoot">SequenceSeriesRescueKit Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>TheFunctionRescueKit Rescue Kit — Part 8</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700;800&family=Sarabun:wght@400;500;600;700;800&display=swap');
+  :root{
+    --concept:#2563eb;--formula:#16a34a;--trigger:#ea580c;--mistake:#dc2626;
+    --tip:#9333ea;--checklist:#1f2937;--hack:#ca8a04;--bg:#f7f7fb;
+    --card-bg:#ffffff;--ink:#1f2330;--muted:#6b7280;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;padding:32px;background:var(--bg);font-family:'Sarabun','Noto Sans Thai',sans-serif;color:var(--ink);}
+  .grid{display:flex;flex-wrap:wrap;gap:28px;justify-content:center;}
+  .card{width:420px;background:var(--card-bg);border-radius:18px;box-shadow:0 6px 24px rgba(20,20,40,.10);overflow:hidden;border:1px solid #ececf2;display:flex;flex-direction:column;}
+  .card-head{padding:18px 20px 14px;background:linear-gradient(135deg,var(--accent,#2563eb),color-mix(in srgb,var(--accent,#2563eb) 70%,black));color:#fff;}
+  .eyebrow{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.85;margin-bottom:4px;}
+  .title{font-size:21px;font-weight:800;line-height:1.25;}
+  .trigger-box{margin:14px 16px 0;background:#fff7ed;border:1.5px dashed var(--trigger);border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:10px;}
+  .trigger-box .ic{font-size:20px;}.trigger-box .txt{font-weight:700;font-size:15px;color:#7c2d12;}
+  .section{margin:14px 16px 0;padding:12px 14px;border-radius:12px;background:#fafafa;}.section:last-of-type{margin-bottom:16px;}
+  .sec-head{display:flex;align-items:center;gap:7px;font-weight:700;font-size:13.5px;margin-bottom:7px;}.sec-head .dot{width:9px;height:9px;border-radius:50%;flex:none;}
+  .when{background:#eff6ff;}.when .dot{background:var(--concept);}.when ul{margin:0;padding-left:18px;font-size:14px;line-height:1.65;}
+  .how{background:#f0fdf4;}.how .dot{background:var(--formula);}.how ol{margin:0;padding-left:20px;font-size:14px;line-height:1.7;font-weight:500;}
+  .mistake{background:#fef2f2;}.mistake .dot{background:var(--mistake);}.mistake ul{margin:0;padding-left:18px;font-size:13.5px;line-height:1.65;color:#7f1d1d;}
+  .hack{background:#fffbeb;}.hack .dot{background:var(--hack);}.hack .txt{font-size:14.5px;font-weight:700;color:#854d0e;}
+  .examtip{background:#faf5ff;}.examtip .dot{background:var(--tip);}.examtip p{margin:0;font-size:13.5px;line-height:1.6;color:#581c87;}
+  .checklist{background:#f4f4f5;}.checklist .dot{background:var(--checklist);}.checklist ul{list-style:none;margin:0;padding:0;font-size:13.5px;line-height:1.9;}.checklist li::before{content:"☐  ";}
+  .card[data-accent="green"]  .card-head{--accent:#16a34a;}
+  .card[data-accent="blue"]   .card-head{--accent:#2563eb;}
+  .card[data-accent="orange"] .card-head{--accent:#ea580c;}
+  .card[data-accent="purple"] .card-head{--accent:#9333ea;}
+  .pagefoot{text-align:center;font-size:11px;color:var(--muted);padding:10px 16px 14px;}
+  .katex{font-size:1.05em;}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+</head>
+<body>
+<div class="grid">
+
+  <div class="card" data-accent="blue">
+    <div class="card-head">
+      <div class="eyebrow">PART 8 · Ultimate Exam Rescue · 🟠 Trigger</div>
+      <div class="title">โดเมนห้ามติดศูนย์</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">ส่วนเป็นศูนย์เมื่อไร โดเมนหายทันที</div>
+    </div>
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+      <li>หาโดเมนของ \(f(x)=\\frac{1}{x-2}\)</li>
+      <li>เช็กโดเมนก่อนทำคอมโพสิต \((f \circ g)(x)\)</li>
+      </ul>
+    </div>
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+      <li>ตั้งตัวส่วน \(\\neq 0\)</li>
+      <li>แก้ค่าที่ทำให้ส่วนเป็นศูนย์</li>
+      <li>ตัดค่าต้องห้ามออกจากโดเมน</li>
+      </ol>
+    </div>
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+      <li>ลืมตัดค่าที่ทำให้ส่วนเป็นศูนย์</li>
+      <li>หาคอมโพสิตก่อนเช็กโดเมน</li>
+      </ul>
+    </div>
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"ส่วนศูนย์ ตัดทิ้ง"</div>
+    </div>
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>ข้อสอบมักฝังตัวส่วนไว้ในฟังก์ชันรากหรือเศษส่วน ให้เช็กโดเมนก่อนเสมอ โดยเฉพาะก่อนหาคอมโพสิต</p>
+    </div>
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+      <li>ตัวส่วนเป็นศูนย์ได้ไหม</li>
+      <li>ค่าที่ต้องห้ามถูกตัดออกแล้วไหม</li>
+      </ul>
+    </div>
+    <div class="pagefoot">TheFunctionRescueKit Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+
+  <div class="card" data-accent="green">
+    <div class="card-head">
+      <div class="eyebrow">PART 8 · Ultimate Exam Rescue · 🔵 Concept</div>
+      <div class="title">คอมโพสิตจับก้อน</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">คอมโพสิต = เอา g ยัดเข้า f ทีละก้อน</div>
+    </div>
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+      <li>หา \((f \circ g)(x)\)</li>
+      <li>หา \((g \circ f)(x)\) แล้วเทียบกัน</li>
+      </ul>
+    </div>
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+      <li>ทำวงเล็บในก่อน</li>
+      <li>แทน output ของตัวในเข้า input ของตัวนอก</li>
+      <li>จัดรูปจนเหลือคำตอบสุดท้าย</li>
+      </ol>
+    </div>
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+      <li>แทนผิดตัวนอกเป็นตัวใน</li>
+      <li>กระจายพจน์ทั้งที่ยังไม่จำเป็น</li>
+      </ul>
+    </div>
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"ในก่อน นอกทีหลัง"</div>
+    </div>
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>ข้อสอบชอบสลับลำดับ \(f \circ g\) กับ \(g \circ f\) และให้คำตอบไม่เท่ากัน ต้องอ่านจากขวาไปซ้ายตอนแทนค่า</p>
+    </div>
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+      <li>ตัวในคือฟังก์ชันไหน</li>
+      <li>แทนค่าถูกลำดับแล้วหรือยัง</li>
+      </ul>
+    </div>
+    <div class="pagefoot">TheFunctionRescueKit Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+
+  <div class="card" data-accent="orange">
+    <div class="card-head">
+      <div class="eyebrow">PART 8 · Ultimate Exam Rescue · 🟠 Trigger</div>
+      <div class="title">อินเวอร์สเร็วสุด</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">ถาม \(f^{-1}(a)\) บ่อยๆ แก้ \(f(x)=a\) ได้เลย</div>
+    </div>
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+      <li>หา \(f^{-1}(7)\) ของ \(f(x)=3x-5\)</li>
+      <li>โจทย์ให้ค่าตัวเลขแล้วถามอินเวอร์ส</li>
+      </ul>
+    </div>
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+      <li>ตั้ง \(f(x)=a\)</li>
+      <li>แก้สมการหา \(x\)</li>
+      <li>คำตอบคือ \(f^{-1}(a)=x\)</li>
+      </ol>
+    </div>
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+      <li>รีบหาฟังก์ชันอินเวอร์สทั้งเส้น</li>
+      <li>คิดว่า \(f^{-1}(x)=\\frac{1}{f(x)}\)</li>
+      </ul>
+    </div>
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"ให้ค่า แก้กลับ"</div>
+    </div>
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>ถ้าโจทย์ถามแค่ค่าเฉพาะของอินเวอร์ส อย่าสร้างฟังก์ชันเต็ม แก้สมการตรงๆ เร็วกว่าและพลาดน้อยกว่า</p>
+    </div>
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+      <li>โจทย์ถามค่าเฉพาะหรือฟังก์ชันเต็ม</li>
+      <li>คำตอบอยู่ในโดเมนของอินเวอร์สไหม</li>
+      </ul>
+    </div>
+    <div class="pagefoot">TheFunctionRescueKit Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+
+  <div class="card" data-accent="purple">
+    <div class="card-head">
+      <div class="eyebrow">PART 8 · Ultimate Exam Rescue · 🟣 Exam Tip</div>
+      <div class="title">รากที่สองต้องไม่ติดลบ</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">ในรากต้องไม่ติดลบ นอก根 ต้องหา domain ก่อน</div>
+    </div>
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+      <li>หาโดเมนของ \(y=\\sqrt{x-3}\)</li>
+      <li>เช็กเงื่อนไขก่อนตอบเรนจ์</li>
+      </ul>
+    </div>
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+      <li>ตั้งสิ่งในราก \(\\ge 0\)</li>
+      <li>แก้หาเงื่อนไขของ \(x\)</li>
+      <li>สรุปโดเมนจากเงื่อนไข</li>
+      </ol>
+    </div>
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+      <li>ปล่อยค่าติดลบเข้าไปในราก</li>
+      <li>ลืมว่าเรนจ์ของรากที่สองเริ่มที่ศูนย์</li>
+      </ul>
+    </div>
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"รากติดลบ หยุดก่อน"</div>
+    </div>
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>ข้อสอบชอบผสมรากที่สองกับเศษส่วนเพื่อหลอกโดเมน ต้องเช็กทั้งเงื่อนไขในรากและตัวส่วนพร้อมกัน</p>
+    </div>
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+      <li>ในรากไม่ติดลบใช่ไหม</li>
+      <li>มีตัวส่วนที่ต้องห้ามด้วยไหม</li>
+      </ul>
+    </div>
+    <div class="pagefoot">TheFunctionRescueKit Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+
+  <div class="card" data-accent="blue">
+    <div class="card-head">
+      <div class="eyebrow">PART 8 · Ultimate Exam Rescue · 🟣 Exam Tip</div>
+      <div class="title">เช็กก่อนส่ง</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">ก่อนส่ง ตาเช็กโดเมน เรนจ์ และลำดับคอมโพสิต</div>
+    </div>
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+      <li>ทำข้อโดเมน-เรนจ์เสร็จ</li>
+      <li>ทำข้อคอมโพสิตหรืออินเวอร์สเสร็จ</li>
+      </ul>
+    </div>
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+      <li>เช็กตัวส่วนเป็นศูนย์</li>
+      <li>เช็กรากที่สองไม่ติดลบ</li>
+      <li>เช็กโดเมนตัดกันของฟังก์ชันประกอบ</li>
+      </ol>
+    </div>
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+      <li>ตอบเร็วแต่ลืมเงื่อนไข</li>
+      <li>ไม่ตรวจลำดับการแทนค่า</li>
+      </ul>
+    </div>
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"สามเช็กก่อนส่ง"</div>
+    </div>
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>ข้อสอบคณิตฟังก์ชันชอบเอาคะแนนหล่นจากเงื่อนไขพื้นฐาน อย่าเสียคะแนนฟรีเพราะไม่ตรวจรอบสุดท้าย</p>
+    </div>
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+      <li>ตัวส่วน</li>
+      <li>รากที่สอง</li>
+      <li>โดเมนตัดกัน</li>
+      </ul>
+    </div>
+    <div class="pagefoot">TheFunctionRescueKit Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+</div>
+</body>
+</html>

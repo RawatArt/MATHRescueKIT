@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>AnalyticGeometryConicsRescueKit Rescue Kit — Part 1</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700;800&family=Sarabun:wght@400;500;600;700;800&display=swap');
+  :root{
+    --concept:#2563eb;--formula:#16a34a;--trigger:#ea580c;--mistake:#dc2626;
+    --tip:#9333ea;--checklist:#1f2937;--hack:#ca8a04;--bg:#f7f7fb;
+    --card-bg:#ffffff;--ink:#1f2330;--muted:#6b7280;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;padding:32px;background:var(--bg);font-family:'Sarabun','Noto Sans Thai',sans-serif;color:var(--ink);}
+  .grid{display:flex;flex-wrap:wrap;gap:28px;justify-content:center;}
+  .card{width:420px;background:var(--card-bg);border-radius:18px;box-shadow:0 6px 24px rgba(20,20,40,.10);overflow:hidden;border:1px solid #ececf2;display:flex;flex-direction:column;}
+  .card-head{padding:18px 20px 14px;background:linear-gradient(135deg,var(--accent,#2563eb),color-mix(in srgb,var(--accent,#2563eb) 70%,black));color:#fff;}
+  .eyebrow{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.85;margin-bottom:4px;}
+  .title{font-size:21px;font-weight:800;line-height:1.25;}
+  .trigger-box{margin:14px 16px 0;background:#fff7ed;border:1.5px dashed var(--trigger);border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:10px;}
+  .trigger-box .ic{font-size:20px;}.trigger-box .txt{font-weight:700;font-size:15px;color:#7c2d12;}
+  .section{margin:14px 16px 0;padding:12px 14px;border-radius:12px;background:#fafafa;}.section:last-of-type{margin-bottom:16px;}
+  .sec-head{display:flex;align-items:center;gap:7px;font-weight:700;font-size:13.5px;margin-bottom:7px;}.sec-head .dot{width:9px;height:9px;border-radius:50%;flex:none;}
+  .when{background:#eff6ff;}.when .dot{background:var(--concept);}.when ul{margin:0;padding-left:18px;font-size:14px;line-height:1.65;}
+  .how{background:#f0fdf4;}.how .dot{background:var(--formula);}.how ol{margin:0;padding-left:20px;font-size:14px;line-height:1.7;font-weight:500;}
+  .mistake{background:#fef2f2;}.mistake .dot{background:var(--mistake);}.mistake ul{margin:0;padding-left:18px;font-size:13.5px;line-height:1.65;color:#7f1d1d;}
+  .hack{background:#fffbeb;}.hack .dot{background:var(--hack);}.hack .txt{font-size:14.5px;font-weight:700;color:#854d0e;}
+  .examtip{background:#faf5ff;}.examtip .dot{background:var(--tip);}.examtip p{margin:0;font-size:13.5px;line-height:1.6;color:#581c87;}
+  .checklist{background:#f4f4f5;}.checklist .dot{background:var(--checklist);}.checklist ul{list-style:none;margin:0;padding:0;font-size:13.5px;line-height:1.9;}.checklist li::before{content:"☐  ";}
+  .card[data-accent="green"]  .card-head{--accent:#16a34a;}
+  .card[data-accent="blue"]   .card-head{--accent:#2563eb;}
+  .card[data-accent="orange"] .card-head{--accent:#ea580c;}
+  .card[data-accent="purple"] .card-head{--accent:#9333ea;}
+  .pagefoot{text-align:center;font-size:11px;color:var(--muted);padding:10px 16px 14px;}
+  .katex{font-size:1.05em;}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+</head>
+<body>
+<div class="grid">
+
+  <div class="card" data-accent="blue">
+    <div class="card-head">
+      <div class="eyebrow">PART 1 · PointsLinesBasics · 🟢 Formula</div>
+      <div class="title">ระยะห่างสองจุด</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">นึกพีทาโกรัสก่อนเสมอ</div>
+    </div>
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+      <li>หาระยะระหว่าง \((1,2)\) กับ \((4,6)\)</li>
+      <li>โจทย์ให้พิกัด 2 จุด แล้วถามระยะ</li>
+      </ul>
+    </div>
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+      <li>หา \(\Delta x\) และ \(\Delta y\)</li>
+      <li>แทนใน \(d = \sqrt{(\Delta x)^2 + (\Delta y)^2}\)</li>
+      <li>คำนวณแล้วตอบหน่วยระยะ</li>
+      </ol>
+    </div>
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+      <li>ลืมยกกำลังสองทั้งสองตัว</li>
+      <li>สลับ \(\Delta x\) กับ \(\Delta y\)</li>
+      </ul>
+    </div>
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"โยกแนวตั้งแนวนอนแล้วถอดรูท"</div>
+    </div>
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>ข้อสอบชอบให้จุดต่างกันทั้งแกน x และ y เพื่อหลอกให้คำนวณผิดง่าย ต้องดูเครื่องหมายลบจากการลบพิกัดให้ดี</p>
+    </div>
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+      <li>หา \(\Delta x\) ถูกหรือยัง</li>
+      <li>ถอดรูทแล้วหรือยัง</li>
+      </ul>
+    </div>
+    <div class="pagefoot">AnalyticGeometryConicsRescueKit Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+
+  <div class="card" data-accent="green">
+    <div class="card-head">
+      <div class="eyebrow">PART 1 · PointsLinesBasics · 🟢 Formula</div>
+      <div class="title">จุดกึ่งกลาง</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">จับบวกแล้วหารสอง</div>
+    </div>
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+      <li>หาจุดกึ่งกลางของ \((2,4)\) กับ \((8,10)\)</li>
+      <li>โจทย์ถาม midpoint ของเส้นตรง</li>
+      </ul>
+    </div>
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+      <li>บวกพิกัด x เข้าด้วยกัน</li>
+      <li>บวกพิกัด y เข้าด้วยกัน</li>
+      <li>หารสองทุกพิกัด</li>
+      </ol>
+    </div>
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+      <li>หารสองเฉพาะจุดใดจุดหนึ่ง</li>
+      <li>ลืมเครื่องหมายวงเล็บ</li>
+      </ul>
+    </div>
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"บวกคู่ไหน หารสองคู่นั้น"</div>
+    </div>
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>มักออกคู่กับโจทย์แบ่งครึ่งเส้นตรงหรือหาศูนย์กลางของรูปเรขาคณิต ถ้าพลาดพิกัดเดียวจะผิดทั้งรูป</p>
+    </div>
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+      <li>แยก x กับ y ชัดเจน</li>
+      <li>หารสองครบทุกพิกัด</li>
+      </ul>
+    </div>
+    <div class="pagefoot">AnalyticGeometryConicsRescueKit Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+
+  <div class="card" data-accent="orange">
+    <div class="card-head">
+      <div class="eyebrow">PART 1 · PointsLinesBasics · 🔵 Concept</div>
+      <div class="title">ความชัน</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">ดูการเปลี่ยน y ต่อ x</div>
+    </div>
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+      <li>หาความชันจาก \((1,2)\) ถึง \((5,10)\)</li>
+      <li>โจทย์ถามว่าเส้นชันเท่าไร</li>
+      </ul>
+    </div>
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+      <li>หา \(\Delta y\)</li>
+      <li>หา \(\Delta x\)</li>
+      <li>ใช้ \(m = \frac{\Delta y}{\Delta x}\)</li>
+      </ol>
+    </div>
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+      <li>สลับเศษส่วนเป็น \(\frac{\Delta x}{\Delta y}\)</li>
+      <li>ลืมว่าเส้นตั้งชันไม่มีค่า m</li>
+      </ul>
+    </div>
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"ขึ้นลงก่อน ซ้ายขวาทีหลัง"</div>
+    </div>
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>ข้อสอบชอบวัดการมองเส้นขนานและตั้งฉากจากความชันทันที ถ้าหา m ผิดตั้งแต่ต้นจะพังต่อเนื่อง</p>
+    </div>
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+      <li>ตั้งเศษเป็น \(\Delta y\)</li>
+      <li>ตั้งส่วนเป็น \(\Delta x\)</li>
+      </ul>
+    </div>
+    <div class="pagefoot">AnalyticGeometryConicsRescueKit Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+
+  <div class="card" data-accent="purple">
+    <div class="card-head">
+      <div class="eyebrow">PART 1 · PointsLinesBasics · 🟠 Trigger</div>
+      <div class="title">ขนานตั้งฉาก</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">ขนาน m เท่ากัน ตั้งฉากคูณติดลบหนึ่ง</div>
+    </div>
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+      <li>เช็กว่าเส้นสองเส้นขนานกันไหม</li>
+      <li>เช็กว่าเส้นสองเส้นตั้งฉากกันไหม</li>
+      </ul>
+    </div>
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+      <li>ถ้าขนาน ใช้ \(m_1 = m_2\)</li>
+      <li>ถ้าตั้งฉาก ใช้ \(m_1 m_2 = -1\)</li>
+      <li>ถ้าโจทย์ให้เส้นหนึ่ง หาอีกเส้นด้วยเงื่อนไข</li>
+      </ol>
+    </div>
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+      <li>กลับเศษส่วนแต่ลืมเปลี่ยนเครื่องหมาย</li>
+      <li>คิดว่าเส้นขนานต้องตั้งฉาก</li>
+      </ul>
+    </div>
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"ขนานเท่ากัน ตั้งฉากติดลบ"</div>
+    </div>
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>โจทย์ชอบให้สมการเส้นตรงมา 2 เส้นแล้วถามความสัมพันธ์ ต้องอ่าน m จากสมการให้ไวที่สุด</p>
+    </div>
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+      <li>m เท่ากันสำหรับขนาน</li>
+      <li>m คูณกันได้ \(-1\) สำหรับตั้งฉาก</li>
+      </ul>
+    </div>
+    <div class="pagefoot">AnalyticGeometryConicsRescueKit Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+</div>
+</body>
+</html>

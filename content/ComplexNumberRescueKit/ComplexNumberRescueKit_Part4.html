@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>ComplexNumberRescueKit Rescue Kit — Part 4</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700;800&family=Sarabun:wght@400;500;600;700;800&display=swap');
+  :root{
+    --concept:#2563eb;--formula:#16a34a;--trigger:#ea580c;--mistake:#dc2626;
+    --tip:#9333ea;--checklist:#1f2937;--hack:#ca8a04;--bg:#f7f7fb;
+    --card-bg:#ffffff;--ink:#1f2330;--muted:#6b7280;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;padding:32px;background:var(--bg);font-family:'Sarabun','Noto Sans Thai',sans-serif;color:var(--ink);}
+  .grid{display:flex;flex-wrap:wrap;gap:28px;justify-content:center;}
+  .card{width:420px;background:var(--card-bg);border-radius:18px;box-shadow:0 6px 24px rgba(20,20,40,.10);overflow:hidden;border:1px solid #ececf2;display:flex;flex-direction:column;}
+  .card-head{padding:18px 20px 14px;background:linear-gradient(135deg,var(--accent,#2563eb),color-mix(in srgb,var(--accent,#2563eb) 70%,black));color:#fff;}
+  .eyebrow{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.85;margin-bottom:4px;}
+  .title{font-size:21px;font-weight:800;line-height:1.25;}
+  .trigger-box{margin:14px 16px 0;background:#fff7ed;border:1.5px dashed var(--trigger);border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:10px;}
+  .trigger-box .ic{font-size:20px;}.trigger-box .txt{font-weight:700;font-size:15px;color:#7c2d12;}
+  .section{margin:14px 16px 0;padding:12px 14px;border-radius:12px;background:#fafafa;}.section:last-of-type{margin-bottom:16px;}
+  .sec-head{display:flex;align-items:center;gap:7px;font-weight:700;font-size:13.5px;margin-bottom:7px;}.sec-head .dot{width:9px;height:9px;border-radius:50%;flex:none;}
+  .when{background:#eff6ff;}.when .dot{background:var(--concept);}.when ul{margin:0;padding-left:18px;font-size:14px;line-height:1.65;}
+  .how{background:#f0fdf4;}.how .dot{background:var(--formula);}.how ol{margin:0;padding-left:20px;font-size:14px;line-height:1.7;font-weight:500;}
+  .mistake{background:#fef2f2;}.mistake .dot{background:var(--mistake);}.mistake ul{margin:0;padding-left:18px;font-size:13.5px;line-height:1.65;color:#7f1d1d;}
+  .hack{background:#fffbeb;}.hack .dot{background:var(--hack);}.hack .txt{font-size:14.5px;font-weight:700;color:#854d0e;}
+  .examtip{background:#faf5ff;}.examtip .dot{background:var(--tip);}.examtip p{margin:0;font-size:13.5px;line-height:1.6;color:#581c87;}
+  .checklist{background:#f4f4f5;}.checklist .dot{background:var(--checklist);}.checklist ul{list-style:none;margin:0;padding:0;font-size:13.5px;line-height:1.9;}.checklist li::before{content:"☐  ";}
+  .card[data-accent="green"]  .card-head{--accent:#16a34a;}
+  .card[data-accent="blue"]   .card-head{--accent:#2563eb;}
+  .card[data-accent="orange"] .card-head{--accent:#ea580c;}
+  .card[data-accent="purple"] .card-head{--accent:#9333ea;}
+  .pagefoot{text-align:center;font-size:11px;color:var(--muted);padding:10px 16px 14px;}
+  .katex{font-size:1.05em;}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+</head>
+<body>
+<div class="grid">
+
+  <div class="card" data-accent="blue">
+    <div class="card-head">
+      <div class="eyebrow">PART 4 · Polar Form · 🔵 Concept</div>
+      <div class="title">รูปเชิงขั้ว</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">เห็น \(a+bi\) ให้คิด \(r\) ก่อน แล้วค่อยหา \(\theta\)</div>
+    </div>
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+      <li>แปลง \(z=3+3\sqrt{3}i\) เป็นรูป \(r\text{cis}\theta\)</li>
+      <li>ให้ \(z=-1-\sqrt{3}i\) หา \(r\) และ \(\theta\)</li>
+      </ul>
+    </div>
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+      <li>หา \(r=\sqrt{a^2+b^2}\)</li>
+      <li>หา \(\tan\theta=\frac{b}{a}\)</li>
+      <li>เช็กเครื่องหมายเพื่อเลือก Quadrant ให้ถูก</li>
+      </ol>
+    </div>
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+      <li>ได้มุมจาก tan แล้วตอบทันที</li>
+      <li>ลืมว่าเครื่องหมายของ \(a\) กับ \(b\) กำหนด Quadrant</li>
+      </ul>
+    </div>
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"หา r ก่อน มุมตามทีหลัง"</div>
+    </div>
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>ข้อสอบชอบให้มุมจาก tan ดูง่าย แต่หลอก Quadrant เสมอ ต้องดูเครื่องหมายของแกน x และ y ก่อนตอบสุดท้าย</p>
+    </div>
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+      <li>ได้ \(r\) ถูกหรือยัง</li>
+      <li>Quadrant ตรงกับเครื่องหมายของ \(a,b\) ไหม</li>
+      </ul>
+    </div>
+    <div class="pagefoot">ComplexNumberRescueKit Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+
+  <div class="card" data-accent="green">
+    <div class="card-head">
+      <div class="eyebrow">PART 4 · Polar Form · 🟠 Trigger</div>
+      <div class="title">เช็กควอดแรนต์</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">tan ได้แค่มุมอ้างอิง ยังไม่ใช่มุมจริง</div>
+    </div>
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+      <li>\(z=-\sqrt{3}+i\) ได้ \(\tan\theta=-\frac{1}{\sqrt{3}}\) แล้วต้องเลือกมุมจริง</li>
+      <li>\(z=-2-2i\) หา \(\theta\) จาก tan แล้วปรับให้ตรง QIII</li>
+      </ul>
+    </div>
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+      <li>หามุมอ้างอิงจาก \(\tan\theta\)</li>
+      <li>ดูเครื่องหมาย \(a,b\)</li>
+      <li>บวกมุมให้เข้ากับ Quadrant</li>
+      </ol>
+    </div>
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+      <li>ใช้มุมอ้างอิงเป็นมุมสุดท้าย</li>
+      <li>ลืมว่า QII และ QIII มุมต้องไม่เหมือน QI</li>
+      </ul>
+    </div>
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"tan ให้ค่าอ้างอิง Quadrant ให้คำตอบ"</div>
+    </div>
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>โจทย์ชอบให้ tan สวยๆ แต่คำตอบจริงต้องตรงช่วงมุมที่กำหนด เช่น \(0\) ถึง \(2\pi\) หรือ \(-\pi\) ถึง \(\pi\)</p>
+    </div>
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+      <li>มุมสุดท้ายอยู่ในช่วงที่โจทย์ต้องการหรือไม่</li>
+      <li>มุมตรง Quadrant จริงหรือไม่</li>
+      </ul>
+    </div>
+    <div class="pagefoot">ComplexNumberRescueKit Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+
+  <div class="card" data-accent="orange">
+    <div class="card-head">
+      <div class="eyebrow">PART 4 · Polar Form · 🟢 Formula</div>
+      <div class="title">จากแกนสู่มุม</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">จำสูตรเดียว \(z=r(\cos\theta+i\sin\theta)\)</div>
+    </div>
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+      <li>เขียน \(z=5\text{cis}\frac{\pi}{6}\) เป็น \(a+bi\)</li>
+      <li>แปลง \(z=2\text{cis}\pi\) กลับเป็นรูป \(a+bi\)</li>
+      </ul>
+    </div>
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+      <li>แทน \(r\) และ \(\theta\) ลงใน \(r(\cos\theta+i\sin\theta)\)</li>
+      <li>คำนวณ \(a=r\cos\theta\)</li>
+      <li>คำนวณ \(b=r\sin\theta\)</li>
+      </ol>
+    </div>
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+      <li>ลืมใส่ทั้งส่วนจริงและจินตภาพ</li>
+      <li>สับสนว่า \(\cos\) คือแกน x และ \(\sin\) คือแกน y</li>
+      </ul>
+    </div>
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"cis คือ cos บวก i sin"</div>
+    </div>
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>มักออกให้แปลงไปกลับระหว่างรูปพิกัดและรูปเชิงขั้ว พร้อมเช็กมุมพิเศษ เช่น \(\frac{\pi}{6},\frac{\pi}{4},\frac{\pi}{3}\)</p>
+    </div>
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+      <li>แทนค่า trig ถูกหรือยัง</li>
+      <li>สรุปคำตอบเป็น \(a+bi\) หรือ \(r\text{cis}\theta\) ตามที่ถาม</li>
+      </ul>
+    </div>
+    <div class="pagefoot">ComplexNumberRescueKit Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+</div>
+</body>
+</html>

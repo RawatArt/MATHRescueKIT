@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>AnalyticGeometryConicsRescueKit Rescue Kit — Part 3</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700;800&family=Sarabun:wght@400;500;600;700;800&display=swap');
+  :root{
+    --concept:#2563eb;--formula:#16a34a;--trigger:#ea580c;--mistake:#dc2626;
+    --tip:#9333ea;--checklist:#1f2937;--hack:#ca8a04;--bg:#f7f7fb;
+    --card-bg:#ffffff;--ink:#1f2330;--muted:#6b7280;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;padding:32px;background:var(--bg);font-family:'Sarabun','Noto Sans Thai',sans-serif;color:var(--ink);}
+  .grid{display:flex;flex-wrap:wrap;gap:28px;justify-content:center;}
+  .card{width:420px;background:var(--card-bg);border-radius:18px;box-shadow:0 6px 24px rgba(20,20,40,.10);overflow:hidden;border:1px solid #ececf2;display:flex;flex-direction:column;}
+  .card-head{padding:18px 20px 14px;background:linear-gradient(135deg,var(--accent,#2563eb),color-mix(in srgb,var(--accent,#2563eb) 70%,black));color:#fff;}
+  .eyebrow{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.85;margin-bottom:4px;}
+  .title{font-size:21px;font-weight:800;line-height:1.25;}
+  .trigger-box{margin:14px 16px 0;background:#fff7ed;border:1.5px dashed var(--trigger);border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:10px;}
+  .trigger-box .ic{font-size:20px;}.trigger-box .txt{font-weight:700;font-size:15px;color:#7c2d12;}
+  .section{margin:14px 16px 0;padding:12px 14px;border-radius:12px;background:#fafafa;}.section:last-of-type{margin-bottom:16px;}
+  .sec-head{display:flex;align-items:center;gap:7px;font-weight:700;font-size:13.5px;margin-bottom:7px;}.sec-head .dot{width:9px;height:9px;border-radius:50%;flex:none;}
+  .when{background:#eff6ff;}.when .dot{background:var(--concept);}.when ul{margin:0;padding-left:18px;font-size:14px;line-height:1.65;}
+  .how{background:#f0fdf4;}.how .dot{background:var(--formula);}.how ol{margin:0;padding-left:20px;font-size:14px;line-height:1.7;font-weight:500;}
+  .mistake{background:#fef2f2;}.mistake .dot{background:var(--mistake);}.mistake ul{margin:0;padding-left:18px;font-size:13.5px;line-height:1.65;color:#7f1d1d;}
+  .hack{background:#fffbeb;}.hack .dot{background:var(--hack);}.hack .txt{font-size:14.5px;font-weight:700;color:#854d0e;}
+  .examtip{background:#faf5ff;}.examtip .dot{background:var(--tip);}.examtip p{margin:0;font-size:13.5px;line-height:1.6;color:#581c87;}
+  .checklist{background:#f4f4f5;}.checklist .dot{background:var(--checklist);}.checklist ul{list-style:none;margin:0;padding:0;font-size:13.5px;line-height:1.9;}.checklist li::before{content:"☐  ";}
+  .card[data-accent="green"]  .card-head{--accent:#16a34a;}
+  .card[data-accent="blue"]   .card-head{--accent:#2563eb;}
+  .card[data-accent="orange"] .card-head{--accent:#ea580c;}
+  .card[data-accent="purple"] .card-head{--accent:#9333ea;}
+  .pagefoot{text-align:center;font-size:11px;color:var(--muted);padding:10px 16px 14px;}
+  .katex{font-size:1.05em;}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+</head>
+<body>
+<div class="grid">
+
+  <div class="card" data-accent="blue">
+    <div class="card-head">
+      <div class="eyebrow">PART 3 · TheCircle · 🔵 Concept</div>
+      <div class="title">นิยามวงกลม</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">ทุกจุดห่างศูนย์กลางเท่ารัศมี</div>
+    </div>
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+      <li>จุดศูนย์กลาง \((h,k)\) และรัศมี \(r\)</li>
+      <li>โจทย์ถามว่าทำไมจุดนี้อยู่บนวงกลม</li>
+      </ul>
+    </div>
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+      <li>ดูระยะจากศูนย์กลางถึงจุดบนเส้นรอบวง</li>
+      <li>ระยะนั้นต้องเท่ากับ \(r\)</li>
+      <li>สรุปเป็นความหมายของวงกลม</li>
+      </ol>
+    </div>
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+      <li>คิดว่าเส้นผ่านศูนย์กลางคือรัศมี</li>
+      <li>ลืมว่าต้องวัดจากศูนย์กลาง</li>
+      </ul>
+    </div>
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"ศูนย์กลางถึงขอบ เท่ากันทุกจุด"</div>
+    </div>
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>โจทย์ชอบให้จุดศูนย์กลางหรือรัศมีมาแฝงในข้อความยาว ๆ ต้องดึงคำว่า 'เท่ากัน' ออกมาเป็นแกนหลัก</p>
+    </div>
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+      <li>วัดจากศูนย์กลางหรือยัง</li>
+      <li>รัศมีเท่ากันทุกจุดไหม</li>
+      </ul>
+    </div>
+    <div class="pagefoot">AnalyticGeometryConicsRescueKit Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+
+  <div class="card" data-accent="green">
+    <div class="card-head">
+      <div class="eyebrow">PART 3 · TheCircle · 🟢 Formula</div>
+      <div class="title">สมการวงกลม</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">ลบศูนย์กลาง แล้วยกกำลังสอง</div>
+    </div>
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+      <li>หาสมการวงกลมจากศูนย์กลาง \((h,k)\) และรัศมี \(r\)</li>
+      <li>โจทย์ให้จุดศูนย์กลางกับจุดบนวงกลม</li>
+      </ul>
+    </div>
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+      <li>เขียน \((x-h)^2 + (y-k)^2 = r^2\)</li>
+      <li>แทนค่า \(h,k,r\)</li>
+      <li>จัดรูปถ้าต้องการ</li>
+      </ol>
+    </div>
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+      <li>สลับเครื่องหมายใน \((x-h)\) กับ \((x+h)\)</li>
+      <li>ลืมยกกำลังสองทั้งสองวงเล็บ</li>
+      </ul>
+    </div>
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"ศูนย์กลางลบก่อน ค่อยยกสอง"</div>
+    </div>
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>ข้อสอบชอบให้ขยายสมการแล้วถามกลับเป็นรูปมาตรฐาน ต้องรู้ทันว่า x2 และ y2 ต้องมีสัมประสิทธิ์เท่ากันและเครื่องหมายเดียวกัน</p>
+    </div>
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+      <li>วงเล็บเป็น \((x-h)\) และ \((y-k)\) ไหม</li>
+      <li>ขวาเป็น \(r^2\) ไม่ใช่ \(r\)</li>
+      </ul>
+    </div>
+    <div class="pagefoot">AnalyticGeometryConicsRescueKit Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+
+  <div class="card" data-accent="orange">
+    <div class="card-head">
+      <div class="eyebrow">PART 3 · TheCircle · 🟠 Trigger</div>
+      <div class="title">ถอดรูทรัศมี</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">ขวา 16 รัศมีคือ 4 ไม่ใช่ 16</div>
+    </div>
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+      <li>โจทย์ให้ \((x-1)^2 + (y+2)^2 = 25\)</li>
+      <li>ถามหารัศมีจากสมการ</li>
+      </ul>
+    </div>
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+      <li>ดูค่าฝั่งขวา</li>
+      <li>ถอดรูทเพื่อหา \(r\)</li>
+      <li>ตอบเป็นค่ารัศมี</li>
+      </ol>
+    </div>
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+      <li>เอา 25 ไปตอบเป็นรัศมี</li>
+      <li>ลืมว่ารัศมีเป็นรากของจำนวนขวา</li>
+      </ul>
+    </div>
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"ขวาเป็นกำลังสอง ต้องถอดรูท"</div>
+    </div>
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>ข้อสอบชอบให้เลขกำลังสองสวย ๆ เพื่อให้คนรีบตอบผิด จำไว้ว่า 16 คือ \(4^2\) ไม่ใช่ 16</p>
+    </div>
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+      <li>ฝั่งขวาเป็นกำลังสองไหม</li>
+      <li>ถอดรูทแล้วหรือยัง</li>
+      </ul>
+    </div>
+    <div class="pagefoot">AnalyticGeometryConicsRescueKit Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+
+  <div class="card" data-accent="purple">
+    <div class="card-head">
+      <div class="eyebrow">PART 3 · TheCircle · 🟣 Exam Tip</div>
+      <div class="title">เช็กสมการวงกลม</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">x2 y2 ต้องเท่ากันและเครื่องหมายเหมือนกัน</div>
+    </div>
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+      <li>ตรวจว่าสมการไหนเป็นวงกลม</li>
+      <li>แยกวงกลมออกจากพาราโบลาเร็ว ๆ</li>
+      </ul>
+    </div>
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+      <li>ดูสัมประสิทธิ์หน้า \(x^2\) และ \(y^2\)</li>
+      <li>ต้องเท่ากัน</li>
+      <li>ต้องเป็นเครื่องหมายเดียวกัน</li>
+      </ol>
+    </div>
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+      <li>หน้า \(x^2\) กับ \(y^2\) ไม่เท่ากันแล้วคิดว่าเป็นวงกลม</li>
+      <li>ลืมตรวจเครื่องหมาย</li>
+      </ul>
+    </div>
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"เท่ากัน เหมือนกัน ถึงเป็นวงกลม"</div>
+    </div>
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>ข้อสอบชอบแทรกสมการที่คล้ายวงกลมแต่ไม่ใช่ ถ้า x2 กับ y2 ไม่เท่ากันหรือเครื่องหมายไม่เหมือนกัน ให้ตัดทิ้งทันที</p>
+    </div>
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+      <li>สัมประสิทธิ์เท่ากันไหม</li>
+      <li>เครื่องหมายเดียวกันไหม</li>
+      </ul>
+    </div>
+    <div class="pagefoot">AnalyticGeometryConicsRescueKit Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+</div>
+</body>
+</html>

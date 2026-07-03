@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>Calculus Rescue Kit — Part 8 Application of Derivatives</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700;800&family=Sarabun:wght@400;500;600;700;800&display=swap');
+  :root{
+    --concept:#2563eb; --formula:#16a34a; --trigger:#ea580c; --mistake:#dc2626;
+    --tip:#9333ea; --checklist:#1f2937; --hack:#ca8a04; --bg:#f7f7fb;
+    --card-bg:#ffffff; --ink:#1f2330; --muted:#6b7280;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; padding:32px; background:var(--bg); font-family:'Sarabun','Noto Sans Thai',sans-serif; color:var(--ink);}
+  .grid{display:flex; flex-wrap:wrap; gap:28px; justify-content:center;}
+  .card{width:420px; background:var(--card-bg); border-radius:18px; box-shadow:0 6px 24px rgba(20,20,40,0.10); overflow:hidden; border:1px solid #ececf2; display:flex; flex-direction:column;}
+  .card-head{padding:18px 20px 14px; background:linear-gradient(135deg, var(--accent,#2563eb), color-mix(in srgb, var(--accent,#2563eb) 70%, black)); color:#fff; position:relative;}
+  .eyebrow{font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; opacity:.85; margin-bottom:4px;}
+  .title{font-size:21px; font-weight:800; line-height:1.25;}
+  .trigger-box{margin:14px 16px 0; background:#fff7ed; border:1.5px dashed var(--trigger); border-radius:12px; padding:10px 14px; display:flex; align-items:center; gap:10px;}
+  .trigger-box .ic{font-size:20px;}
+  .trigger-box .txt{font-weight:700; font-size:15px; color:#7c2d12;}
+  .section{margin:14px 16px 0; padding:12px 14px; border-radius:12px; background:#fafafa;}
+  .section:last-of-type{margin-bottom:16px;}
+  .sec-head{display:flex; align-items:center; gap:7px; font-weight:700; font-size:13.5px; margin-bottom:7px;}
+  .sec-head .dot{width:9px;height:9px;border-radius:50%;flex:none;}
+  .when{background:#eff6ff;} .when .dot{background:var(--concept);} .when ul{margin:0; padding-left:18px; font-size:14px; line-height:1.65;}
+  .how{background:#f0fdf4;} .how .dot{background:var(--formula);} .how ol{margin:0; padding-left:20px; font-size:14px; line-height:1.7; font-weight:500;}
+  .mistake{background:#fef2f2;} .mistake .dot{background:var(--mistake);} .mistake ul{margin:0; padding-left:18px; font-size:13.5px; line-height:1.65; color:#7f1d1d;}
+  .hack{background:#fffbeb;} .hack .dot{background:var(--hack);} .hack .txt{font-size:14.5px; font-weight:700; color:#854d0e;}
+  .examtip{background:#faf5ff;} .examtip .dot{background:var(--tip);} .examtip p{margin:0; font-size:13.5px; line-height:1.6; color:#581c87;}
+  .checklist{background:#f4f4f5;} .checklist .dot{background:var(--checklist);} .checklist ul{list-style:none; margin:0; padding:0; font-size:13.5px; line-height:1.9;} .checklist li::before{content:"☐  ";}
+  .card[data-accent="green"] .card-head{--accent:#16a34a;} .card[data-accent="blue"] .card-head{--accent:#2563eb;} .card[data-accent="orange"] .card-head{--accent:#ea580c;} .card[data-accent="purple"] .card-head{--accent:#9333ea;}
+  .pagefoot{text-align:center; font-size:11px; color:var(--muted); padding:10px 16px 14px;}
+  .katex { font-size: 1.05em; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+</head>
+<body>
+<div class="grid">
+
+  <!-- 1. Tangent Line -->
+  <div class="card" data-accent="blue">
+    <div class="card-head"><div class="eyebrow">PART 8 · Application of Derivatives · 🔵 Concept</div><div class="title">Tangent Line</div></div>
+    <div class="trigger-box"><div class="ic">🎯</div><div class="txt">หาเส้นสัมผัส → อนุพันธ์ที่จุดนั้นคือความชัน แล้วใช้สูตรเส้นตรง</div></div>
+    <div class="section when"><div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div><ul>
+      <li>หาสมการเส้นสัมผัสกราฟที่จุด \( (a,f(a)) \)</li>
+    </ul></div>
+    <div class="section how"><div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div><ol>
+      <li>หา \( f'(x) \) แล้วแทนค่า \( x=a \) ได้ความชัน m</li>
+      <li>หา \( f(a) \) เพื่อได้จุดบนเส้น</li>
+      <li>ใช้สูตร \( y-f(a)=m(x-a) \)</li>
+    </ol></div>
+    <div class="section mistake"><div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div><ul>
+      <li>ใช้ \( f(a) \) แทนความชันแทนที่จะใช้ \( f'(a) \)</li>
+      <li>ลืมหา f(a) ทำให้ไม่มีจุดผ่านเส้น</li>
+    </ul></div>
+    <div class="section hack"><div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div><div class="txt">"ดิฟหาความชัน แทนค่าหาจุด ใช้สูตรเส้นตรง"</div></div>
+    <div class="section examtip"><div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div><p>มักให้หาจุดบนกราฟที่เส้นสัมผัสขนานหรือตั้งฉากกับเส้นที่กำหนด</p></div>
+    <div class="section checklist"><div class="sec-head"><span class="dot"></span>☑ Before You Submit</div><ul>
+      <li>เช็กว่าใช้ f'(a) เป็นความชัน ไม่ใช่ f(a)</li>
+    </ul></div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 2. Normal Line -->
+  <div class="card" data-accent="green">
+    <div class="card-head"><div class="eyebrow">PART 8 · Application of Derivatives · 🟢 Formula</div><div class="title">Normal Line</div></div>
+    <div class="trigger-box"><div class="ic">🎯</div><div class="txt">เส้นตั้งฉากกับเส้นสัมผัส → ความชันเป็นส่วนกลับติดลบ</div></div>
+    <div class="section when"><div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div><ul>
+      <li>หาสมการเส้นที่ตั้งฉากกับเส้นสัมผัสที่จุดหนึ่ง</li>
+    </ul></div>
+    <div class="section how"><div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div><ol>
+      <li>หาความชันเส้นสัมผัส \( m=f'(a) \)</li>
+      <li>ความชัน normal \( m_n=-\dfrac{1}{m} \)</li>
+      <li>ใช้สูตร \( y-f(a)=m_n(x-a) \)</li>
+    </ol></div>
+    <div class="section mistake"><div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div><ul>
+      <li>ลืมกลับเศษส่วนและใส่เครื่องหมายลบ</li>
+      <li>ใช้ความชันเส้นสัมผัสแทนเส้นตั้งฉากโดยไม่แปลง</li>
+    </ul></div>
+    <div class="section hack"><div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div><div class="txt">"ตั้งฉาก = กลับเศษส่วน ติดลบ"</div></div>
+    <div class="section examtip"><div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div><p>มักผสมกับโจทย์หาจุดตัดของเส้น tangent และ normal กับแกน x หรือ y</p></div>
+    <div class="section checklist"><div class="sec-head"><span class="dot"></span>☑ Before You Submit</div><ul>
+      <li>เช็กว่า \( m \cdot m_n = -1 \) จริง</li>
+    </ul></div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 3. Increasing / Decreasing -->
+  <div class="card" data-accent="orange">
+    <div class="card-head"><div class="eyebrow">PART 8 · Application of Derivatives · 🟠 Trigger</div><div class="title">Increasing / Decreasing</div></div>
+    <div class="trigger-box"><div class="ic">🎯</div><div class="txt">f'(x) บวก → เพิ่ม / f'(x) ลบ → ลด ใช้ตารางเครื่องหมาย</div></div>
+    <div class="section when"><div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div><ul>
+      <li>หาช่วงที่ฟังก์ชันเพิ่ม/ลด</li>
+    </ul></div>
+    <div class="section how"><div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div><ol>
+      <li>หา \( f'(x) \) แล้วหาจุดวิกฤต (f'(x)=0 หรือไม่นิยาม)</li>
+      <li>แบ่งเส้นจำนวนเป็นช่วงตามจุดวิกฤต</li>
+      <li>ทดสอบเครื่องหมาย f'(x) แต่ละช่วง</li>
+      <li>f'>0 → เพิ่ม, f'&lt;0 → ลด</li>
+    </ol></div>
+    <div class="section mistake"><div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div><ul>
+      <li>ลืมจุดที่ f'(x) ไม่นิยามเป็นจุดวิกฤตด้วย</li>
+      <li>ทดสอบเครื่องหมายผิดช่วง</li>
+    </ul></div>
+    <div class="section hack"><div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div><div class="txt">"f' บวกขึ้น ลบลง ใช้ตารางเช็กทุกช่วง"</div></div>
+    <div class="section examtip"><div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div><p>เป็นพื้นฐานสำคัญของการหา local max/min และวาดกราฟ</p></div>
+    <div class="section checklist"><div class="sec-head"><span class="dot"></span>☑ Before You Submit</div><ul>
+      <li>เช็กจุดวิกฤตครบทุกจุด รวมจุดที่ f' ไม่นิยาม</li>
+    </ul></div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 4. Concavity -->
+  <div class="card" data-accent="purple">
+    <div class="card-head"><div class="eyebrow">PART 8 · Application of Derivatives · 🟣 Exam Tip</div><div class="title">Concavity</div></div>
+    <div class="trigger-box"><div class="ic">🎯</div><div class="txt">f''(x) บวก → หงายเหมือนถ้วย / ลบ → คว่ำเหมือนโดม</div></div>
+    <div class="section when"><div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div><ul>
+      <li>หาช่วงที่กราฟเว้า/นูน (concave up/down)</li>
+    </ul></div>
+    <div class="section how"><div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div><ol>
+      <li>หา \( f''(x) \)</li>
+      <li>หาจุดที่ \( f''(x)=0 \) หรือไม่นิยาม</li>
+      <li>ทดสอบเครื่องหมาย f'' แต่ละช่วง</li>
+      <li>f''>0 → concave up, f''&lt;0 → concave down</li>
+    </ol></div>
+    <div class="section mistake"><div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div><ul>
+      <li>สับสนระหว่างเพิ่ม/ลด (f') กับเว้า/นูน (f'')</li>
+      <li>ลืมว่าต้องดิฟสองครั้ง ไม่ใช่ครั้งเดียว</li>
+    </ul></div>
+    <div class="section hack"><div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div><div class="txt">"f'' บวกเหมือนถ้วยหงาย ลบเหมือนโดมคว่ำ"</div></div>
+    <div class="section examtip"><div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div><p>ใช้ร่วมกับ Second Derivative Test ในการตัดสิน local max/min</p></div>
+    <div class="section checklist"><div class="sec-head"><span class="dot"></span>☑ Before You Submit</div><ul>
+      <li>เช็กว่าใช้ f'' ไม่ใช่ f' ในการตัดสินเว้า/นูน</li>
+    </ul></div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 5. Inflection Point -->
+  <div class="card" data-accent="blue">
+    <div class="card-head"><div class="eyebrow">PART 8 · Application of Derivatives · 🔵 Concept</div><div class="title">Inflection Point</div></div>
+    <div class="trigger-box"><div class="ic">🎯</div><div class="txt">จุดเปลี่ยนเว้า-นูน → f'' เปลี่ยนเครื่องหมายที่จุดนั้นจริง</div></div>
+    <div class="section when"><div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div><ul>
+      <li>หาจุดเปลี่ยนเว้า (inflection point) ของกราฟ</li>
+    </ul></div>
+    <div class="section how"><div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div><ol>
+      <li>หา \( f''(x)=0 \) หรือไม่นิยาม → ได้จุดที่เป็นไปได้</li>
+      <li>เช็กว่า f'' เปลี่ยนเครื่องหมายจริงรอบจุดนั้น</li>
+      <li>ถ้าเปลี่ยนเครื่องหมายจริง → เป็น inflection point</li>
+    </ol></div>
+    <div class="section mistake"><div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div><ul>
+      <li>สรุปว่า f''(x)=0 คือ inflection point ทันทีโดยไม่เช็กว่าเปลี่ยนเครื่องหมายจริง</li>
+    </ul></div>
+    <div class="section hack"><div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div><div class="txt">"f''=0 แค่ผู้ต้องสงสัย ต้องเช็กเปลี่ยนเครื่องหมายจริง"</div></div>
+    <div class="section examtip"><div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div><p>มักออกพร้อมโจทย์วาดกราฟ (curve sketching) ที่ต้องระบุจุดเปลี่ยนเว้าครบ</p></div>
+    <div class="section checklist"><div class="sec-head"><span class="dot"></span>☑ Before You Submit</div><ul>
+      <li>เช็กว่า f'' เปลี่ยนเครื่องหมายจริงรอบจุดที่ตอบ</li>
+    </ul></div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 6. Critical Point -->
+  <div class="card" data-accent="green">
+    <div class="card-head"><div class="eyebrow">PART 8 · Application of Derivatives · 🟢 Formula</div><div class="title">Critical Point</div></div>
+    <div class="trigger-box"><div class="ic">🎯</div><div class="txt">f'(x)=0 หรือ f'(x) ไม่นิยาม → จุดวิกฤตที่ต้องเช็กทุกครั้ง</div></div>
+    <div class="section when"><div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div><ul>
+      <li>หาจุดวิกฤตก่อนหา local max/min</li>
+    </ul></div>
+    <div class="section how"><div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div><ol>
+      <li>หา \( f'(x) \)</li>
+      <li>แก้สมการ \( f'(x)=0 \)</li>
+      <li>หาจุดที่ \( f'(x) \) ไม่นิยาม (แต่ f(x) นิยาม)</li>
+      <li>รวมทุกจุดเป็นจุดวิกฤตทั้งหมด</li>
+    </ol></div>
+    <div class="section mistake"><div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div><ul>
+      <li>ลืมเช็กจุดที่ f' ไม่นิยาม (เช่นมีรากหรือเศษส่วน)</li>
+      <li>นับจุดที่ f(x) เองก็ไม่นิยามเป็นจุดวิกฤต (ผิด! ต้อง f(x) นิยามด้วย)</li>
+    </ul></div>
+    <div class="section hack"><div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div><div class="txt">"f'=0 หรือ f' ไม่มี แต่ f ต้องมีค่าจริง"</div></div>
+    <div class="section examtip"><div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div><p>เป็นขั้นตอนแรกของแทบทุกโจทย์ max/min และ optimization</p></div>
+    <div class="section checklist"><div class="sec-head"><span class="dot"></span>☑ Before You Submit</div><ul>
+      <li>เช็กว่า f(x) นิยามได้จริงที่จุดวิกฤตทุกจุด</li>
+    </ul></div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 7. Maximum / Minimum -->
+  <div class="card" data-accent="orange">
+    <div class="card-head"><div class="eyebrow">PART 8 · Application of Derivatives · 🟠 Trigger</div><div class="title">Maximum / Minimum</div></div>
+    <div class="trigger-box"><div class="ic">🎯</div><div class="txt">เจอจุดวิกฤตแล้ว → ใช้ First หรือ Second Derivative Test ตัดสิน</div></div>
+    <div class="section when"><div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div><ul>
+      <li>หาจุดสูงสุด-ต่ำสุดสัมพัทธ์ (local max/min)</li>
+      <li>หาค่าสูงสุด-ต่ำสุดสัมบูรณ์ในช่วงปิด</li>
+    </ul></div>
+    <div class="section how"><div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div><ol>
+      <li>First Derivative Test: f' เปลี่ยน +→- คือ max, -→+ คือ min</li>
+      <li>Second Derivative Test: f''(c)&lt;0 → max, f''(c)>0 → min</li>
+      <li>หาค่าสัมบูรณ์ในช่วงปิด: เปรียบเทียบค่าที่จุดวิกฤตกับจุดปลายช่วง</li>
+    </ol></div>
+    <div class="section mistake"><div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div><ul>
+      <li>ลืมเช็กจุดปลายช่วง (endpoint) ตอนหาค่าสัมบูรณ์</li>
+      <li>ใช้ Second Derivative Test ตอน f''(c)=0 (ทดสอบไม่ได้ ต้องใช้ First Test แทน)</li>
+    </ul></div>
+    <div class="section hack"><div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div><div class="txt">"f''<0 หลังค่อม / f''>0 ก้นหลุม"</div></div>
+    <div class="section examtip"><div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div><p>เป็นแก่นของโจทย์ optimization แทบทุกข้อในข้อสอบ</p></div>
+    <div class="section checklist"><div class="sec-head"><span class="dot"></span>☑ Before You Submit</div><ul>
+      <li>เช็กจุดปลายช่วงครบถ้าหาค่าสัมบูรณ์</li>
+      <li>เช็กว่าใช้ Test ที่เหมาะสมเมื่อ f''(c)=0</li>
+    </ul></div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 8. Optimization -->
+  <div class="card" data-accent="purple">
+    <div class="card-head"><div class="eyebrow">PART 8 · Application of Derivatives · 🟣 Exam Tip</div><div class="title">Optimization</div></div>
+    <div class="trigger-box"><div class="ic">🎯</div><div class="txt">โจทย์ปัญหา max/min → ตั้งสมการ 2 ตัวแปร แล้วลดเหลือตัวเดียว</div></div>
+    <div class="section when"><div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div><ul>
+      <li>หาขนาดกล่องที่ใช้วัสดุน้อยที่สุด</li>
+      <li>หาพื้นที่รั้วที่ล้อมได้มากที่สุด</li>
+    </ul></div>
+    <div class="section how"><div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div><ol>
+      <li>ตั้งสมการเป้าหมาย (สิ่งที่จะ max/min) และสมการเงื่อนไข (constraint)</li>
+      <li>ใช้ constraint แทนตัวแปรหนึ่งในเป้าหมาย ให้เหลือตัวแปรเดียว</li>
+      <li>ดิฟ หาจุดวิกฤต แล้วทดสอบว่าเป็น max หรือ min</li>
+      <li>ตรวจคำตอบให้สมเหตุสมผลกับบริบทโจทย์ (เช่น ความยาว ≥ 0)</li>
+    </ol></div>
+    <div class="section mistake"><div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div><ul>
+      <li>ดิฟสมการที่ยังมี 2 ตัวแปรอยู่ (ลืมแทน constraint ก่อน)</li>
+      <li>ลืมเช็ก domain ที่สมเหตุสมผลของโจทย์จริง</li>
+    </ul></div>
+    <div class="section hack"><div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div><div class="txt">"ตั้ง 2 สมการ ลดเหลือตัวแปรเดียว แล้วค่อยดิฟ"</div></div>
+    <div class="section examtip"><div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div><p>เป็นโจทย์ประยุกต์ที่ออกสอบแน่นอนแทบทุกข้อสอบ มักเป็นเรขาคณิตหรือต้นทุน-กำไร</p></div>
+    <div class="section checklist"><div class="sec-head"><span class="dot"></span>☑ Before You Submit</div><ul>
+      <li>เช็กว่าตอบในบริบทที่สมเหตุสมผล (ค่าบวก ตามขอบเขตโจทย์)</li>
+    </ul></div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 9. Related Rates -->
+  <div class="card" data-accent="blue">
+    <div class="card-head"><div class="eyebrow">PART 8 · Application of Derivatives · 🔵 Concept</div><div class="title">Related Rates</div></div>
+    <div class="trigger-box"><div class="ic">🎯</div><div class="txt">หลายตัวแปรเปลี่ยนตามเวลา → ดิฟทั้งสองข้างเทียบ t (implicit + chain)</div></div>
+    <div class="section when"><div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div><ul>
+      <li>บอลลูนพองตัว หาอัตราการเปลี่ยนรัศมี</li>
+      <li>บันไดเลื่อนลงกำแพง หาอัตราเร็วฐาน</li>
+    </ul></div>
+    <div class="section how"><div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div><ol>
+      <li>ตั้งสมการความสัมพันธ์ระหว่างตัวแปร</li>
+      <li>ดิฟทั้งสองข้างเทียบเวลา t (ทุกตัวแปรคูณด้วยอัตราของมัน)</li>
+      <li>แทนค่าตัวเลขที่ทราบ ณ ขณะนั้น</li>
+      <li>แก้หาอัตราที่โจทย์ถาม</li>
+    </ol></div>
+    <div class="section mistake"><div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div><ul>
+      <li>แทนค่าตัวเลขก่อนดิฟ (ทำให้ดิฟตัวแปรที่กลายเป็นค่าคงที่ผิดพลาด)</li>
+      <li>ลืมคูณอัตรา dx/dt, dy/dt ตอนดิฟแต่ละตัวแปร</li>
+    </ul></div>
+    <div class="section hack"><div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div><div class="txt">"ตั้งสมการก่อน ดิฟก่อน แทนค่าทีหลังเสมอ"</div></div>
+    <div class="section examtip"><div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div><p>มักผสมเรขาคณิต (พีทาโกรัส, ปริมาตร) เข้ากับอัตราการเปลี่ยนแปลงตามเวลา</p></div>
+    <div class="section checklist"><div class="sec-head"><span class="dot"></span>☑ Before You Submit</div><ul>
+      <li>เช็กว่าดิฟก่อนแทนค่าตัวเลข ไม่ใช่แทนก่อน</li>
+    </ul></div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 10. Curve Sketching -->
+  <div class="card" data-accent="green">
+    <div class="card-head"><div class="eyebrow">PART 8 · Application of Derivatives · 🟢 Formula</div><div class="title">Curve Sketching</div></div>
+    <div class="trigger-box"><div class="ic">🎯</div><div class="txt">วาดกราฟให้ครบ → เช็ก f, f', f'' ทีละขั้นอย่างเป็นระบบ</div></div>
+    <div class="section when"><div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div><ul>
+      <li>วิเคราะห์และวาดกราฟฟังก์ชันให้ครบทุกลักษณะ</li>
+    </ul></div>
+    <div class="section how"><div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div><ol>
+      <li>หาโดเมน, จุดตัดแกน, ความสมมาตร (even/odd)</li>
+      <li>หาเส้นกำกับ (แนวตั้ง/แนวนอน)</li>
+      <li>ใช้ f' หาช่วงเพิ่ม/ลด และ local max/min</li>
+      <li>ใช้ f'' หาช่วงเว้า/นูน และ inflection point</li>
+    </ol></div>
+    <div class="section mistake"><div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div><ul>
+      <li>ข้ามขั้นตอนใดขั้นตอนหนึ่งทำให้กราฟไม่ครบลักษณะ</li>
+      <li>ลืมเช็กเส้นกำกับก่อนวาดกราฟ</li>
+    </ul></div>
+    <div class="section hack"><div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div><div class="txt">"โดเมน-ตัด-สมมาตร, เส้นกำกับ, f' ขึ้นลง, f'' เว้านูน"</div></div>
+    <div class="section examtip"><div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div><p>เป็นโจทย์รวบยอดที่ใช้ทุกหัวข้อใน Part 8 พร้อมกัน — ฝึกให้คล่องจะช่วยได้ทั้งหมวด</p></div>
+    <div class="section checklist"><div class="sec-head"><span class="dot"></span>☑ Before You Submit</div><ul>
+      <li>เช็กว่าครบทุกขั้นตอน: โดเมน เส้นกำกับ f' f''</li>
+    </ul></div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+</div>
+</body>
+</html>

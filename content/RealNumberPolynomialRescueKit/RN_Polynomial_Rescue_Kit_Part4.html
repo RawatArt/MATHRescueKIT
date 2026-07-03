@@ -1,0 +1,96 @@
+<!DOCTYPE html><html lang="th"><head><meta charset="UTF-8"><title>RN Kit · Part 4 — Polynomial Factorization</title>
+<style>@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700;800&family=Sarabun:wght@400;500;600;700;800&display=swap');
+:root{--concept:#2563eb;--formula:#16a34a;--trigger:#ea580c;--mistake:#dc2626;--tip:#9333ea;--checklist:#1f2937;--hack:#ca8a04;--bg:#f7f7fb;--card-bg:#ffffff;--ink:#1f2330;--muted:#6b7280;}
+*{box-sizing:border-box;}body{margin:0;padding:32px;background:var(--bg);font-family:'Sarabun','Noto Sans Thai',sans-serif;color:var(--ink);}
+.grid{display:flex;flex-wrap:wrap;gap:28px;justify-content:center;}
+.card{width:420px;background:var(--card-bg);border-radius:18px;box-shadow:0 6px 24px rgba(20,20,40,.10);overflow:hidden;border:1px solid #ececf2;display:flex;flex-direction:column;}
+.card-head{padding:18px 20px 14px;background:linear-gradient(135deg,var(--accent,#2563eb),color-mix(in srgb,var(--accent,#2563eb) 70%,black));color:#fff;}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.85;margin-bottom:4px;}.title{font-size:21px;font-weight:800;line-height:1.25;}
+.trigger-box{margin:14px 16px 0;background:#fff7ed;border:1.5px dashed var(--trigger);border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:10px;}
+.trigger-box .ic{font-size:20px;}.trigger-box .txt{font-weight:700;font-size:15px;color:#7c2d12;}
+.section{margin:14px 16px 0;padding:12px 14px;border-radius:12px;background:#fafafa;}.section:last-of-type{margin-bottom:16px;}
+.sec-head{display:flex;align-items:center;gap:7px;font-weight:700;font-size:13.5px;margin-bottom:7px;}.sec-head .dot{width:9px;height:9px;border-radius:50%;flex:none;}
+.when{background:#eff6ff;}.when .dot{background:var(--concept);}.when ul{margin:0;padding-left:18px;font-size:14px;line-height:1.65;}
+.how{background:#f0fdf4;}.how .dot{background:var(--formula);}.how ol{margin:0;padding-left:20px;font-size:14px;line-height:1.7;font-weight:500;}
+.mistake{background:#fef2f2;}.mistake .dot{background:var(--mistake);}.mistake ul{margin:0;padding-left:18px;font-size:13.5px;line-height:1.65;color:#7f1d1d;}
+.hack{background:#fffbeb;}.hack .dot{background:var(--hack);}.hack .txt{font-size:14.5px;font-weight:700;color:#854d0e;}
+.examtip{background:#faf5ff;}.examtip .dot{background:var(--tip);}.examtip p{margin:0;font-size:13.5px;line-height:1.6;color:#581c87;}
+.checklist{background:#f4f4f5;}.checklist .dot{background:var(--checklist);}.checklist ul{list-style:none;margin:0;padding:0;font-size:13.5px;line-height:1.9;}.checklist li::before{content:"☐  ";}
+.card[data-accent="green"].card-head{--accent:#16a34a;}.card[data-accent="blue"].card-head{--accent:#2563eb;}.card[data-accent="orange"].card-head{--accent:#ea580c;}.card[data-accent="purple"].card-head{--accent:#9333ea;}
+.pagefoot{text-align:center;font-size:11px;color:var(--muted);padding:10px 16px 14px;}.katex{font-size:1.05em;}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+</head><body><div class="grid">
+
+<div class="card" data-accent="green">
+  <div class="card-head"><div class="eyebrow">PART 4 · Factorization · 🟢 Formula</div><div class="title">กำลังสองสมบูรณ์ & ผลต่างกำลังสอง</div></div>
+  <div class="trigger-box"><div class="ic">🎯</div><div class="txt">หัวท้ายกำลังสอง กลางสองเท่าของราก = Perfect Square / ลบเท่านั้นแตกได้ = DoS</div></div>
+  <div class="section when"><div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div><ul>
+    <li>\( x^2+6x+9 \), \( 4x^2-12x+9 \)</li>
+    <li>\( x^2-25 \), \( 9x^2-4 \)</li>
+  </ul></div>
+  <div class="section how"><div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div><ol>
+    <li>Perfect Square: \( a^2\pm 2ab+b^2=(a\pm b)^2 \)</li>
+    <li>Difference of Squares: \( a^2-b^2=(a-b)(a+b) \)</li>
+    <li>เช็ก: หัวและท้ายเป็น perfect square และพจน์กลาง = \( 2ab \)</li>
+    <li>DoS: ใช้ได้เฉพาะเครื่องหมายลบ (บวกแตกแบบนี้ไม่ได้)</li>
+  </ol></div>
+  <div class="section mistake"><div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div><ul>
+    <li>แตก \( a^2+b^2 \) แบบ Diff of Squares (ทำไม่ได้เหนือจำนวนจริง)</li>
+    <li>ลืมรากของสัมประสิทธิ์: \( 4x^2=(2x)^2 \) ไม่ใช่ \( (4x)^2 \)</li>
+  </ul></div>
+  <div class="section hack"><div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div><div class="txt">"ลบแตกได้ (DoS) / บวกแตกไม่ได้ / กลาง = สองเท่าราก"</div></div>
+  <div class="section examtip"><div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div><p>DoS ซ่อนใน limit \( \frac{0}{0} \) เพื่อให้ตัดพจน์ออก — จำไว้ใช้เสมอใน Part Limit</p></div>
+  <div class="section checklist"><div class="sec-head"><span class="dot"></span>☑ Before You Submit</div><ul><li>กระจายกลับเพื่อตรวจคำตอบ</li></ul></div>
+  <div class="pagefoot">Real Number &amp; Polynomial Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+</div>
+
+<div class="card" data-accent="blue">
+  <div class="card-head"><div class="eyebrow">PART 4 · Factorization · 🔵 Concept</div><div class="title">ผลบวก & ผลต่างกำลังสาม</div></div>
+  <div class="trigger-box"><div class="ic">🎯</div><div class="txt">SOAP: Same, Opposite, Always Positive — จำลำดับนี้เพื่อสูตรกำลังสาม</div></div>
+  <div class="section when"><div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div><ul>
+    <li>\( x^3+8 \), \( 27x^3-1 \)</li>
+  </ul></div>
+  <div class="section how"><div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div><ol>
+    <li>\( a^3+b^3=(a+b)(a^2-ab+b^2) \)</li>
+    <li>\( a^3-b^3=(a-b)(a^2+ab+b^2) \)</li>
+    <li>SOAP: เครื่องหมายใน () แรก = Same (เหมือนกัน), วงเล็บสองตรงกลาง = Opposite (ตรงข้าม), พจน์สุดท้าย = Always Positive</li>
+    <li>วงเล็บที่สอง \( a^2\mp ab+b^2 \) ไม่แตกต่อ (เหนือจำนวนจริง)</li>
+  </ol></div>
+  <div class="section mistake"><div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div><ul>
+    <li>สลับเครื่องหมายกลาง: sum ควรเป็น \( -ab \) แต่เขียน \( +ab \)</li>
+    <li>พยายามแตกวงเล็บที่สองต่อ (แตกต่อไม่ได้เหนือ \( \mathbb{R} \))</li>
+  </ul></div>
+  <div class="section hack"><div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div><div class="txt">SOAP: Same · Opposite · Always Positive</div></div>
+  <div class="section examtip"><div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div><p>ออกคู่กับ limit \( \frac{0}{0} \) หรือโจทย์พิสูจน์ตัวประกอบ — ต้องจำสูตรให้แม่นทั้งสองแบบ</p></div>
+  <div class="section checklist"><div class="sec-head"><span class="dot"></span>☑ Before You Submit</div><ul><li>เช็กเครื่องหมายกลางวงเล็บสองถูกต้อง (ตรงข้ามกับเครื่องหมายหน้า)</li></ul></div>
+  <div class="pagefoot">Real Number &amp; Polynomial Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+</div>
+
+<div class="card" data-accent="orange">
+  <div class="card-head"><div class="eyebrow">PART 4 · Factorization · 🟠 Trigger</div><div class="title">Completing the Square</div></div>
+  <div class="trigger-box"><div class="ic">🎯</div><div class="txt">หารสอง ยกสอง บวกแล้วลบ — เสมอเมื่อต้องจัดรูป \( x^2+bx \)</div></div>
+  <div class="section when"><div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div><ul>
+    <li>หาจุดต่ำสุดของ \( x^2-6x+5 \)</li>
+    <li>อินทิเกรตหรือแก้สมการที่ต้องจัดรูปใหม่</li>
+  </ul></div>
+  <div class="section how"><div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div><ol>
+    <li>จัดให้เหลือ \( x^2+bx \)</li>
+    <li>บวกและลบ \( \left(\dfrac{b}{2}\right)^2 \) พร้อมกัน</li>
+    <li>จัดรูปเป็น \( \left(x+\dfrac{b}{2}\right)^2 - \left(\dfrac{b}{2}\right)^2 \)</li>
+    <li>ถ้าสัมประสิทธิ์หน้า \( x^2 \neq 1 \) ดึงออกก่อน</li>
+  </ol></div>
+  <div class="section mistake"><div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div><ul>
+    <li>ลืมหาร b ด้วย 2 ก่อนยกกำลังสอง</li>
+    <li>บวกแต่ไม่ลบ — ทำให้ค่าสมการเปลี่ยน</li>
+    <li>ลืมดึงสัมประสิทธิ์นำออกก่อน</li>
+  </ul></div>
+  <div class="section hack"><div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div><div class="txt">"หารสอง ยกสอง บวกแล้วลบ ครบสูตร"</div></div>
+  <div class="section examtip"><div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div><p>ใช้หาค่าสูงสุด/ต่ำสุดของฟังก์ชันกำลังสอง หรือจัดรูปวงกลมก่อนหาจุดศูนย์กลาง</p></div>
+  <div class="section checklist"><div class="sec-head"><span class="dot"></span>☑ Before You Submit</div><ul><li>กระจายกลับเพื่อตรวจว่าตรงกับโจทย์เดิม</li></ul></div>
+  <div class="pagefoot">Real Number &amp; Polynomial Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+</div>
+
+</div></body></html>

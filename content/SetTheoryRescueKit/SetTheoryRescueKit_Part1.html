@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>SetTheoryRescueKit Rescue Kit — Part 1</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700;800&family=Sarabun:wght@400;500;600;700;800&display=swap');
+  :root{
+    --concept:#2563eb;--formula:#16a34a;--trigger:#ea580c;--mistake:#dc2626;
+    --tip:#9333ea;--checklist:#1f2937;--hack:#ca8a04;--bg:#f7f7fb;
+    --card-bg:#ffffff;--ink:#1f2330;--muted:#6b7280;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;padding:32px;background:var(--bg);font-family:'Sarabun','Noto Sans Thai',sans-serif;color:var(--ink);}
+  .grid{display:flex;flex-wrap:wrap;gap:28px;justify-content:center;}
+  .card{width:420px;background:var(--card-bg);border-radius:18px;box-shadow:0 6px 24px rgba(20,20,40,.10);overflow:hidden;border:1px solid #ececf2;display:flex;flex-direction:column;}
+  .card-head{padding:18px 20px 14px;background:linear-gradient(135deg,var(--accent,#2563eb),color-mix(in srgb,var(--accent,#2563eb) 70%,black));color:#fff;}
+  .eyebrow{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.85;margin-bottom:4px;}
+  .title{font-size:21px;font-weight:800;line-height:1.25;}
+  .trigger-box{margin:14px 16px 0;background:#fff7ed;border:1.5px dashed var(--trigger);border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:10px;}
+  .trigger-box .ic{font-size:20px;}.trigger-box .txt{font-weight:700;font-size:15px;color:#7c2d12;}
+  .section{margin:14px 16px 0;padding:12px 14px;border-radius:12px;background:#fafafa;}.section:last-of-type{margin-bottom:16px;}
+  .sec-head{display:flex;align-items:center;gap:7px;font-weight:700;font-size:13.5px;margin-bottom:7px;}.sec-head .dot{width:9px;height:9px;border-radius:50%;flex:none;}
+  .when{background:#eff6ff;}.when .dot{background:var(--concept);}.when ul{margin:0;padding-left:18px;font-size:14px;line-height:1.65;}
+  .how{background:#f0fdf4;}.how .dot{background:var(--formula);}.how ol{margin:0;padding-left:20px;font-size:14px;line-height:1.7;font-weight:500;}
+  .mistake{background:#fef2f2;}.mistake .dot{background:var(--mistake);}.mistake ul{margin:0;padding-left:18px;font-size:13.5px;line-height:1.65;color:#7f1d1d;}
+  .hack{background:#fffbeb;}.hack .dot{background:var(--hack);}.hack .txt{font-size:14.5px;font-weight:700;color:#854d0e;}
+  .examtip{background:#faf5ff;}.examtip .dot{background:var(--tip);}.examtip p{margin:0;font-size:13.5px;line-height:1.6;color:#581c87;}
+  .checklist{background:#f4f4f5;}.checklist .dot{background:var(--checklist);}.checklist ul{list-style:none;margin:0;padding:0;font-size:13.5px;line-height:1.9;}.checklist li::before{content:"☐  ";}
+  .card[data-accent="green"]  .card-head{--accent:#16a34a;}
+  .card[data-accent="blue"]   .card-head{--accent:#2563eb;}
+  .card[data-accent="orange"] .card-head{--accent:#ea580c;}
+  .card[data-accent="purple"] .card-head{--accent:#9333ea;}
+  .pagefoot{text-align:center;font-size:11px;color:var(--muted);padding:10px 16px 14px;}
+  .katex{font-size:1.05em;}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+</head>
+<body>
+<div class="grid">
+
+  <div class="card" data-accent="blue">
+    <div class="card-head">
+      <div class="eyebrow">PART 1 · Set Fundamentals · 🔵 Concept</div>
+      <div class="title">เขียนเซต</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">เห็นได้เป็นสมาชิกก่อน ถ้าบอกเงื่อนไขค่อยแปลกลับ</div>
+    </div>
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+      <li>ให้เซตสมาชิกมาโดยตรง เช่น \(A=\{1,2,3\}\)</li>
+      <li>ให้เงื่อนไขมา เช่น \(A=\{x\mid x\text{ เป็นจำนวนคู่ }<10\}\)</li>
+      </ul>
+    </div>
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+      <li>แบบแจกแจง: เขียนสมาชิกคั่นด้วยจุลภาค</li>
+      <li>แบบบอกเงื่อนไข: ใช้ \(x\mid\) ตามด้วยเงื่อนไข</li>
+      <li>เช็กให้ชัดว่าเซตมีลำดับหรือไม่</li>
+      </ol>
+    </div>
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+      <li>เขียนสมาชิกซ้ำโดยคิดว่าทำให้เซตใหญ่ขึ้น</li>
+      <li>สับสนระหว่างรายการสมาชิกกับเงื่อนไข</li>
+      </ul>
+    </div>
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"เห็นตัวอย่าง จดสมาชิก; เห็นเงื่อนไข แปลเป็นชุด"</div>
+    </div>
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>ข้อสอบชอบให้แปลงระหว่าง 2 แบบ แล้วถามว่าเซตไหนเหมือนกัน ต้องอ่านสมาชิกจริง ไม่ใช่ดูแค่หน้าตาโจทย์</p>
+    </div>
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+      <li>มีสมาชิกครบหรือยัง</li>
+      <li>เงื่อนไขครอบคลุมทุกตัวหรือยัง</li>
+      </ul>
+    </div>
+    <div class="pagefoot">SetTheoryRescueKit Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+
+  <div class="card" data-accent="green">
+    <div class="card-head">
+      <div class="eyebrow">PART 1 · Set Fundamentals · 🟠 Trigger</div>
+      <div class="title">เป็นสมาชิก</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">ลอกมาทั้งก้อน คือสมาชิก; ไม่ตรงก้อน คือไม่ใช่</div>
+    </div>
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+      <li>ตรวจว่า \(3\in \{1,2,3\}\) หรือไม่</li>
+      <li>ตรวจว่า \(\{3\}\in \{1,2,\{3\}\}\) หรือไม่</li>
+      </ul>
+    </div>
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+      <li>มองซ้ายของสัญลักษณ์ก่อน</li>
+      <li>ถ้าเป็น \(\in\) ให้หา 'ตัวนั้น' ในเซต</li>
+      <li>ถ้าไม่เจอพอดี ๆ ให้ตอบ \(\notin\)</li>
+      </ol>
+    </div>
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+      <li>เอาสิ่งที่เป็นเซตไปเทียบเป็นตัวเลข</li>
+      <li>เห็นวงเล็บแล้วคิดว่าเป็นสับเซตทันที</li>
+      </ul>
+    </div>
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"สมาชิกต้องเจอหน้าตาเดิม"</div>
+    </div>
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>ข้อถูก-ผิดมักหลอกด้วยวัตถุซ้อนเซต เช่น \(\{3\}\) กับ \(\{\{3\}\}\) ต้องดูชั้นปีกกาให้ดี</p>
+    </div>
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+      <li>ซ้ายเป็นอะไร</li>
+      <li>ในเซตมีสิ่งนั้นแบบตรงตัวไหม</li>
+      </ul>
+    </div>
+    <div class="pagefoot">SetTheoryRescueKit Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+
+  <div class="card" data-accent="orange">
+    <div class="card-head">
+      <div class="eyebrow">PART 1 · Set Fundamentals · 🔵 Concept</div>
+      <div class="title">จำนวนสมาชิก</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">เซตจำกัดนับได้ เซตอนันต์นับไม่จบ เซตว่างไม่มีสักตัว</div>
+    </div>
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+      <li>นับสมาชิกของ \(\{1,2,3\}\)</li>
+      <li>พิจารณาเซตจำนวนคู่ \(\{2,4,6,\dots\}\)</li>
+      </ul>
+    </div>
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+      <li>Finite: นับได้หมด</li>
+      <li>Infinite: มีต่อไม่สิ้นสุด</li>
+      <li>Empty set: ไม่มีสมาชิกเลย</li>
+      </ol>
+    </div>
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+      <li>คิดว่าเซตว่างมีสมาชิกเป็นศูนย์ตัวเลข</li>
+      <li>นับสัญลักษณ์ซ้ำเป็นสมาชิกหลายตัว</li>
+      </ul>
+    </div>
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"นับได้จบ = finite"</div>
+    </div>
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>ข้อสอบชอบให้แยก \(\emptyset\), เซตว่างกับ \(\{\emptyset\}\) และเซตอนันต์จากตัวอย่างสั้น ๆ</p>
+    </div>
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+      <li>มีสมาชิกครบหรือไม่</li>
+      <li>จบการนับได้ไหม</li>
+      </ul>
+    </div>
+    <div class="pagefoot">SetTheoryRescueKit Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+
+  <div class="card" data-accent="purple">
+    <div class="card-head">
+      <div class="eyebrow">PART 1 · Set Fundamentals · 🟣 Exam Tip</div>
+      <div class="title">เซตเท่ากับเทียบเท่า</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">เท่ากันต้องมีสมาชิกเหมือนกัน เทียบเท่าต้องมีจำนวนเท่ากัน</div>
+    </div>
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+      <li>ตรวจว่า \(A=\{1,2\}\) และ \(B=\{2,1\}\)</li>
+      <li>ตรวจว่า \(A=\{1,2\}\) และ \(C=\{a,b\}\)</li>
+      </ul>
+    </div>
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+      <li>\(A=B\): สมาชิกทุกตัวตรงกัน</li>
+      <li>\(A\sim B\): จำนวนสมาชิกเท่ากัน</li>
+      <li>ไม่ต้องสนใจลำดับในเซต</li>
+      </ol>
+    </div>
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+      <li>เอาเซตเทียบเท่ามาอ่านว่าเซตเท่ากัน</li>
+      <li>คิดว่าลำดับสมาชิกมีผล</li>
+      </ul>
+    </div>
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"เท่ากันคือเหมือนทุกตัว"</div>
+    </div>
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>ข้อสอบชอบถามความต่างของ \(=\) กับ \(\sim\) โดยให้เซตหน้าตาไม่เหมือนกัน แต่จำนวนสมาชิกเท่ากัน</p>
+    </div>
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+      <li>สมาชิกตรงกันทุกตัวไหม</li>
+      <li>จำนวนสมาชิกเท่ากันไหม</li>
+      </ul>
+    </div>
+    <div class="pagefoot">SetTheoryRescueKit Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+</div>
+</body>
+</html>

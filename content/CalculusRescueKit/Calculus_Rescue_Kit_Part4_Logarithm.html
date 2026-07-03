@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>Calculus Rescue Kit — Part 4 Logarithm Rescue</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700;800&family=Sarabun:wght@400;500;600;700;800&display=swap');
+
+  :root{
+    --concept:#2563eb;
+    --formula:#16a34a;
+    --trigger:#ea580c;
+    --mistake:#dc2626;
+    --tip:#9333ea;
+    --checklist:#1f2937;
+    --hack:#ca8a04;
+    --bg:#f7f7fb;
+    --card-bg:#ffffff;
+    --ink:#1f2330;
+    --muted:#6b7280;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0; padding:32px;
+    background:var(--bg);
+    font-family:'Sarabun','Noto Sans Thai',sans-serif;
+    color:var(--ink);
+  }
+
+  .grid{
+    display:flex; flex-wrap:wrap; gap:28px; justify-content:center;
+  }
+
+  .card{
+    width:420px;
+    background:var(--card-bg);
+    border-radius:18px;
+    box-shadow:0 6px 24px rgba(20,20,40,0.10);
+    overflow:hidden;
+    border:1px solid #ececf2;
+    display:flex; flex-direction:column;
+  }
+
+  .card-head{
+    padding:18px 20px 14px;
+    background:linear-gradient(135deg, var(--accent,#2563eb), color-mix(in srgb, var(--accent,#2563eb) 70%, black));
+    color:#fff;
+    position:relative;
+  }
+  .eyebrow{
+    font-size:11px; font-weight:700; letter-spacing:.08em;
+    text-transform:uppercase; opacity:.85; margin-bottom:4px;
+  }
+  .title{
+    font-size:21px; font-weight:800; line-height:1.25;
+  }
+
+  .trigger-box{
+    margin:14px 16px 0;
+    background:#fff7ed;
+    border:1.5px dashed var(--trigger);
+    border-radius:12px;
+    padding:10px 14px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .trigger-box .ic{font-size:20px;}
+  .trigger-box .txt{font-weight:700; font-size:15px; color:#7c2d12;}
+
+  .section{
+    margin:14px 16px 0;
+    padding:12px 14px;
+    border-radius:12px;
+    background:#fafafa;
+  }
+  .section:last-of-type{margin-bottom:16px;}
+  .sec-head{
+    display:flex; align-items:center; gap:7px;
+    font-weight:700; font-size:13.5px; margin-bottom:7px;
+  }
+  .sec-head .dot{width:9px;height:9px;border-radius:50%;flex:none;}
+
+  .when{background:#eff6ff;}
+  .when .dot{background:var(--concept);}
+  .when ul{margin:0; padding-left:18px; font-size:14px; line-height:1.65;}
+
+  .how{background:#f0fdf4;}
+  .how .dot{background:var(--formula);}
+  .how ol{margin:0; padding-left:20px; font-size:14px; line-height:1.7; font-weight:500;}
+
+  .mistake{background:#fef2f2;}
+  .mistake .dot{background:var(--mistake);}
+  .mistake ul{margin:0; padding-left:18px; font-size:13.5px; line-height:1.65; color:#7f1d1d;}
+
+  .hack{background:#fffbeb;}
+  .hack .dot{background:var(--hack);}
+  .hack .txt{font-size:14.5px; font-weight:700; color:#854d0e;}
+
+  .examtip{background:#faf5ff;}
+  .examtip .dot{background:var(--tip);}
+  .examtip p{margin:0; font-size:13.5px; line-height:1.6; color:#581c87;}
+
+  .checklist{background:#f4f4f5;}
+  .checklist .dot{background:var(--checklist);}
+  .checklist ul{list-style:none; margin:0; padding:0; font-size:13.5px; line-height:1.9;}
+  .checklist li::before{content:"☐  "; }
+
+  .card[data-accent="green"] .card-head{--accent:#16a34a;}
+  .card[data-accent="blue"] .card-head{--accent:#2563eb;}
+  .card[data-accent="orange"] .card-head{--accent:#ea580c;}
+  .card[data-accent="purple"] .card-head{--accent:#9333ea;}
+
+  .pagefoot{
+    text-align:center; font-size:11px; color:var(--muted);
+    padding:10px 16px 14px;
+  }
+
+  .katex { font-size: 1.05em; }
+</style>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+</head>
+<body>
+
+<div class="grid">
+
+  <!-- 1. Log Rules -->
+  <div class="card" data-accent="blue">
+    <div class="card-head">
+      <div class="eyebrow">PART 4 · Logarithm Rescue · 🔵 Concept</div>
+      <div class="title">Log Rules</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">log คูณ→บวก / log หาร→ลบ / log ยกกำลัง→คูณหน้า</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>\( \log(xy) \)</li>
+        <li>\( \log\dfrac{x}{y} \)</li>
+        <li>\( \log(x^n) \)</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>\( \log(xy)=\log x+\log y \)</li>
+        <li>\( \log\dfrac{x}{y}=\log x-\log y \)</li>
+        <li>\( \log(x^n)=n\log x \)</li>
+        <li>\( \log_a a = 1 \), \( \log_a 1 = 0 \)</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>คิดว่า \( \log(x+y)=\log x+\log y \) (ผิด! ใช้ไม่ได้กับบวก)</li>
+        <li>ลืมเงื่อนไขโดเมน \( x>0 \) ก่อนใช้สูตร</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"คูณบวก หารลบ ยกคูณหน้า"</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>ใช้แตกหรือรวม log ก่อนหาอนุพันธ์ด้วย logarithmic differentiation</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เช็กเงื่อนไขโดเมนของแต่ละพจน์ใน log</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 2. Natural Log -->
+  <div class="card" data-accent="green">
+    <div class="card-head">
+      <div class="eyebrow">PART 4 · Logarithm Rescue · 🟢 Formula</div>
+      <div class="title">Natural Log</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">เห็น ln → คือ \( \log_e \) ใช้กฎ log ทั่วไปได้ทุกข้อ</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>\( \ln x \), \( \ln(e^x) \), \( e^{\ln x} \)</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>\( \ln x = \log_e x \)</li>
+        <li>\( \ln(e^x)=x \) และ \( e^{\ln x}=x \) (ฟังก์ชันผกผันกัน)</li>
+        <li>ใช้กฎ log ทั่วไปได้ทุกข้อ (คูณ→บวก, หาร→ลบ, ยก→คูณ)</li>
+        <li>\( \dfrac{d}{dx}\ln x = \dfrac{1}{x} \)</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>ลืมว่า \( \ln x \) นิยามเฉพาะ \( x>0 \)</li>
+        <li>สับสน \( \ln \) กับ \( \log_{10} \) (log ฐาน 10)</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"ln กับ e หักล้างกันเป็น x เสมอ"</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>เป็นฟังก์ชันหลักในแคลคูลัส — อนุพันธ์ \( 1/x \) และอินทิเกรตของ \( 1/x \) ออกสอบบ่อยมาก</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เช็กโดเมน \( x>0 \) ของ ln ทุกครั้ง</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 3. Exponential Rules -->
+  <div class="card" data-accent="orange">
+    <div class="card-head">
+      <div class="eyebrow">PART 4 · Logarithm Rescue · 🟠 Trigger</div>
+      <div class="title">Exponential Rules</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">log กับ exponential เป็นฟังก์ชันผกผันกันเสมอ</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>แก้สมการ \( 2^x = 8 \)</li>
+        <li>แก้สมการ \( e^x = 5 \)</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>\( y=a^x \iff x=\log_a y \)</li>
+        <li>แก้สมการเอ็กซ์โพเนนเชียลโดย log ทั้งสองข้าง</li>
+        <li>ถ้าฐานเดียวกัน เทียบเลขชี้กำลังได้ตรงๆ</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>ลืม log ทั้งสองข้างพร้อมกัน ทำให้สมการไม่สมดุล</li>
+        <li>เทียบเลขชี้กำลังผิดทั้งที่ฐานไม่เท่ากัน</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"log สลับเอ็กซ์โพเนนเชียลได้เสมอ เหมือนกระจกสะท้อน"</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>มักผสมกับโจทย์การเติบโต/สลายตัวแบบเอ็กซ์โพเนนเชียล (exponential growth/decay)</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เช็กว่า log ทั้งสองข้างของสมการแล้ว ไม่ใช่ข้างเดียว</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 4. Change of Base -->
+  <div class="card" data-accent="purple">
+    <div class="card-head">
+      <div class="eyebrow">PART 4 · Logarithm Rescue · 🟣 Exam Tip</div>
+      <div class="title">Change of Base</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">ฐานแปลกๆ ที่เครื่องคิดเลขกดไม่ได้ → เปลี่ยนเป็นฐาน 10 หรือ e</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>\( \log_3 7 \) (ฐานที่เครื่องคิดเลขไม่มีปุ่มตรง)</li>
+        <li>เปรียบเทียบขนาดของ log ต่างฐาน</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>\( \log_a b = \dfrac{\log_c b}{\log_c a} \) (c คือฐานใหม่ที่เลือก)</li>
+        <li>นิยมเลือก c = 10 หรือ c = e (ln)</li>
+        <li>คำนวณเศษและส่วนแยกกันแล้วหาร</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>สลับเศษกับส่วน (เอาฐานเดิมขึ้นเศษผิด)</li>
+        <li>ลืมว่าต้องใช้ฐานเดียวกันทั้งเศษและส่วน</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"ของที่อยากหา อยู่บน / ฐานเดิม อยู่ล่าง"</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>ใช้พิสูจน์หรือเปรียบเทียบค่า log ที่ฐานต่างกัน โดยแปลงให้เป็นฐานเดียวกันก่อน</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เช็กว่าเศษกับส่วนใช้ฐานใหม่เดียวกัน</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 5. e Properties -->
+  <div class="card" data-accent="blue">
+    <div class="card-head">
+      <div class="eyebrow">PART 4 · Logarithm Rescue · 🔵 Concept</div>
+      <div class="title">e Properties</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">\( e^x \) คืออนุพันธ์ของตัวมันเอง — ฟังก์ชันที่ "ไม่เปลี่ยนเมื่อดิฟ"</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>หาอนุพันธ์/อินทิเกรตของ \( e^x \)</li>
+        <li>ลิมิต \( \lim\limits_{n\to\infty}(1+\frac{1}{n})^n \)</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>\( \dfrac{d}{dx}e^x = e^x \) (ไม่เปลี่ยนรูปเมื่อดิฟ)</li>
+        <li>\( \int e^x\,dx = e^x + C \)</li>
+        <li>\( e \approx 2.71828... \) เป็นจำนวนอตรรกยะ</li>
+        <li>\( e^x \cdot e^y = e^{x+y} \) ใช้กฎเลขชี้กำลังปกติ</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>ลืม +C ตอนอินทิเกรต</li>
+        <li>สับสน \( e^x \) กับ \( x^e \) (คนละฟังก์ชันกัน ดิฟต่างกันมาก)</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"e ยกกำลัง x ดิฟแล้วยังเป็น e ยกกำลัง x เหมือนเดิม"</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>เป็นฐานสำคัญของโจทย์การเติบโต/สลายตัวแบบเอ็กซ์โพเนนเชียล และ chain rule ที่มี \( e^{f(x)} \)</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เช็กว่าไม่ได้สับสน \( e^x \) กับ \( x^e \)</li>
+        <li>ใส่ +C ครบทุกครั้งที่อินทิเกรต</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+</div>
+</body>
+</html>

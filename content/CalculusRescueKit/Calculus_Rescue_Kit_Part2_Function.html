@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>Calculus Rescue Kit — Part 2 Function Rescue</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700;800&family=Sarabun:wght@400;500;600;700;800&display=swap');
+
+  :root{
+    --concept:#2563eb;
+    --formula:#16a34a;
+    --trigger:#ea580c;
+    --mistake:#dc2626;
+    --tip:#9333ea;
+    --checklist:#1f2937;
+    --hack:#ca8a04;
+    --bg:#f7f7fb;
+    --card-bg:#ffffff;
+    --ink:#1f2330;
+    --muted:#6b7280;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0; padding:32px;
+    background:var(--bg);
+    font-family:'Sarabun','Noto Sans Thai',sans-serif;
+    color:var(--ink);
+  }
+
+  .grid{
+    display:flex; flex-wrap:wrap; gap:28px; justify-content:center;
+  }
+
+  .card{
+    width:420px;
+    background:var(--card-bg);
+    border-radius:18px;
+    box-shadow:0 6px 24px rgba(20,20,40,0.10);
+    overflow:hidden;
+    border:1px solid #ececf2;
+    display:flex; flex-direction:column;
+  }
+
+  .card-head{
+    padding:18px 20px 14px;
+    background:linear-gradient(135deg, var(--accent,#2563eb), color-mix(in srgb, var(--accent,#2563eb) 70%, black));
+    color:#fff;
+    position:relative;
+  }
+  .eyebrow{
+    font-size:11px; font-weight:700; letter-spacing:.08em;
+    text-transform:uppercase; opacity:.85; margin-bottom:4px;
+  }
+  .title{
+    font-size:21px; font-weight:800; line-height:1.25;
+  }
+
+  .trigger-box{
+    margin:14px 16px 0;
+    background:#fff7ed;
+    border:1.5px dashed var(--trigger);
+    border-radius:12px;
+    padding:10px 14px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .trigger-box .ic{font-size:20px;}
+  .trigger-box .txt{font-weight:700; font-size:15px; color:#7c2d12;}
+
+  .section{
+    margin:14px 16px 0;
+    padding:12px 14px;
+    border-radius:12px;
+    background:#fafafa;
+  }
+  .section:last-of-type{margin-bottom:16px;}
+  .sec-head{
+    display:flex; align-items:center; gap:7px;
+    font-weight:700; font-size:13.5px; margin-bottom:7px;
+  }
+  .sec-head .dot{width:9px;height:9px;border-radius:50%;flex:none;}
+
+  .when{background:#eff6ff;}
+  .when .dot{background:var(--concept);}
+  .when ul{margin:0; padding-left:18px; font-size:14px; line-height:1.65;}
+
+  .how{background:#f0fdf4;}
+  .how .dot{background:var(--formula);}
+  .how ol{margin:0; padding-left:20px; font-size:14px; line-height:1.7; font-weight:500;}
+
+  .mistake{background:#fef2f2;}
+  .mistake .dot{background:var(--mistake);}
+  .mistake ul{margin:0; padding-left:18px; font-size:13.5px; line-height:1.65; color:#7f1d1d;}
+
+  .hack{background:#fffbeb;}
+  .hack .dot{background:var(--hack);}
+  .hack .txt{font-size:14.5px; font-weight:700; color:#854d0e;}
+
+  .examtip{background:#faf5ff;}
+  .examtip .dot{background:var(--tip);}
+  .examtip p{margin:0; font-size:13.5px; line-height:1.6; color:#581c87;}
+
+  .checklist{background:#f4f4f5;}
+  .checklist .dot{background:var(--checklist);}
+  .checklist ul{list-style:none; margin:0; padding:0; font-size:13.5px; line-height:1.9;}
+  .checklist li::before{content:"☐  "; }
+
+  .card[data-accent="green"] .card-head{--accent:#16a34a;}
+  .card[data-accent="blue"] .card-head{--accent:#2563eb;}
+  .card[data-accent="orange"] .card-head{--accent:#ea580c;}
+  .card[data-accent="purple"] .card-head{--accent:#9333ea;}
+
+  .pagefoot{
+    text-align:center; font-size:11px; color:var(--muted);
+    padding:10px 16px 14px;
+  }
+
+  .katex { font-size: 1.05em; }
+</style>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+</head>
+<body>
+
+<div class="grid">
+
+  <!-- 1. Function -->
+  <div class="card" data-accent="blue">
+    <div class="card-head">
+      <div class="eyebrow">PART 2 · Function Rescue · 🔵 Concept</div>
+      <div class="title">Function (ฟังก์ชัน)</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">เช็ก "ฟังก์ชันจริง" → x หนึ่งค่า ต้องได้ y แค่ค่าเดียว</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>กราฟ / ความสัมพันธ์ที่ต้องเช็กว่าเป็นฟังก์ชันหรือไม่</li>
+        <li>สมการ \( y^2 = x \)</li>
+        <li>ตารางคู่อันดับ (x, y)</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>ใช้ Vertical Line Test กับกราฟ</li>
+        <li>เช็กว่าแต่ละ x ให้ y ค่าเดียวหรือไม่</li>
+        <li>ถ้าเส้นตั้งตัดกราฟมากกว่า 1 จุด → ไม่ใช่ฟังก์ชัน</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>สับสนกับ Horizontal Line Test (ใช้เช็ก inverse ไม่ใช่ฟังก์ชัน)</li>
+        <li>คิดว่า x ซ้ำไม่ได้ (จริงๆ ซ้ำได้ แต่ y ต้องไม่ซ้ำในแกน x เดียวกัน)</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"เส้นตั้ง ตัดทีเดียว = ฟังก์ชัน"</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>มักให้กราฟแปลกๆ เช่นวงกลม วงรี มาให้ตัดสินว่าเป็นฟังก์ชันหรือไม่</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เช็กทุกค่า x ในโดเมนให้ y เดียวจริง</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 2. Composite Function -->
+  <div class="card" data-accent="green">
+    <div class="card-head">
+      <div class="eyebrow">PART 2 · Function Rescue · 🟢 Formula</div>
+      <div class="title">Composite Function</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">เห็น \( f(g(x)) \) → แทน g(x) เข้าไปแทนที่ x ใน f ก่อนเสมอ</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>\( (f\circ g)(x) = f(g(x)) \)</li>
+        <li>หา \( f(g(2)) \) จากค่าตาราง/กราฟ</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>คิด g(x) ก่อนเสมอ (ฟังก์ชันในสุดทำก่อน)</li>
+        <li>นำผลลัพธ์ของ g(x) ไปแทนค่า x ใน f</li>
+        <li>เช็กโดเมนของ \( f\circ g \): ต้องอยู่ในโดเมนทั้ง g และ f(g(x))</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>ทำสลับลำดับ คิด f ก่อน g</li>
+        <li>คิดว่า \( f(g(x)) = g(f(x)) \) (ส่วนใหญ่ไม่เท่ากัน)</li>
+        <li>ลืมเช็กโดเมนของฟังก์ชันประกอบ</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"ในสุดทำก่อน แทนเข้าวงนอก"</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>ชอบให้อ่านค่าจากกราฟหรือตารางแล้วหา \( f(g(a)) \) ที่จุดเฉพาะเจาะจง</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เช็กลำดับการแทนค่าถูกต้อง (g ก่อน f)</li>
+        <li>เช็กโดเมนรวมของฟังก์ชันประกอบ</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 3. Inverse Function -->
+  <div class="card" data-accent="orange">
+    <div class="card-head">
+      <div class="eyebrow">PART 2 · Function Rescue · 🟠 Trigger</div>
+      <div class="title">Inverse Function</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">หา inverse → สลับ x กับ y แล้วแก้สมการหา y ใหม่</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>หา \( f^{-1}(x) \) จาก \( y = f(x) \)</li>
+        <li>เช็กว่า \( f^{-1} \) มีอยู่จริงหรือไม่ (1-1)</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>เขียน \( y = f(x) \)</li>
+        <li>สลับ x และ y ตำแหน่ง</li>
+        <li>แก้สมการหา y ในรูป x</li>
+        <li>เขียนคำตอบเป็น \( f^{-1}(x) \)</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>คิดว่า \( f^{-1}(x) = \dfrac{1}{f(x)} \) (ผิด! ไม่ใช่ส่วนกลับ)</li>
+        <li>ลืมเช็กว่าฟังก์ชันเป็น 1-1 (one-to-one) ก่อนหา inverse</li>
+        <li>ลืมสลับโดเมน-เรนจ์ของฟังก์ชันเดิม</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"สลับ x-y ก่อน แล้วค่อยแก้หา y"</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>มักให้ตรวจคำตอบโดย \( f(f^{-1}(x)) = x \) และเชื่อมกับกราฟที่สมมาตรกันผ่านเส้น \( y=x \)</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เช็กโดเมนของ inverse = เรนจ์ของฟังก์ชันเดิม</li>
+        <li>ตรวจด้วย \( f(f^{-1}(x))=x \) ถ้าเวลาเหลือ</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 4. Domain (function context) -->
+  <div class="card" data-accent="purple">
+    <div class="card-head">
+      <div class="eyebrow">PART 2 · Function Rescue · 🟣 Exam Tip</div>
+      <div class="title">Domain (โดเมนของฟังก์ชัน)</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">โดเมน = ค่า x ทั้งหมดที่ใส่เข้าไปในฟังก์ชันแล้ว "รอด"</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>ฟังก์ชันที่มีเศษส่วน, ราก, log</li>
+        <li>ฟังก์ชันประกอบ (composite)</li>
+        <li>โจทย์ปัญหาที่ x แทนปริมาณจริง (เวลา, ความยาว)</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>หาเงื่อนไขจากแต่ละส่วนของฟังก์ชัน (ส่วน≠0, รากคู่≥0, log&gt;0)</li>
+        <li>รวมเงื่อนไขทั้งหมดเข้าด้วยกัน</li>
+        <li>ถ้าเป็นโจทย์ปัญหา ต้องเช็กบริบทจริงด้วย (เช่น เวลา ≥ 0)</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>ลืมเช็กเงื่อนไขของฟังก์ชันชั้นในก่อนสำหรับ composite</li>
+        <li>ลืมบริบทของโจทย์ปัญหาจริง (domain ทางคณิตศาสตร์ ≠ domain ที่สมเหตุสมผล)</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"หาทุกเงื่อนไข แล้วเอามาตัดกัน (intersect)"</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>นิยมออกพร้อมโจทย์ optimization ที่ domain ต้องสอดคล้องกับสถานการณ์จริง ไม่ใช่แค่คณิตศาสตร์ล้วน</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เขียนคำตอบเป็นช่วงถูกแบบ</li>
+        <li>เช็กบริบทโจทย์ปัญหาประกอบด้วย</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 5. Range -->
+  <div class="card" data-accent="blue">
+    <div class="card-head">
+      <div class="eyebrow">PART 2 · Function Rescue · 🔵 Concept</div>
+      <div class="title">Range (เรนจ์)</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">เรนจ์ = ค่า y ทั้งหมดที่ฟังก์ชัน "ให้ออกมาได้จริง"</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>หาเรนจ์ของ \( f(x) = x^2 + 1 \)</li>
+        <li>หาเรนจ์ของฟังก์ชันที่มีรากหรือเศษส่วน</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>มองจากกราฟ: เรนจ์คือค่าบนแกน y ที่กราฟครอบคลุม</li>
+        <li>ฟังก์ชันกำลังสอง → หาจุดสูงสุด/ต่ำสุดก่อน</li>
+        <li>หรือแก้สมการ \( x \) ในรูป \( y \) แล้วหาเงื่อนไขที่ \( y \) ใช้ได้</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>สับสนระหว่างโดเมน (แกน x) กับเรนจ์ (แกน y)</li>
+        <li>ลืมเช็กจุดสูงสุด/ต่ำสุดของพาราโบลาก่อนสรุปเรนจ์</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"โดเมนมองแกน x เรนจ์มองแกน y"</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>มักให้หาเรนจ์ของฟังก์ชันที่ผ่านการแปลงรูป (transformation) เพื่อทดสอบว่าเข้าใจการเลื่อนกราฟหรือไม่</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เช็กว่าตอบเรนจ์ ไม่ใช่โดเมนสลับกัน</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 6. Piecewise Function -->
+  <div class="card" data-accent="green">
+    <div class="card-head">
+      <div class="eyebrow">PART 2 · Function Rescue · 🟢 Formula</div>
+      <div class="title">Piecewise Function</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">เห็นฟังก์ชันแยกช่วง → เช็กว่า x อยู่ช่วงไหนก่อนแทนค่า</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>\( f(x)=\begin{cases}x^2 & x<1\\2x & x\geq1\end{cases} \)</li>
+        <li>เช็กความต่อเนื่องที่จุดต่อ (breakpoint)</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>ดูว่าค่า x ที่ต้องการอยู่ในช่วงไหน</li>
+        <li>ใช้สูตรของช่วงนั้นเท่านั้น</li>
+        <li>ที่จุดต่อ ต้องเช็กลิมิตซ้าย-ขวาแยกกัน</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>ใช้สูตรผิดช่วงตอนแทนค่า</li>
+        <li>ลืมเช็กว่าจุดต่อรวมอยู่ในช่วงไหน (≤ กับ &lt; ต่างกัน)</li>
+        <li>สรุปว่าต่อเนื่องโดยไม่เช็กลิมิตซ้าย-ขวาจริง</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"เช็กช่วงก่อน เลือกสูตรให้ตรง"</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>มักให้หาค่าคงที่ที่ทำให้ฟังก์ชันต่อเนื่องที่จุดต่อ — ต้องตั้งลิมิตซ้าย=ขวา</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เช็กว่าใช้สูตรถูกช่วงตามเงื่อนไข ≤ หรือ &lt;</li>
+        <li>เช็กความต่อเนื่องที่จุดต่อถ้าโจทย์ถาม</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 7. Even / Odd Function -->
+  <div class="card" data-accent="orange">
+    <div class="card-head">
+      <div class="eyebrow">PART 2 · Function Rescue · 🟠 Trigger</div>
+      <div class="title">Even / Odd Function</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">แทน \(-x\) แล้วดูว่าเหมือนเดิม คูณ −1 หรือไม่เข้าพวก</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>เช็กว่า \( f(x)=x^2 \) เป็น even/odd</li>
+        <li>เช็กความสมมาตรของกราฟ</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>หา \( f(-x) \)</li>
+        <li>ถ้า \( f(-x)=f(x) \) → Even (สมมาตรแกน y)</li>
+        <li>ถ้า \( f(-x)=-f(x) \) → Odd (สมมาตรจุดกำเนิด)</li>
+        <li>ถ้าไม่เข้ากรณีไหนเลย → ไม่ใช่ทั้งคู่</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>ลืมแทน \(-x\) ในทุกพจน์ของฟังก์ชัน</li>
+        <li>สรุปจาก "หน้าตา" สมการโดยไม่พิสูจน์จริง</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"Even เหมือนเดิม / Odd ติดลบทั้งหมด"</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>มักใช้สมบัตินี้ลัดในการหาอินทิเกรตจำกัดเขตแบบสมมาตร (เช่น \( \int_{-a}^{a} \))</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เช็กทุกพจน์ถูกแทนค่า \(-x\) ครบ</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 8. Function Transformation -->
+  <div class="card" data-accent="purple">
+    <div class="card-head">
+      <div class="eyebrow">PART 2 · Function Rescue · 🟣 Exam Tip</div>
+      <div class="title">Function Transformation</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">บวก-ลบนอกฟังก์ชัน → เลื่อนขึ้น-ลง / ในฟังก์ชัน → เลื่อนซ้าย-ขวา (กลับด้าน)</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>\( f(x)+k \), \( f(x-h) \)</li>
+        <li>\( -f(x) \), \( f(-x) \)</li>
+        <li>\( a\,f(x) \) (ยืด-หด)</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>\( f(x)+k \): เลื่อนขึ้น k (ลง ถ้า k ติดลบ)</li>
+        <li>\( f(x-h) \): เลื่อนขวา h (ซ้าย ถ้า h ติดลบ — สวนสัญญาณ!)</li>
+        <li>\( -f(x) \): กลับด้านแกน x</li>
+        <li>\( f(-x) \): กลับด้านแกน y</li>
+        <li>\( a\,f(x) \): ยืด/หดในแนวตั้งด้วยตัวคูณ a</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>เลื่อนซ้าย-ขวาผิดทิศ (เครื่องหมายในฟังก์ชันสวนทางกับทิศทางจริง)</li>
+        <li>สับสนระหว่าง \( -f(x) \) กับ \( f(-x) \)</li>
+        <li>ลืมว่าการแปลงในฟังก์ชัน (แกน x) ต้องคิดสวนทาง</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"นอกฟังก์ชันตรงทาง ในฟังก์ชันสวนทาง"</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>ชอบให้จับคู่กราฟที่ผ่านการแปลงรูปกับสมการที่ถูกต้อง ต้องอ่านเครื่องหมายให้ไว</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เช็กทิศทางเลื่อนในแกน x ว่าสวนเครื่องหมายแล้ว</li>
+        <li>เช็กว่าไม่สับสน \(-f(x)\) กับ \(f(-x)\)</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html><html lang="th"><head><meta charset="UTF-8"><title>RN Kit · Part 12 — Ultimate Exam Rescue</title>
+<style>@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700;800&family=Sarabun:wght@400;500;600;700;800&display=swap');
+:root{--concept:#2563eb;--formula:#16a34a;--trigger:#ea580c;--mistake:#dc2626;--tip:#9333ea;--checklist:#1f2937;--hack:#ca8a04;--bg:#f7f7fb;--card-bg:#ffffff;--ink:#1f2330;--muted:#6b7280;}
+*{box-sizing:border-box;}body{margin:0;padding:32px;background:var(--bg);font-family:'Sarabun','Noto Sans Thai',sans-serif;color:var(--ink);}
+.grid{display:flex;flex-wrap:wrap;gap:28px;justify-content:center;}
+.card{width:420px;background:var(--card-bg);border-radius:18px;box-shadow:0 6px 24px rgba(20,20,40,.10);overflow:hidden;border:1px solid #ececf2;display:flex;flex-direction:column;}
+.card-head{padding:18px 20px 14px;background:linear-gradient(135deg,var(--accent,#2563eb),color-mix(in srgb,var(--accent,#2563eb) 70%,black));color:#fff;}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.85;margin-bottom:4px;}.title{font-size:21px;font-weight:800;line-height:1.25;}
+.trigger-box{margin:14px 16px 0;background:#fff7ed;border:1.5px dashed var(--trigger);border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:10px;}
+.trigger-box .ic{font-size:20px;}.trigger-box .txt{font-weight:700;font-size:15px;color:#7c2d12;}
+.section{margin:14px 16px 0;padding:12px 14px;border-radius:12px;background:#fafafa;}.section:last-of-type{margin-bottom:16px;}
+.sec-head{display:flex;align-items:center;gap:7px;font-weight:700;font-size:13.5px;margin-bottom:7px;}.sec-head .dot{width:9px;height:9px;border-radius:50%;flex:none;}
+.when{background:#eff6ff;}.when .dot{background:var(--concept);}.when ul{margin:0;padding-left:18px;font-size:14px;line-height:1.65;}
+.how{background:#f0fdf4;}.how .dot{background:var(--formula);}.how ol{margin:0;padding-left:20px;font-size:14px;line-height:1.7;font-weight:500;}
+.mistake{background:#fef2f2;}.mistake .dot{background:var(--mistake);}.mistake ul{margin:0;padding-left:18px;font-size:13.5px;line-height:1.65;color:#7f1d1d;}
+.hack{background:#fffbeb;}.hack .dot{background:var(--hack);}.hack .txt{font-size:14.5px;font-weight:700;color:#854d0e;}
+.examtip{background:#faf5ff;}.examtip .dot{background:var(--tip);}.examtip p{margin:0;font-size:13.5px;line-height:1.6;color:#581c87;}
+.checklist{background:#f4f4f5;}.checklist .dot{background:var(--checklist);}.checklist ul{list-style:none;margin:0;padding:0;font-size:13.5px;line-height:1.9;}.checklist li::before{content:"☐  ";}
+.card[data-accent="green"].card-head{--accent:#16a34a;}.card[data-accent="blue"].card-head{--accent:#2563eb;}.card[data-accent="orange"].card-head{--accent:#ea580c;}.card[data-accent="purple"].card-head{--accent:#9333ea;}
+.pagefoot{text-align:center;font-size:11px;color:var(--muted);padding:10px 16px 14px;}.katex{font-size:1.05em;}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+</head><body><div class="grid">
+
+<div class="card" data-accent="orange">
+  <div class="card-head"><div class="eyebrow">PART 12 · Ultimate Exam Rescue · 🟠 Trigger</div><div class="title">Top Common Mistakes เรื่องจำนวนจริง</div></div>
+  <div class="trigger-box"><div class="ic">🎯</div><div class="txt">ไล่เช็ก 7 จุดนี้ก่อนส่งคำตอบ — เสียคะแนนฟรีทุกปี</div></div>
+  <div class="section when"><div class="sec-head"><span class="dot"></span>👀 7 จุดตายที่เด็กเสียคะแนนมากที่สุด</div><ul>
+    <li>คูณไขว้ตัวส่วนในอสมการ (ห้ามเด็ดขาด!)</li>
+    <li>ลืมกลับทิศตอนคูณ/หารด้วยลบ</li>
+    <li>จุดที่ส่วน = 0 ใส่วงกลมทึบแทนที่จะโปร่ง</li>
+    <li>กำลังคู่ซ้ำสลับเครื่องหมาย (ไม่ควรสลับ!)</li>
+    <li>|f| = g(x) ไม่เช็กว่า g(x) ≥ 0</li>
+    <li>อสมการรูท ลืมเงื่อนไขในรูท ≥ 0</li>
+    <li>Vieta ลืมหารด้วย a หรือลืมเครื่องหมายลบ</li>
+  </ul></div>
+  <div class="section how"><div class="sec-head"><span class="dot"></span>✅ แนวทางป้องกัน</div><ol>
+    <li>ทำเสร็จแล้วไล่เช็กลิสต์นี้ก่อนส่งทุกครั้ง</li>
+    <li>ทดสอบค่าตัวเลขในช่วงคำตอบเสมอ</li>
+    <li>เขียน Domain ไว้ก่อนเริ่มทุกข้อที่มีตัวส่วน/รูท/log</li>
+  </ol></div>
+  <div class="section hack"><div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div><div class="txt">"ห้ามคูณไขว้ / กลับทิศตอนลบ / โปร่งที่ส่วน / คู่ไม่สลับ"</div></div>
+  <div class="section examtip"><div class="sec-head"><span class="dot"></span>🎯 สถิติจริง</div><p>จากข้อสอบ A-Level ที่ผ่านมา: ≥50% ของคะแนนที่เสียในหมวดอสมการมาจาก "ลืมโปร่ง/ทึบ" และ "คูณไขว้"</p></div>
+  <div class="section checklist"><div class="sec-head"><span class="dot"></span>☑ ก่อนส่งกระดาษ</div><ul>
+    <li>ไล่เช็ก 7 จุดตายด้านบนครบแล้ว</li>
+    <li>ทดสอบค่าตัวเลขในช่วงคำตอบอย่างน้อย 1 ค่า</li>
+  </ul></div>
+  <div class="pagefoot">Real Number &amp; Polynomial Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+</div>
+
+<div class="card" data-accent="blue">
+  <div class="card-head"><div class="eyebrow">PART 12 · Ultimate Exam Rescue · 🔵 Concept</div><div class="title">Decision Tree: เจอโจทย์แบบไหน → ใช้วิธีไหน</div></div>
+  <div class="trigger-box"><div class="ic">🎯</div><div class="txt">อ่านโจทย์ → จำแนก pattern → เลือกวิธีที่เร็วที่สุด</div></div>
+  <div class="section when"><div class="sec-head"><span class="dot"></span>👀 ผัง Pattern → วิธี</div><ul>
+    <li>มีค่าสัมบูรณ์ |f| &lt; a → สูตรลัด AND</li>
+    <li>มีค่าสัมบูรณ์ |f| &gt; a → สูตรลัด OR</li>
+    <li>|f| &lt; |g| → ยกกำลังสอง + DoS</li>
+    <li>เศษส่วน &gt; 0 → ย้ายข้าง + sign chart</li>
+    <li>รูท ≤ g → เงื่อนไข 2 ตัว + ยกกำลังสอง</li>
+  </ul></div>
+  <div class="section how"><div class="sec-head"><span class="dot"></span>✅ ขั้นตอนการเลือกวิธี</div><ol>
+    <li>มีเศษส่วน? → ย้ายข้างให้ขวา = 0 ก่อน</li>
+    <li>มีรูท? → เช็กเงื่อนไข domain ก่อน</li>
+    <li>มีค่าสัมบูรณ์? → ใช้สูตรลัดถ้า a เป็นค่าคงที่</li>
+    <li>|f| กับ |g|? → ยกกำลังสองทั้งสองข้าง</li>
+  </ol></div>
+  <div class="section mistake"><div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div><ul>
+    <li>เลือกวิธีผิดตั้งแต่ต้น ทำให้เสียเวลามากโดยใช่เหตุ</li>
+    <li>ข้ามขั้น "เช็ก domain" ก่อนเริ่มแก้</li>
+  </ul></div>
+  <div class="section hack"><div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div><div class="txt">"อ่านรูปแบบ → จับคู่กับ pattern ที่รู้ → ใช้เทคนิคที่เร็วที่สุด"</div></div>
+  <div class="section examtip"><div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div><p>A-Level มักออกโจทย์ผสมที่ต้องใช้หลายเทคนิคพร้อมกัน — แบ่งโจทย์ออกเป็นส่วนๆ ก่อนเลือกวิธี</p></div>
+  <div class="section checklist"><div class="sec-head"><span class="dot"></span>☑ Before You Submit</div><ul>
+    <li>เช็กว่าคำตอบอยู่ใน domain ที่ถูกต้อง</li>
+    <li>ทดสอบค่าตัวเลขในช่วงคำตอบ</li>
+  </ul></div>
+  <div class="pagefoot">Real Number &amp; Polynomial Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+</div>
+
+<div class="card" data-accent="green">
+  <div class="card-head"><div class="eyebrow">PART 12 · Ultimate Exam Rescue · 🟢 Formula</div><div class="title">สูตรลัดรวมฮิต 1 นาทีก่อนสอบ</div></div>
+  <div class="trigger-box"><div class="ic">🎯</div><div class="txt">ท่องสูตรเหล่านี้ขึ้นใจ — ทุกข้อใช้อย่างน้อยหนึ่งตัว</div></div>
+  <div class="section how"><div class="sec-head"><span class="dot"></span>✅ สูตรที่ต้องจำ</div><ol>
+    <li>\( a^2-b^2=(a-b)(a+b) \)</li>
+    <li>\( a^3\pm b^3=(a\pm b)(a^2\mp ab+b^2) \)</li>
+    <li>\( |f|<a \iff -a<f<a \) (a>0)</li>
+    <li>\( |f|>a \iff f>a \text{ หรือ } f<-a \)</li>
+    <li>เศษส่วน: ย้ายข้าง ขวา=0 แล้ว sign chart</li>
+    <li>P(c) = 0 → (x−c) เป็นตัวประกอบ</li>
+    <li>Vieta: \( \alpha+\beta=-b/a \), \( \alpha\beta=c/a \)</li>
+  </ol></div>
+  <div class="section hack"><div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div><div class="txt">"DoS / SOAP / น้อยใน OR มาก / ขวาศูนย์ sign chart / P(c)=0 ตัวประกอบ"</div></div>
+  <div class="section examtip"><div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div><p>ถ้าจำสูตร 7 ตัวนี้ได้ครบ ครอบคลุม ≥80% ของข้อสอบหมวดจำนวนจริงและพหุนาม</p></div>
+  <div class="section checklist"><div class="sec-head"><span class="dot"></span>☑ Master Checklist</div><ul>
+    <li>Domain เช็กแล้ว (ส่วน≠0 / รูท≥0 / log>0)</li>
+    <li>ทิศอสมการถูก (กลับตอนคูณ/หารลบ)</li>
+    <li>จุดวิกฤตครบ (เศษ=0 AND ส่วน=0)</li>
+    <li>ทดสอบค่าในช่วงคำตอบแล้ว</li>
+  </ul></div>
+  <div class="pagefoot">Real Number &amp; Polynomial Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+</div>
+
+</div></body></html>

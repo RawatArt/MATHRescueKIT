@@ -1,0 +1,111 @@
+<!DOCTYPE html><html lang="th"><head><meta charset="UTF-8">
+<title>RN Kit · Part 3 — Remainder & Factor Theorem</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700;800&family=Sarabun:wght@400;500;600;700;800&display=swap');
+  :root{--concept:#2563eb;--formula:#16a34a;--trigger:#ea580c;--mistake:#dc2626;--tip:#9333ea;--checklist:#1f2937;--hack:#ca8a04;--bg:#f7f7fb;--card-bg:#ffffff;--ink:#1f2330;--muted:#6b7280;}
+  *{box-sizing:border-box;}body{margin:0;padding:32px;background:var(--bg);font-family:'Sarabun','Noto Sans Thai',sans-serif;color:var(--ink);}
+  .grid{display:flex;flex-wrap:wrap;gap:28px;justify-content:center;}
+  .card{width:420px;background:var(--card-bg);border-radius:18px;box-shadow:0 6px 24px rgba(20,20,40,.10);overflow:hidden;border:1px solid #ececf2;display:flex;flex-direction:column;}
+  .card-head{padding:18px 20px 14px;background:linear-gradient(135deg,var(--accent,#2563eb),color-mix(in srgb,var(--accent,#2563eb) 70%,black));color:#fff;}
+  .eyebrow{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.85;margin-bottom:4px;}
+  .title{font-size:21px;font-weight:800;line-height:1.25;}
+  .trigger-box{margin:14px 16px 0;background:#fff7ed;border:1.5px dashed var(--trigger);border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:10px;}
+  .trigger-box .ic{font-size:20px;}.trigger-box .txt{font-weight:700;font-size:15px;color:#7c2d12;}
+  .section{margin:14px 16px 0;padding:12px 14px;border-radius:12px;background:#fafafa;}.section:last-of-type{margin-bottom:16px;}
+  .sec-head{display:flex;align-items:center;gap:7px;font-weight:700;font-size:13.5px;margin-bottom:7px;}
+  .sec-head .dot{width:9px;height:9px;border-radius:50%;flex:none;}
+  .when{background:#eff6ff;}.when .dot{background:var(--concept);}.when ul{margin:0;padding-left:18px;font-size:14px;line-height:1.65;}
+  .how{background:#f0fdf4;}.how .dot{background:var(--formula);}.how ol{margin:0;padding-left:20px;font-size:14px;line-height:1.7;font-weight:500;}
+  .mistake{background:#fef2f2;}.mistake .dot{background:var(--mistake);}.mistake ul{margin:0;padding-left:18px;font-size:13.5px;line-height:1.65;color:#7f1d1d;}
+  .hack{background:#fffbeb;}.hack .dot{background:var(--hack);}.hack .txt{font-size:14.5px;font-weight:700;color:#854d0e;}
+  .examtip{background:#faf5ff;}.examtip .dot{background:var(--tip);}.examtip p{margin:0;font-size:13.5px;line-height:1.6;color:#581c87;}
+  .checklist{background:#f4f4f5;}.checklist .dot{background:var(--checklist);}.checklist ul{list-style:none;margin:0;padding:0;font-size:13.5px;line-height:1.9;}.checklist li::before{content:"☐  ";}
+  .card[data-accent="green"] .card-head{--accent:#16a34a;}.card[data-accent="blue"].card-head{--accent:#2563eb;}.card[data-accent="orange"].card-head{--accent:#ea580c;}.card[data-accent="purple"].card-head{--accent:#9333ea;}
+  .pagefoot{text-align:center;font-size:11px;color:var(--muted);padding:10px 16px 14px;}.katex{font-size:1.05em;}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+</head><body><div class="grid">
+
+<!-- P3-C1: ทฤษฎีบทเศษเหลือ -->
+<div class="card" data-accent="blue">
+  <div class="card-head"><div class="eyebrow">PART 3 · Remainder & Factor Theorem · 🔵 Concept</div><div class="title">ทฤษฎีบทเศษเหลือ</div></div>
+  <div class="trigger-box"><div class="ic">🎯</div><div class="txt">หาเศษจากการหาร P(x) ÷ (x−c) → แค่แทน P(c) ทันที</div></div>
+  <div class="section when"><div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div><ul>
+    <li>หาเศษเมื่อหาร \( P(x)=2x^3-5x+1 \) ด้วย \( x-3 \)</li>
+    <li>หาค่า k ที่ทำให้เศษเหลือเท่ากับจำนวนที่กำหนด</li>
+  </ul></div>
+  <div class="section how"><div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div><ol>
+    <li>เมื่อหาร \( P(x) \) ด้วย \( (x-c) \) → เศษ = \( P(c) \)</li>
+    <li>แทน c ลงในพหุนามโดยตรง ไม่ต้องหารจริง</li>
+    <li>ตัวหารเป็น \( (ax-b) \) → เศษ = \( P\!\left(\dfrac{b}{a}\right) \)</li>
+  </ol></div>
+  <div class="section mistake"><div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div><ul>
+    <li>หาร \( x+3 \) แล้วแทน \( c=+3 \) ทั้งที่ต้อง \( c=-3 \)</li>
+    <li>ลืมว่าตัวหาร \( 2x-1 \) ต้องแทน \( c=\tfrac{1}{2} \)</li>
+  </ul></div>
+  <div class="section hack"><div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div><div class="txt">"หาร x−c แทน c / หาร x+c แทน −c"</div></div>
+  <div class="section examtip"><div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div><p>ให้ P(x) หารด้วย 2 ตัวหาร เศษต่างกัน แล้วหาสัมประสิทธิ์ที่ไม่รู้ค่า — ตั้งสมการ 2 สมการ 2 ตัวแปร</p></div>
+  <div class="section checklist"><div class="sec-head"><span class="dot"></span>☑ Before You Submit</div><ul>
+    <li>เช็ก c ถูกเครื่องหมายหรือไม่</li>
+    <li>แทนค่าทุกพจน์ครบรวมถึงค่าคงที่</li>
+  </ul></div>
+  <div class="pagefoot">Real Number &amp; Polynomial Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+</div>
+
+<!-- P3-C2: ทฤษฎีบทตัวประกอบ -->
+<div class="card" data-accent="green">
+  <div class="card-head"><div class="eyebrow">PART 3 · Remainder & Factor Theorem · 🟢 Formula</div><div class="title">ทฤษฎีบทตัวประกอบ</div></div>
+  <div class="trigger-box"><div class="ic">🎯</div><div class="txt">P(c) = 0 ⟺ (x−c) เป็นตัวประกอบ — ทดสอบรากง่ายกว่าหาร</div></div>
+  <div class="section when"><div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div><ul>
+    <li>หาตัวประกอบของ \( P(x)=x^3-6x^2+11x-6 \)</li>
+    <li>พิสูจน์ว่า \( (x-2) \) เป็นตัวประกอบ</li>
+  </ul></div>
+  <div class="section how"><div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div><ol>
+    <li>ถ้า \( P(c)=0 \) → \( (x-c) \) เป็นตัวประกอบของ \( P(x) \)</li>
+    <li>ทดสอบ c จากตัวประกอบของสัมประสิทธิ์คงที่ก่อน</li>
+    <li>เมื่อหาตัวประกอบแรกได้ → หารสังเคราะห์เพื่อได้พหุนามที่เหลือ</li>
+    <li>Factor ต่อจนกว่าจะแยกได้สุด</li>
+  </ol></div>
+  <div class="section mistake"><div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div><ul>
+    <li>ทดสอบแค่จำนวนบวก ลืมทดสอบค่าลบ</li>
+    <li>หยุดแยกตัวประกอบก่อนกำหนด เหลือพหุนามที่ยังแยกได้</li>
+  </ul></div>
+  <div class="section hack"><div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div><div class="txt">"แทนค่า = 0 คือตัวประกอบ แทนค่า ≠ 0 คือเศษ"</div></div>
+  <div class="section examtip"><div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div><p>หาค่า k ที่ทำให้ \( P(x) \) หารด้วย \( (x-c) \) ลงตัว — ตั้งสมการ \( P(c)=0 \) แก้หา k</p></div>
+  <div class="section checklist"><div class="sec-head"><span class="dot"></span>☑ Before You Submit</div><ul>
+    <li>ทดสอบทั้งค่าบวกและลบของตัวประกอบ</li>
+    <li>ตรวจ: D(x)·Q(x) = P(x) หลัง factor ออกมาแล้ว</li>
+  </ul></div>
+  <div class="pagefoot">Real Number &amp; Polynomial Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+</div>
+
+<!-- P3-C3: Rational Root Theorem -->
+<div class="card" data-accent="purple">
+  <div class="card-head"><div class="eyebrow">PART 3 · Remainder & Factor Theorem · 🟣 Exam Tip</div><div class="title">ทฤษฎีบทรากตรรกยะ</div></div>
+  <div class="trigger-box"><div class="ic">🎯</div><div class="txt">ราก \( \frac{p}{q} \): p หาร constant term / q หาร leading coefficient</div></div>
+  <div class="section when"><div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div><ul>
+    <li>หารากของ \( 2x^3+3x^2-8x+3 \)</li>
+    <li>โจทย์ถามจำนวนรากที่เป็นตรรกยะ</li>
+  </ul></div>
+  <div class="section how"><div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div><ol>
+    <li>หาตัวประกอบของ constant term \( (p) \) และ leading coefficient \( (q) \)</li>
+    <li>ผู้สมัครทุกตัวคือ \( \pm\dfrac{p}{q} \) ทุกคู่</li>
+    <li>ทดสอบแต่ละค่าด้วย Remainder Theorem: \( P\!\left(\tfrac{p}{q}\right) = 0 \)?</li>
+    <li>เมื่อพบราก → หาร synthetic division ต่อ</li>
+  </ol></div>
+  <div class="section mistake"><div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div><ul>
+    <li>คิดว่าผู้สมัครคือแค่ตัวประกอบของ constant term (ลืม q)</li>
+    <li>ลืมทดสอบเศษส่วน \( \pm\tfrac{1}{2}, \pm\tfrac{3}{2} \) ฯลฯ</li>
+  </ul></div>
+  <div class="section hack"><div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div><div class="txt">"p จากล่าง q จากหน้า สร้างผู้สมัครแล้วทดสอบ"</div></div>
+  <div class="section examtip"><div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div><p>A-Level ชอบให้หาจำนวนรากจริงทั้งหมด โดยใช้ rational root + discriminant ร่วมกัน</p></div>
+  <div class="section checklist"><div class="sec-head"><span class="dot"></span>☑ Before You Submit</div><ul>
+    <li>ทดสอบทั้งบวกและลบของผู้สมัครทุกตัว</li>
+    <li>หลังแยกตัวประกอบแล้ว ตรวจดีกรีรวมถูกต้อง</li>
+  </ul></div>
+  <div class="pagefoot">Real Number &amp; Polynomial Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+</div>
+
+</div></body></html>

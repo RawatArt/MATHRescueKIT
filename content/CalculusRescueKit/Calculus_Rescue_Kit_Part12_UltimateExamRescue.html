@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>Calculus Rescue Kit — Part 12 Ultimate Exam Rescue</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700;800&family=Sarabun:wght@400;500;600;700;800&display=swap');
+  :root{
+    --concept:#2563eb; --formula:#16a34a; --trigger:#ea580c; --mistake:#dc2626;
+    --tip:#9333ea; --checklist:#1f2937; --hack:#ca8a04; --bg:#f7f7fb;
+    --card-bg:#ffffff; --ink:#1f2330; --muted:#6b7280;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; padding:32px; background:var(--bg); font-family:'Sarabun','Noto Sans Thai',sans-serif; color:var(--ink);}
+  .grid{display:flex; flex-wrap:wrap; gap:28px; justify-content:center;}
+  .card{width:420px; background:var(--card-bg); border-radius:18px; box-shadow:0 6px 24px rgba(20,20,40,0.10); overflow:hidden; border:1px solid #ececf2; display:flex; flex-direction:column;}
+  .card-head{padding:18px 20px 14px; background:linear-gradient(135deg, var(--accent,#2563eb), color-mix(in srgb, var(--accent,#2563eb) 70%, black)); color:#fff; position:relative;}
+  .eyebrow{font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; opacity:.85; margin-bottom:4px;}
+  .title{font-size:21px; font-weight:800; line-height:1.25;}
+  .trigger-box{margin:14px 16px 0; background:#fff7ed; border:1.5px dashed var(--trigger); border-radius:12px; padding:10px 14px; display:flex; align-items:center; gap:10px;}
+  .trigger-box .ic{font-size:20px;}
+  .trigger-box .txt{font-weight:700; font-size:15px; color:#7c2d12;}
+  .section{margin:14px 16px 0; padding:12px 14px; border-radius:12px; background:#fafafa;}
+  .section:last-of-type{margin-bottom:16px;}
+  .sec-head{display:flex; align-items:center; gap:7px; font-weight:700; font-size:13.5px; margin-bottom:7px;}
+  .sec-head .dot{width:9px;height:9px;border-radius:50%;flex:none;}
+  .when{background:#eff6ff;} .when .dot{background:var(--concept);} .when ul{margin:0; padding-left:18px; font-size:14px; line-height:1.65;}
+  .how{background:#f0fdf4;} .how .dot{background:var(--formula);} .how ol{margin:0; padding-left:20px; font-size:14px; line-height:1.7; font-weight:500;}
+  .mistake{background:#fef2f2;} .mistake .dot{background:var(--mistake);} .mistake ul{margin:0; padding-left:18px; font-size:13.5px; line-height:1.65; color:#7f1d1d;}
+  .hack{background:#fffbeb;} .hack .dot{background:var(--hack);} .hack .txt{font-size:14.5px; font-weight:700; color:#854d0e;}
+  .examtip{background:#faf5ff;} .examtip .dot{background:var(--tip);} .examtip p{margin:0; font-size:13.5px; line-height:1.6; color:#581c87;}
+  .checklist{background:#f4f4f5;} .checklist .dot{background:var(--checklist);} .checklist ul{list-style:none; margin:0; padding:0; font-size:13.5px; line-height:1.9;} .checklist li::before{content:"☐  ";}
+  .card[data-accent="green"] .card-head{--accent:#16a34a;} .card[data-accent="blue"] .card-head{--accent:#2563eb;} .card[data-accent="orange"] .card-head{--accent:#ea580c;} .card[data-accent="purple"] .card-head{--accent:#9333ea;}
+  .pagefoot{text-align:center; font-size:11px; color:var(--muted); padding:10px 16px 14px;}
+  .katex { font-size: 1.05em; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+</head>
+<body>
+<div class="grid">
+
+  <!-- 1. Top Common Mistakes -->
+  <div class="card" data-accent="orange">
+    <div class="card-head"><div class="eyebrow">PART 12 · Ultimate Exam Rescue · 🟠 Trigger</div><div class="title">Top Common Mistakes</div></div>
+    <div class="trigger-box"><div class="ic">🎯</div><div class="txt">ก่อนเขียนคำตอบ ถามตัวเองว่า "ทำผิดข้อพวกนี้หรือเปล่า?"</div></div>
+    <div class="section when"><div class="sec-head"><span class="dot"></span>👀 จุดที่เสียคะแนนบ่อยที่สุด</div><ul>
+      <li>ลืม +C ตอนอินทิเกรตไม่จำกัดเขต</li>
+      <li>ลืมดิฟไส้ตอนใช้ chain rule</li>
+      <li>เจอ 0/0 แล้วสรุปว่าลิมิตไม่มีค่าทันที</li>
+    </ul></div>
+    <div class="section how"><div class="sec-head"><span class="dot"></span>✅ วิธีป้องกัน</div><ol>
+      <li>ทำทุกข้อให้จบ แล้วย้อนกลับมาเช็กรายการนี้ 1 รอบ</li>
+      <li>ขีดเส้นใต้คำสำคัญในโจทย์ (หา, พิสูจน์, จำกัดเขต)</li>
+      <li>เขียนสูตรที่ใช้ก่อนแทนค่าเสมอ จะเห็นพจน์ที่ลืมง่ายขึ้น</li>
+    </ol></div>
+    <div class="section mistake"><div class="sec-head"><span class="dot"></span>❌ 10 จุดเสียคะแนนสุดคลาสสิก</div><ul>
+      <li>ลืม +C / ลืมดิฟไส้ / สลับเครื่องหมาย cos(A+B)</li>
+      <li>ลืมเช็กโดเมนหลัง simplify / ลืมเช็ก endpoint</li>
+      <li>ใช้ Second Derivative Test ตอน f''=0</li>
+    </ul></div>
+    <div class="section hack"><div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div><div class="txt">"ทำเสร็จ อย่าเพิ่งส่ง เช็กลิสต์นี้ก่อน"</div></div>
+    <div class="section examtip"><div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div><p>คะแนนที่เสียส่วนใหญ่ไม่ใช่จาก "ทำไม่เป็น" แต่จาก "ลืมขั้นตอนเล็กๆ" — รู้ทันจุดเหล่านี้คือกำไรแท้</p></div>
+    <div class="section checklist"><div class="sec-head"><span class="dot"></span>☑ Before You Submit</div><ul>
+      <li>ไล่เช็กทุกข้อสอบกับลิสต์นี้รอบสุดท้าย</li>
+    </ul></div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 2. Exam Checklist -->
+  <div class="card" data-accent="blue">
+    <div class="card-head"><div class="eyebrow">PART 12 · Ultimate Exam Rescue · 🔵 Concept</div><div class="title">Exam Checklist</div></div>
+    <div class="trigger-box"><div class="ic">🎯</div><div class="txt">ก่อนลงมือทำข้อสอบ เช็ก 4 ข้อนี้ทุกครั้ง</div></div>
+    <div class="section when"><div class="sec-head"><span class="dot"></span>👀 ใช้เมื่อไหร่</div><ul>
+      <li>ก่อนเริ่มทำข้อสอบ และก่อนส่งกระดาษคำตอบ</li>
+    </ul></div>
+    <div class="section how"><div class="sec-head"><span class="dot"></span>✅ ขั้นตอนเช็ก</div><ol>
+      <li>อ่านโจทย์ครบทุกข้อก่อน วางแผนเวลาแต่ละข้อ</li>
+      <li>เริ่มจากข้อที่มั่นใจที่สุดก่อน เก็บคะแนนง่ายไว้ก่อน</li>
+      <li>เขียนหน่วยและทบทวนเงื่อนไขโดเมนทุกข้อที่เกี่ยวข้อง</li>
+      <li>เหลือ 10 นาทีสุดท้าย ย้อนเช็กคำตอบทุกข้อรวด</li>
+    </ol></div>
+    <div class="section mistake"><div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div><ul>
+      <li>ติดข้อยากนานเกินไปจนเสียเวลาข้อง่าย</li>
+      <li>ไม่เหลือเวลาตรวจคำตอบเลย</li>
+    </ul></div>
+    <div class="section hack"><div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div><div class="txt">"อ่านก่อน ง่ายก่อน เช็กท้าย"</div></div>
+    <div class="section examtip"><div class="sec-head"><span class="dot"></span>🎯 กลยุทธ์การจัดเวลา</div><p>แบ่งเวลาตามคะแนนข้อ ไม่ใช่ตามความยาก — ข้อคะแนนเยอะควรได้เวลามากกว่า</p></div>
+    <div class="section checklist"><div class="sec-head"><span class="dot"></span>☑ Before You Submit</div><ul>
+      <li>เช็กว่าตอบครบทุกข้อ ไม่มีข้อไหนเว้นว่าง</li>
+      <li>เช็กชื่อ-เลขที่นั่งครบถ้วน</li>
+    </ul></div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 3. Memory Hacks -->
+  <div class="card" data-accent="green">
+    <div class="card-head"><div class="eyebrow">PART 12 · Ultimate Exam Rescue · 🟢 Formula</div><div class="title">Memory Hacks รวมฮิต</div></div>
+    <div class="trigger-box"><div class="ic">🎯</div><div class="txt">รวมประโยคจำง่ายที่ใช้บ่อยที่สุดทั้งเล่มไว้ในที่เดียว</div></div>
+    <div class="section when"><div class="sec-head"><span class="dot"></span>👀 ใช้เมื่อไหร่</div><ul>
+      <li>ตอนทบทวนเร็วๆ ก่อนเข้าห้องสอบ</li>
+    </ul></div>
+    <div class="section how"><div class="sec-head"><span class="dot"></span>✅ ประโยคจำฮิตจากทุก Part</div><ol>
+      <li>"ดิฟนอก...อย่าลืมดิฟไส้!" (Chain Rule)</li>
+      <li>"ดึงลง ลดหนึ่ง" (Power Rule)</li>
+      <li>"ดิฟหน้าคูณหลัง บวก หน้าคูณดิฟหลัง" (Product Rule)</li>
+      <li>"sin ไล่ 1-2-3 ใต้ราก หาร 2" (Special Angles)</li>
+    </ol></div>
+    <div class="section mistake"><div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div><ul>
+      <li>จำประโยคได้แต่ลืมว่าใช้กับสถานการณ์ไหน</li>
+      <li>จำสลับคู่กัน เช่น sec กับ csc</li>
+    </ul></div>
+    <div class="section hack"><div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div><div class="txt">"ท่องประโยค คู่กับภาพสถานการณ์ที่ใช้ จะจำได้แม่นกว่า"</div></div>
+    <div class="section examtip"><div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div><p>ประโยคจำเหล่านี้คือสรุปของทุก trigger card ในเล่ม ใช้เป็น index ทบทวนเร็วได้</p></div>
+    <div class="section checklist"><div class="sec-head"><span class="dot"></span>☑ Before You Submit</div><ul>
+      <li>ทบทวนว่าจำได้ครบและรู้ว่าใช้ตอนไหน</li>
+    </ul></div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 4. Pattern Recognition -->
+  <div class="card" data-accent="purple">
+    <div class="card-head"><div class="eyebrow">PART 12 · Ultimate Exam Rescue · 🟣 Exam Tip</div><div class="title">Pattern Recognition</div></div>
+    <div class="trigger-box"><div class="ic">🎯</div><div class="txt">เห็น "หน้าตา" โจทย์แล้วต้องนึกเทคนิคได้ภายใน 5 วินาที</div></div>
+    <div class="section when"><div class="sec-head"><span class="dot"></span>👀 รูปแบบที่ต้องจำขึ้นใจ</div><ul>
+      <li>เห็นราก → คิด rationalize/trig substitution</li>
+      <li>เห็นผลคูณของฟังก์ชันต่างชนิด → product rule หรือ integration by parts</li>
+      <li>เห็นฟังก์ชันซ้อนฟังก์ชัน → chain rule หรือ u-substitution</li>
+    </ul></div>
+    <div class="section how"><div class="sec-head"><span class="dot"></span>✅ วิธีฝึก</div><ol>
+      <li>มองโจทย์แล้วถามตัวเอง "นี่คือ pattern แบบไหนที่เคยเจอ"</li>
+      <li>จับคู่ pattern กับเทคนิคที่เรียนมาในแต่ละ Part</li>
+      <li>ถ้าจำได้หลาย pattern ที่เข้าได้ ลองวิธีที่ง่ายที่สุดก่อน</li>
+    </ol></div>
+    <div class="section mistake"><div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div><ul>
+      <li>เห็น pattern คล้ายกันแล้วใช้เทคนิคผิด (เช่น เห็นเศษส่วนแล้วรีบใช้ partial fraction ทั้งที่ factor ตรงๆ ได้)</li>
+    </ul></div>
+    <div class="section hack"><div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div><div class="txt">"หน้าตาโจทย์ = ใบ้เทคนิค อ่านให้ออกเร็วๆ"</div></div>
+    <div class="section examtip"><div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div><p>ข้อสอบมักไม่บอกตรงๆ ว่าให้ใช้เทคนิคไหน — การจำ pattern ได้ไวคือสิ่งที่แยกคนทำทันกับไม่ทัน</p></div>
+    <div class="section checklist"><div class="sec-head"><span class="dot"></span>☑ Before You Submit</div><ul>
+      <li>เช็กว่าเลือกเทคนิคที่ง่ายที่สุดสำหรับ pattern นั้นแล้ว</li>
+    </ul></div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 5. Formula Selection Guide -->
+  <div class="card" data-accent="blue">
+    <div class="card-head"><div class="eyebrow">PART 12 · Ultimate Exam Rescue · 🔵 Concept</div><div class="title">Formula Selection Guide</div></div>
+    <div class="trigger-box"><div class="ic">🎯</div><div class="txt">สูตรคล้ายกันหลายตัว → เช็กรูปแบบโจทย์ให้ตรงก่อนเลือกใช้</div></div>
+    <div class="section when"><div class="sec-head"><span class="dot"></span>👀 จุดที่สับสนบ่อย</div><ul>
+      <li>cos 2θ มี 3 รูปแบบ — เลือกตามที่โจทย์ให้มา (sin หรือ cos)</li>
+      <li>Product rule vs Quotient rule — ดูว่าเป็นคูณหรือหารกัน</li>
+      <li>u-sub vs Integration by parts — ดูว่ามี derivative ของ inside ติดมาด้วยไหม</li>
+    </ul></div>
+    <div class="section how"><div class="sec-head"><span class="dot"></span>✅ วิธีเลือก</div><ol>
+      <li>ระบุก่อนว่าโจทย์อยู่ในหมวดไหน (limit, derivative, integral)</li>
+      <li>เช็กรูปแบบตัวแปร/โครงสร้างที่ให้มาตรงกับสูตรไหน</li>
+      <li>ถ้ามีหลายสูตรที่ใช้ได้ เลือกตัวที่ทำให้สมการง่ายที่สุด</li>
+    </ol></div>
+    <div class="section mistake"><div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div><ul>
+      <li>จำสูตรได้แต่ใช้ผิดบริบท (เช่นใช้สูตร sum of cubes กับ difference)</li>
+    </ul></div>
+    <div class="section hack"><div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div><div class="txt">"เช็กรูปแบบก่อนเลือกสูตร อย่าเลือกจากความเคยชิน"</div></div>
+    <div class="section examtip"><div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div><p>ข้อสอบชอบออกโจทย์ที่ "ดูคล้าย" กันแต่ต้องใช้สูตรคนละตัว เพื่อทดสอบความเข้าใจจริง</p></div>
+    <div class="section checklist"><div class="sec-head"><span class="dot"></span>☑ Before You Submit</div><ul>
+      <li>เช็กว่าสูตรที่ใช้ตรงกับรูปแบบโจทย์จริง</li>
+    </ul></div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 6. Decision Trees -->
+  <div class="card" data-accent="green">
+    <div class="card-head"><div class="eyebrow">PART 12 · Ultimate Exam Rescue · 🟢 Formula</div><div class="title">Decision Trees</div></div>
+    <div class="trigger-box"><div class="ic">🎯</div><div class="txt">ไม่รู้จะเริ่มยังไง → ไล่ถามตัวเองตามผังนี้ทีละขั้น</div></div>
+    <div class="section when"><div class="sec-head"><span class="dot"></span>👀 ใช้เมื่อไหร่</div><ul>
+      <li>เจอโจทย์ที่ไม่แน่ใจว่าจะเริ่มจากเทคนิคไหน</li>
+    </ul></div>
+    <div class="section how"><div class="sec-head"><span class="dot"></span>✅ ผังตัดสินใจอินทิเกรต</div><ol>
+      <li>ลองอินทิเกรตตรงๆ ก่อน — ใช้สูตรพื้นฐานได้ไหม?</li>
+      <li>ไม่ได้ → มี inside function ที่ derivative ติดมาไหม? → u-sub</li>
+      <li>ไม่ได้ → เป็นผลคูณของฟังก์ชันต่างชนิดไหม? → by parts</li>
+      <li>ไม่ได้ → เป็นเศษส่วนตรรกยะไหม? → partial fraction</li>
+      <li>ไม่ได้ → มีรากของผลบวก/ลบกำลังสองไหม? → trig substitution</li>
+    </ol></div>
+    <div class="section mistake"><div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div><ul>
+      <li>ข้ามขั้นตอนแรกๆ ไปใช้เทคนิคซับซ้อนทั้งที่ตรงๆ ก็ทำได้</li>
+    </ul></div>
+    <div class="section hack"><div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div><div class="txt">"ง่ายไปยาก ไล่เช็กทีละขั้น อย่าข้าม"</div></div>
+    <div class="section examtip"><div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div><p>ใช้ผังนี้เป็น fallback เมื่อตื่นเต้นจนคิดอะไรไม่ออก ช่วยให้กลับมาเป็นระบบได้เร็ว</p></div>
+    <div class="section checklist"><div class="sec-head"><span class="dot"></span>☑ Before You Submit</div><ul>
+      <li>เช็กว่าลองวิธีง่ายที่สุดก่อนแล้ว</li>
+    </ul></div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 7. Before You Submit Checklist (master) -->
+  <div class="card" data-accent="orange">
+    <div class="card-head"><div class="eyebrow">PART 12 · Ultimate Exam Rescue · 🟠 Trigger</div><div class="title">Before You Submit (Master Checklist)</div></div>
+    <div class="trigger-box"><div class="ic">🎯</div><div class="txt">เหลือเวลา 5 นาทีสุดท้าย → ไล่เช็กลิสต์รวมนี้ทุกข้อ</div></div>
+    <div class="section when"><div class="sec-head"><span class="dot"></span>👀 ใช้เมื่อไหร่</div><ul>
+      <li>ก่อนส่งกระดาษคำตอบทุกครั้ง ไม่ว่าจะมั่นใจแค่ไหน</li>
+    </ul></div>
+    <div class="section how"><div class="sec-head"><span class="dot"></span>✅ ลำดับการเช็ก</div><ol>
+      <li>คำตอบมี +C ครบทุกข้อที่เป็นอินทิเกรตไม่จำกัดเขต</li>
+      <li>เช็กโดเมน/เงื่อนไขที่เกี่ยวข้องในแต่ละข้อ</li>
+      <li>เช็กเครื่องหมายบวก-ลบที่จุดเสี่ยง (cos 2θ, chain rule)</li>
+      <li>เช็กว่าตอบคำถามที่โจทย์ถามจริง (net หรือ total, max หรือ min)</li>
+    </ol></div>
+    <div class="section mistake"><div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div><ul>
+      <li>รีบส่งโดยไม่เหลือเวลาเช็กเลย</li>
+      <li>เช็กแค่ความถูกต้องของการคำนวณ แต่ไม่เช็กว่าตอบตรงคำถาม</li>
+    </ul></div>
+    <div class="section hack"><div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div><div class="txt">"C ครบ โดเมนชัด เครื่องหมายแม่น ตอบตรงคำถาม"</div></div>
+    <div class="section examtip"><div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div><p>ลิสต์นี้คือสรุปของทุก checklist ในเล่ม — ถ้าจำได้แค่การ์ดเดียวก่อนสอบ ให้จำใบนี้</p></div>
+    <div class="section checklist"><div class="sec-head"><span class="dot"></span>☑ Final Check</div><ul>
+      <li>+C ครบ / โดเมนถูก / เครื่องหมายแม่น / ตอบตรงคำถาม</li>
+    </ul></div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+</div>
+</body>
+</html>

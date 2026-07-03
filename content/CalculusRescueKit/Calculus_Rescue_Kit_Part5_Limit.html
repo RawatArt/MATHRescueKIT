@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>Calculus Rescue Kit — Part 5 Limit Rescue</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700;800&family=Sarabun:wght@400;500;600;700;800&display=swap');
+
+  :root{
+    --concept:#2563eb;
+    --formula:#16a34a;
+    --trigger:#ea580c;
+    --mistake:#dc2626;
+    --tip:#9333ea;
+    --checklist:#1f2937;
+    --hack:#ca8a04;
+    --bg:#f7f7fb;
+    --card-bg:#ffffff;
+    --ink:#1f2330;
+    --muted:#6b7280;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0; padding:32px;
+    background:var(--bg);
+    font-family:'Sarabun','Noto Sans Thai',sans-serif;
+    color:var(--ink);
+  }
+
+  .grid{
+    display:flex; flex-wrap:wrap; gap:28px; justify-content:center;
+  }
+
+  .card{
+    width:420px;
+    background:var(--card-bg);
+    border-radius:18px;
+    box-shadow:0 6px 24px rgba(20,20,40,0.10);
+    overflow:hidden;
+    border:1px solid #ececf2;
+    display:flex; flex-direction:column;
+  }
+
+  .card-head{
+    padding:18px 20px 14px;
+    background:linear-gradient(135deg, var(--accent,#2563eb), color-mix(in srgb, var(--accent,#2563eb) 70%, black));
+    color:#fff;
+    position:relative;
+  }
+  .eyebrow{
+    font-size:11px; font-weight:700; letter-spacing:.08em;
+    text-transform:uppercase; opacity:.85; margin-bottom:4px;
+  }
+  .title{
+    font-size:21px; font-weight:800; line-height:1.25;
+  }
+
+  .trigger-box{
+    margin:14px 16px 0;
+    background:#fff7ed;
+    border:1.5px dashed var(--trigger);
+    border-radius:12px;
+    padding:10px 14px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .trigger-box .ic{font-size:20px;}
+  .trigger-box .txt{font-weight:700; font-size:15px; color:#7c2d12;}
+
+  .section{
+    margin:14px 16px 0;
+    padding:12px 14px;
+    border-radius:12px;
+    background:#fafafa;
+  }
+  .section:last-of-type{margin-bottom:16px;}
+  .sec-head{
+    display:flex; align-items:center; gap:7px;
+    font-weight:700; font-size:13.5px; margin-bottom:7px;
+  }
+  .sec-head .dot{width:9px;height:9px;border-radius:50%;flex:none;}
+
+  .when{background:#eff6ff;}
+  .when .dot{background:var(--concept);}
+  .when ul{margin:0; padding-left:18px; font-size:14px; line-height:1.65;}
+
+  .how{background:#f0fdf4;}
+  .how .dot{background:var(--formula);}
+  .how ol{margin:0; padding-left:20px; font-size:14px; line-height:1.7; font-weight:500;}
+
+  .mistake{background:#fef2f2;}
+  .mistake .dot{background:var(--mistake);}
+  .mistake ul{margin:0; padding-left:18px; font-size:13.5px; line-height:1.65; color:#7f1d1d;}
+
+  .hack{background:#fffbeb;}
+  .hack .dot{background:var(--hack);}
+  .hack .txt{font-size:14.5px; font-weight:700; color:#854d0e;}
+
+  .examtip{background:#faf5ff;}
+  .examtip .dot{background:var(--tip);}
+  .examtip p{margin:0; font-size:13.5px; line-height:1.6; color:#581c87;}
+
+  .checklist{background:#f4f4f5;}
+  .checklist .dot{background:var(--checklist);}
+  .checklist ul{list-style:none; margin:0; padding:0; font-size:13.5px; line-height:1.9;}
+  .checklist li::before{content:"☐  "; }
+
+  .card[data-accent="green"] .card-head{--accent:#16a34a;}
+  .card[data-accent="blue"] .card-head{--accent:#2563eb;}
+  .card[data-accent="orange"] .card-head{--accent:#ea580c;}
+  .card[data-accent="purple"] .card-head{--accent:#9333ea;}
+
+  .pagefoot{
+    text-align:center; font-size:11px; color:var(--muted);
+    padding:10px 16px 14px;
+  }
+
+  .katex { font-size: 1.05em; }
+</style>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+</head>
+<body>
+
+<div class="grid">
+
+  <!-- 1. Direct Substitution -->
+  <div class="card" data-accent="blue">
+    <div class="card-head">
+      <div class="eyebrow">PART 5 · Limit Rescue · 🔵 Concept</div>
+      <div class="title">Direct Substitution</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">เจอลิมิตข้อแรก → ลองแทนค่าตรงๆ ก่อนเสมอ</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>\( \lim\limits_{x\to 2}(x^2+3x) \)</li>
+        <li>ฟังก์ชันต่อเนื่อง (พหุนาม, ตรีโกณ, เอ็กซ์โพเนนเชียล) ที่จุดในโดเมน</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>แทนค่า x ที่ลิมิตเข้าไปตรงๆ</li>
+        <li>ถ้าได้ค่าจริง (ไม่ใช่ \( \frac{0}{0} \) หรือ \( \frac{\infty}{\infty} \)) → คือคำตอบ</li>
+        <li>ถ้าได้รูปไม่กำหนด → ต้องใช้เทคนิคอื่น (factoring, rationalize, L'Hospital)</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>เจอ \( \frac{0}{0} \) แล้วตอบว่าลิมิตไม่มีค่าทันที (ต้องจัดรูปก่อน)</li>
+        <li>ลืมเช็กว่าฟังก์ชันต่อเนื่องที่จุดนั้นจริงก่อนแทนค่าตรงๆ</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"แทนก่อนเสมอ ถ้าได้ 0/0 ค่อยจัดรูป"</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>เป็นขั้นแรกที่ต้องทำเสมอก่อนตัดสินใจว่าจะใช้เทคนิคไหนต่อ</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เช็กว่าค่าที่ได้ไม่ใช่รูปไม่กำหนด</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 2. Factoring -->
+  <div class="card" data-accent="green">
+    <div class="card-head">
+      <div class="eyebrow">PART 5 · Limit Rescue · 🟢 Formula</div>
+      <div class="title">Factoring</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">แทนค่าแล้วได้ \( \frac{0}{0} \) จากพหุนาม → Factor ตัดพจน์ที่ทำให้เป็นศูนย์</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>\( \lim\limits_{x\to 3}\dfrac{x^2-9}{x-3} \)</li>
+        <li>ลิมิตที่เศษ-ส่วนเป็นพหุนามที่หารด้วยกันได้</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>Factor ทั้งเศษและส่วนให้สุด</li>
+        <li>ตัดตัวประกอบที่ทำให้เป็น \( \frac{0}{0} \) ออก</li>
+        <li>แทนค่า x อีกครั้งในนิพจน์ที่ simplify แล้ว</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>Factor ผิดหรือ factor ไม่สุด</li>
+        <li>ลืมแทนค่าอีกครั้งหลัง simplify (หยุดแค่ตัดทอน)</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"0/0 จากพหุนาม → factor ตัด แล้วแทนใหม่"</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>เป็นเทคนิคพื้นฐานที่สุดของลิมิตรูป \( \frac{0}{0} \) — มักผสมกับ difference of squares/cubes</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เช็กว่าแทนค่าใหม่หลัง simplify แล้ว</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 3. Rationalization -->
+  <div class="card" data-accent="orange">
+    <div class="card-head">
+      <div class="eyebrow">PART 5 · Limit Rescue · 🟠 Trigger</div>
+      <div class="title">Rationalization</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">เห็นรากในลิมิตที่ได้ 0/0 → คูณ conjugate ทันที</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>\( \lim\limits_{x\to 0}\dfrac{\sqrt{x+4}-2}{x} \)</li>
+        <li>ลิมิตที่เศษหรือส่วนมีรากที่สอง</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>หา conjugate ของส่วนที่มีราก (สลับเครื่องหมายกลาง)</li>
+        <li>คูณทั้งเศษและส่วนด้วย conjugate นั้น</li>
+        <li>ใช้ difference of squares กำจัดรากออก</li>
+        <li>Factor และตัดทอน แล้วแทนค่าใหม่</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>คูณ conjugate แค่ด้านเดียว (ต้องคูณทั้งเศษและส่วน)</li>
+        <li>หา conjugate ผิด (ลืมว่าต้องสลับเครื่องหมายกลางเท่านั้น)</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"เห็นรากในลิมิต คูณ conjugate ทั้งบนล่าง"</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>ออกคู่กับนิยามอนุพันธ์ที่มีรากในนิยาม \( \frac{f(x+h)-f(x)}{h} \)</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เช็กว่าคูณ conjugate ทั้งเศษและส่วนแล้ว</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 4. Common Limits -->
+  <div class="card" data-accent="purple">
+    <div class="card-head">
+      <div class="eyebrow">PART 5 · Limit Rescue · 🟣 Exam Tip</div>
+      <div class="title">Common Limits</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">ลิมิตมาตรฐานที่ต้องจำขึ้นใจ ไม่ต้องพิสูจน์ใหม่ทุกครั้ง</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>\( \lim\limits_{x\to 0}\dfrac{\sin x}{x} \)</li>
+        <li>\( \lim\limits_{x\to 0}\dfrac{1-\cos x}{x} \)</li>
+        <li>\( \lim\limits_{n\to\infty}(1+\frac{1}{n})^n \)</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>\( \lim\limits_{x\to 0}\dfrac{\sin x}{x}=1 \)</li>
+        <li>\( \lim\limits_{x\to 0}\dfrac{1-\cos x}{x}=0 \)</li>
+        <li>\( \lim\limits_{n\to\infty}(1+\frac{1}{n})^n = e \)</li>
+        <li>จดจำเป็นสูตรลัด ใช้แทนค่าได้ทันทีเมื่อรูปแบบตรงกัน</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>ใช้สูตรทั้งที่รูปแบบไม่ตรง (ตัวแปรในวงเล็บไม่เหมือนตัวหาร)</li>
+        <li>ลืมว่าสูตร \( \sin x/x \) ใช้ได้เฉพาะ \( x\to 0 \) (เรเดียน)</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"sin/x → 1 / (1-cos)/x → 0 / (1+1/n)^n → e"</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>ใช้เป็นฐานในการหาอนุพันธ์ของ \( \sin x, \cos x \) จากนิยามลิมิตโดยตรง</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เช็กว่าตัวแปรในตัวหารตรงกับในฟังก์ชันตรีโกณ</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 5. Infinite Limits -->
+  <div class="card" data-accent="blue">
+    <div class="card-head">
+      <div class="eyebrow">PART 5 · Limit Rescue · 🔵 Concept</div>
+      <div class="title">Infinite Limits</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">\( x\to\infty \) → หารทุกพจน์ด้วยกำลังสูงสุดของตัวแปร</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>\( \lim\limits_{x\to\infty}\dfrac{3x^2+1}{2x^2-5} \)</li>
+        <li>หาเส้นกำกับแนวนอนของฟังก์ชันตรรกยะ</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>หาดีกรีสูงสุดของเศษและส่วน</li>
+        <li>หารทุกพจน์ด้วย \( x \) ยกกำลังสูงสุดนั้น</li>
+        <li>พจน์ที่มี \( \frac{1}{x^n} \to 0 \) เมื่อ \( x\to\infty \)</li>
+        <li>ดีกรีเท่ากัน → ลิมิต = อัตราส่วนสัมประสิทธิ์นำหน้า</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>ลืมหารทุกพจน์ด้วยกำลังสูงสุดเดียวกัน (ทั้งเศษและส่วน)</li>
+        <li>สรุปผิดเมื่อดีกรีเศษมากกว่าส่วน (ลิมิตจะเป็น \( \infty \) ไม่ใช่ 0)</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"ดีกรีเท่า=สัมประสิทธิ์ / ส่วนมาก=0 / เศษมาก=∞"</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>ใช้หาเส้นกำกับแนวนอนของกราฟฟังก์ชันตรรกยะในโจทย์ curve sketching</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เช็กว่าเปรียบเทียบดีกรีเศษ-ส่วนถูกต้อง</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 6. One-sided Limits -->
+  <div class="card" data-accent="green">
+    <div class="card-head">
+      <div class="eyebrow">PART 5 · Limit Rescue · 🟢 Formula</div>
+      <div class="title">One-sided Limits</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">ลิมิตมีค่า ก็ต่อเมื่อ ลิมิตซ้าย = ลิมิตขวา</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>ฟังก์ชัน piecewise ที่จุดต่อ</li>
+        <li>\( \lim\limits_{x\to 0^+} \) เทียบกับ \( \lim\limits_{x\to 0^-} \)</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>หาลิมิตซ้าย \( x\to a^- \) โดยใช้สูตรฝั่งซ้ายของจุด a</li>
+        <li>หาลิมิตขวา \( x\to a^+ \) โดยใช้สูตรฝั่งขวาของจุด a</li>
+        <li>ถ้าทั้งสองค่าเท่ากัน → ลิมิตมีค่าเท่ากับค่านั้น</li>
+        <li>ถ้าไม่เท่ากัน → ลิมิตไม่มีค่า (DNE)</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>ใช้สูตรผิดฝั่งตอนหาลิมิตซ้าย/ขวา</li>
+        <li>สรุปว่าลิมิตมีค่าทั้งที่ซ้าย≠ขวา</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"ซ้ายขวาต้องเท่ากัน ถึงจะมีลิมิตจริง"</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>เป็นพื้นฐานในการตรวจสอบความต่อเนื่องของฟังก์ชัน piecewise ที่จุดต่อ</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เช็กว่าใช้สูตรถูกฝั่งสำหรับลิมิตซ้าย-ขวา</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 7. Squeeze Theorem -->
+  <div class="card" data-accent="orange">
+    <div class="card-head">
+      <div class="eyebrow">PART 5 · Limit Rescue · 🟠 Trigger</div>
+      <div class="title">Squeeze Theorem</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">หาลิมิตตรงไม่ได้ → บีบด้วยฟังก์ชันบน-ล่างที่ลิมิตเท่ากัน</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>\( \lim\limits_{x\to 0}x^2\sin\dfrac{1}{x} \)</li>
+        <li>ฟังก์ชันที่แกว่งแต่ถูกคูณด้วยพจน์ที่เข้าสู่ศูนย์</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>หาฟังก์ชัน g(x) และ h(x) ที่ \( g(x)\leq f(x)\leq h(x) \)</li>
+        <li>เช็กว่า \( \lim g(x) = \lim h(x) = L \)</li>
+        <li>สรุปว่า \( \lim f(x) = L \) ด้วย (ถูกบีบให้เท่ากัน)</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>เลือกฟังก์ชันบน-ล่างที่ลิมิตไม่เท่ากัน (บีบไม่ได้)</li>
+        <li>ลืมพิสูจน์อสมการ \( g(x)\leq f(x)\leq h(x) \) ก่อนสรุป</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"บีบบน-ล่างให้เท่ากัน ตรงกลางก็ต้องเท่ากันด้วย"</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>ใช้พิสูจน์ลิมิตของฟังก์ชันที่มีพจน์แกว่ง เช่น \( \sin(1/x) \) ที่หาตรงๆ ไม่ได้</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เช็กว่าอสมการบน-ล่างถูกต้องและลิมิตเท่ากันจริง</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 8. L'Hospital Rule -->
+  <div class="card" data-accent="purple">
+    <div class="card-head">
+      <div class="eyebrow">PART 5 · Limit Rescue · 🟣 Exam Tip</div>
+      <div class="title">L'Hospital Rule</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">เห็น \( \frac{0}{0} \) หรือ \( \frac{\infty}{\infty} \) → อย่าเพิ่งใช้ L'Hospital ลองวิธีอื่นก่อน</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>ลิมิตรูป \( \frac{0}{0} \) หรือ \( \frac{\infty}{\infty} \) ที่ factor/rationalize ไม่ได้</li>
+        <li>ลิมิตที่มีฟังก์ชัน ln, e ผสมกัน</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>เช็กว่าเป็นรูปไม่กำหนด \( \frac{0}{0} \) หรือ \( \frac{\infty}{\infty} \) เท่านั้น</li>
+        <li>ดิฟเศษและส่วนแยกกัน (ไม่ใช่ quotient rule)</li>
+        <li>แทนค่าลิมิตใหม่ ถ้ายังไม่กำหนดอีก ทำซ้ำได้</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>ใช้ L'Hospital ทั้งที่ไม่ใช่รูป \( \frac{0}{0} \) หรือ \( \frac{\infty}{\infty} \) (ผิดเงื่อนไข)</li>
+        <li>ใช้ quotient rule แทนการดิฟเศษ-ส่วนแยกกัน</li>
+        <li>ใช้ L'Hospital ทั้งที่ factor ง่ายกว่า (เสียเวลาและเสี่ยงดิฟผิด)</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"เช็ก 0/0 หรือ ∞/∞ ก่อน ดิฟแยกบน-ล่าง"</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>มักออกผสมกับ ln, e ในรูปแบบที่ factor ไม่ได้ — แต่ข้อสอบก็ชอบเช็กว่ารู้จัก factor ก่อนใช้ลัดหรือไม่</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เช็กเงื่อนไขรูปไม่กำหนดก่อนใช้กฎทุกครั้ง</li>
+        <li>เช็กว่าดิฟเศษ-ส่วนแยกกัน ไม่ใช้ quotient rule</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+</div>
+</body>
+</html>

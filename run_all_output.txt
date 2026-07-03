@@ -1,0 +1,255 @@
+=== calculus ===
+📂 subject='calculus' พบ 12 ไฟล์
+
+  ✓ [01] Calculus_Rescue_Kit_Part1_Algebra.html  → PART 1 · Algebra Rescue (12 cards)
+  ✓ [02] Calculus_Rescue_Kit_Part2_Function.html  → PART 2 · Function Rescue (8 cards)
+  ✓ [03] Calculus_Rescue_Kit_Part3_Trigonometry.html  → PART 3 · Trigonometry Rescue (9 cards)
+  ✓ [04] Calculus_Rescue_Kit_Part4_Logarithm.html  → PART 4 · Logarithm Rescue (5 cards)
+  ✓ [05] Calculus_Rescue_Kit_Part5_Limit.html  → PART 5 · Limit Rescue (8 cards)
+  ✓ [06] Calculus_Rescue_Kit_Part6_Continuity.html  → PART 6 · Continuity Rescue (2 cards)
+  ✓ [07] Calculus_Rescue_Kit_Part7_Derivative.html  → PART 7 · Derivative Rescue (10 cards)
+  ✓ [08] Calculus_Rescue_Kit_Part8_ApplicationOfDerivatives.html  → PART 8 · Application of Derivatives (10 cards)
+  ✓ [09] Calculus_Rescue_Kit_Part9_Integration.html  → PART 9 · Integration Rescue (7 cards)
+  ✓ [10] Calculus_Rescue_Kit_Part10_DefiniteIntegral.html  → PART 10 · Definite Integral (4 cards)
+  ✓ [11] Calculus_Rescue_Kit_Part11_DifferentialEquations.html  → PART 11 · Differential Equations (2 cards)
+  ✓ [12] Calculus_Rescue_Kit_Part12_UltimateExamRescue.html  → PART 12 · Ultimate Exam Rescue (7 cards)
+
+🎉 เขียน data\calculus.json
+   12 บท · 84 การ์ด รวม
+
+=== set ===
+📂 subject='set' พบ 10 ไฟล์
+
+  ✓ [01] SetTheoryRescueKit_Part1.html  → PART 1 · Set Fundamentals (4 cards)
+  ✓ [02] SetTheoryRescueKit_Part2.html  → PART 2 · Subsets (5 cards)
+  ✓ [03] SetTheoryRescueKit_Part3.html  → PART 3 · Power Sets (4 cards)
+  ✓ [04] SetTheoryRescueKit_Part4.html  → PART 4 · Core Set Operations (4 cards)
+  ✓ [05] SetTheoryRescueKit_Part5.html  → PART 5 · Set Identities (4 cards)
+  ✓ [06] SetTheoryRescueKit_Part6.html  → PART 6 · Venn Diagram (3 cards)
+  ✓ [07] SetTheoryRescueKit_Part7.html  → PART 7 · Cardinality2Sets (2 cards)
+  ✓ [08] SetTheoryRescueKit_Part8.html  → PART 8 · Cardinality3Sets (3 cards)
+  ✓ [09] SetTheoryRescueKit_Part9.html  → PART 9 · SetOptimization (3 cards)
+  ✓ [10] SetTheoryRescueKit_Part12.html  → PART 12 · ExamRescue (1 cards)
+
+🎉 เขียน data\set.json
+   10 บท · 33 การ์ด รวม
+
+=== logic ===
+📂 subject='logic' พบ 9 ไฟล์
+
+  ✓ [01] TheLogicRescueKit_Part1.html  → PART 1 · Propositions (2 cards)
+  ✓ [02] TheLogicRescueKit_Part2.html  → PART 2 · Logical Connectives (4 cards)
+  ✓ [03] TheLogicRescueKit_Part3.html  → PART 3 · Logical Equivalences (4 cards)
+  ✓ [04] TheLogicRescueKit_Part4.html  → PART 4 · Negation (2 cards)
+  ✓ [05] TheLogicRescueKit_Part5.html  → PART 5 · Tautology (3 cards)
+  ✓ [06] TheLogicRescueKit_Part6.html  → PART 6 · Argument (2 cards)
+  ✓ [07] TheLogicRescueKit_Part7.html  → PART 7 · Quantifiers (1 cards)
+  ✓ [08] TheLogicRescueKit_Part8.html  → PART 8 · NegationQuantifiers (1 cards)
+  ✓ [09] TheLogicRescueKit_Part9.html  → PART 9 · ExamRescue (1 cards)
+
+🎉 เขียน data\logic.json
+   9 บท · 20 การ์ด รวม
+
+=== real ===
+📂 subject='real' พบ 12 ไฟล์
+
+  ✓ [01] RN_Polynomial_Rescue_Kit_Part1.html  → PART 1 · Real Number System (4 cards)
+  ✓ [02] RN_Polynomial_Rescue_Kit_Part2.html  → PART 2 · Polynomial Divisibility (3 cards)
+  ✓ [03] RN_Polynomial_Rescue_Kit_Part3.html  → PART 3 · Remainder & Factor Theorem (3 cards)
+  ✓ [04] RN_Polynomial_Rescue_Kit_Part4.html  → PART 4 · Factorization (3 cards)
+  ✓ [05] RN_Polynomial_Rescue_Kit_Part5.html  → PART 5 · Polynomial Equations (2 cards)
+  ✓ [06] RN_Polynomial_Rescue_Kit_Part6.html  → PART 6 · Intervals & Inequalities (3 cards)
+  ✓ [07] RN_Polynomial_Rescue_Kit_Part7.html  → PART 7 · Higher-Degree Inequalities (2 cards)
+  ✓ [08] RN_Polynomial_Rescue_Kit_Part8.html  → PART 8 · Fractional Inequalities (2 cards)
+  ✓ [09] RN_Polynomial_Rescue_Kit_Part9.html  → PART 9 · Absolute Value Equations (3 cards)
+  ✓ [10] RN_Polynomial_Rescue_Kit_Part10.html  → PART 10 · Absolute Value Inequalities (2 cards)
+  ✓ [11] RN_Polynomial_Rescue_Kit_Part11.html  → PART 11 · Root & AbsVal Pitfalls (2 cards)
+  ✓ [12] RN_Polynomial_Rescue_Kit_Part12.html  → PART 12 · Ultimate Exam Rescue (3 cards)
+
+🎉 เขียน data\real.json
+   12 บท · 32 การ์ด รวม
+
+=== func ===
+📂 subject='func' พบ 8 ไฟล์
+
+  ✓ [01] TheFunctionRescueKit_Part1.html  → PART 1 · RelationFunction (3 cards)
+  ✓ [02] TheFunctionRescueKit_Part2.html  → PART 2 · DomainRange (3 cards)
+  ✓ [03] TheFunctionRescueKit_Part3.html  → PART 3 · FunctionTypes (3 cards)
+  ✓ [04] TheFunctionRescueKit_Part4.html  → PART 4 · Algebra of Functions (1 cards)
+  ✓ [05] TheFunctionRescueKit_Part5.html  → PART 5 · Composite Functions (1 cards)
+  ✓ [06] TheFunctionRescueKit_Part6.html  → PART 6 · Inverse Functions (1 cards)
+  ✓ [07] TheFunctionRescueKit_Part7.html  → PART 7 · Function Transformations (4 cards)
+  ✓ [08] TheFunctionRescueKit_Part8.html  → PART 8 · Ultimate Exam Rescue (5 cards)
+
+🎉 เขียน data\func.json
+   8 บท · 21 การ์ด รวม
+
+=== explog ===
+📂 subject='explog' พบ 9 ไฟล์
+
+  ✓ [01] TheExpoLogRescueKit_Part1.html  → PART 1 · Exponent Rules (5 cards)
+  ✓ [02] TheExpoLogRescueKit_Part2.html  → PART 2 · Exponential Equations (3 cards)
+  ✓ [03] TheExpoLogRescueKit_Part3.html  → PART 3 · Exponential Inequalities (3 cards)
+  ✓ [04] TheExpoLogRescueKit_Part4.html  → PART 4 · ExpoLogConversion (2 cards)
+  ✓ [05] TheExpoLogRescueKit_Part5.html  → PART 5 · LogRules (5 cards)
+  ✓ [06] TheExpoLogRescueKit_Part6.html  → PART 6 · LogEq (3 cards)
+  ✓ [07] TheExpoLogRescueKit_Part7.html  → PART 7 · Logarithmic Inequalities (1 cards)
+  ✓ [08] TheExpoLogRescueKit_Part8.html  → PART 8 · Expo & Log Graphs (2 cards)
+  ✓ [09] TheExpoLogRescueKit_Part9.html  → PART 9 · Ultimate Exam Rescue (1 cards)
+
+🎉 เขียน data\explog.json
+   9 บท · 25 การ์ด รวม
+
+=== trig ===
+📂 subject='trig' พบ 9 ไฟล์
+
+  ✓ [01] TrigonometryRescueKit_Part1.html  → PART 1 · Unit Circle (3 cards)
+  ✓ [02] TrigonometryRescueKit_Part2.html  → PART 2 · Identities (3 cards)
+  ✓ [03] TrigonometryRescueKit_Part3.html  → PART 3 · SumDifference (3 cards)
+  ✓ [04] TrigonometryRescueKit_Part4.html  → PART 4 · DoubleHalfAngles (3 cards)
+  ✓ [05] TrigonometryRescueKit_Part5.html  → PART 5 · GraphsShifts (2 cards)
+  ✓ [06] TrigonometryRescueKit_Part6.html  → PART 6 · InverseTraps (3 cards)
+  ✓ [07] TrigonometryRescueKit_Part7.html  → PART 7 · SolvingTrigEquations (2 cards)
+  ✓ [08] TrigonometryRescueKit_Part8.html  → PART 8 · SineCosineRule (2 cards)
+  ✓ [09] TrigonometryRescueKit_Part9.html  → PART 9 · ExamRescue (3 cards)
+
+🎉 เขียน data\trig.json
+   9 บท · 24 การ์ด รวม
+
+=== analytic ===
+📂 subject='analytic' พบ 9 ไฟล์
+
+  ✓ [01] AnalyticGeometryConicsRescueKit_Part1.html  → PART 1 · PointsLinesBasics (4 cards)
+  ✓ [02] AnalyticGeometryConicsRescueKit_Part2.html  → PART 2 · LineDistanceEquations (3 cards)
+  ✓ [03] AnalyticGeometryConicsRescueKit_Part3.html  → PART 3 · TheCircle (4 cards)
+  ✓ [04] AnalyticGeometryConicsRescueKit_Part4.html  → PART 4 · Parabola (3 cards)
+  ✓ [05] AnalyticGeometryConicsRescueKit_Part5.html  → PART 5 · Ellipse (3 cards)
+  ✓ [06] AnalyticGeometryConicsRescueKit_Part6.html  → PART 6 · Hyperbola (3 cards)
+  ✓ [07] AnalyticGeometryConicsRescueKit_Part7.html  → PART 7 · Conic Identification (1 cards)
+  ✓ [08] AnalyticGeometryConicsRescueKit_Part8.html  → PART 8 · Completing the Square (1 cards)
+  ✓ [09] AnalyticGeometryConicsRescueKit_Part9.html  → PART 9 · Exam Rescue (1 cards)
+
+🎉 เขียน data\analytic.json
+   9 บท · 23 การ์ด รวม
+
+=== matrix ===
+📂 subject='matrix' พบ 9 ไฟล์
+
+  ✓ [01] TheMatrixRescueKit_Part1.html  → PART 1 · Matrix Multiplication (3 cards)
+  ✓ [02] TheMatrixRescueKit_Part2.html  → PART 2 · Transpose (4 cards)
+  ✓ [03] TheMatrixRescueKit_Part3.html  → PART 3 · Determinant Basics (3 cards)
+  ✓ [04] TheMatrixRescueKit_Part4.html  → PART 4 · DetProperties (5 cards)
+  ✓ [05] TheMatrixRescueKit_Part5.html  → PART 5 · MinorCofactor (4 cards)
+  ✓ [06] TheMatrixRescueKit_Part6.html  → PART 6 · Inverse (4 cards)
+  ✓ [07] TheMatrixRescueKit_Part7.html  → PART 7 · AdvancedInverse (3 cards)
+  ✓ [08] TheMatrixRescueKit_Part8.html  → PART 8 · LinearSystems (3 cards)
+  ✓ [09] TheMatrixRescueKit_Part9.html  → PART 9 · ExamRescue (3 cards)
+
+🎉 เขียน data\matrix.json
+   9 บท · 32 การ์ด รวม
+
+=== vector ===
+📂 subject='vector' พบ 9 ไฟล์
+
+  ✓ [01] TheVectorRescueKit_Part1.html  → PART 1 · VectorsBasics (3 cards)
+  ✓ [02] TheVectorRescueKit_Part2.html  → PART 2 · DirectionCosines (2 cards)
+  ✓ [03] TheVectorRescueKit_Part3.html  → PART 3 · DotProduct (3 cards)
+  ✓ [04] TheVectorRescueKit_Part4.html  → PART 4 · Vector Algebra (3 cards)
+  ✓ [05] TheVectorRescueKit_Part5.html  → PART 5 · Cross Product (2 cards)
+  ✓ [06] TheVectorRescueKit_Part6.html  → PART 6 · Cross Properties (3 cards)
+  ✓ [07] TheVectorRescueKit_Part7.html  → PART 7 · Vector Projection (3 cards)
+  ✓ [08] TheVectorRescueKit_Part8.html  → PART 8 · Area & Volume (3 cards)
+  ✓ [09] TheVectorRescueKit_Part9.html  → PART 9 · Ultimate Exam Rescue (3 cards)
+
+🎉 เขียน data\vector.json
+   9 บท · 25 การ์ด รวม
+
+=== complex ===
+📂 subject='complex' พบ 9 ไฟล์
+
+  ✓ [01] ComplexNumberRescueKit_Part1.html  → PART 1 · CircleOfi (3 cards)
+  ✓ [02] ComplexNumberRescueKit_Part2.html  → PART 2 · AlgebraConjugate (4 cards)
+  ✓ [03] ComplexNumberRescueKit_Part3.html  → PART 3 · ModulusProperties (4 cards)
+  ✓ [04] ComplexNumberRescueKit_Part4.html  → PART 4 · Polar Form (3 cards)
+  ✓ [05] ComplexNumberRescueKit_Part5.html  → PART 5 · Polar Operations (3 cards)
+  ✓ [06] ComplexNumberRescueKit_Part6.html  → PART 6 · De Moivre (2 cards)
+  ✓ [07] ComplexNumberRescueKit_Part7.html  → PART 7 · RootsOfComplexNumbers (1 cards)
+  ✓ [08] ComplexNumberRescueKit_Part8.html  → PART 8 · PolynomialEquations (1 cards)
+  ✓ [09] ComplexNumberRescueKit_Part9.html  → PART 9 · UltimateExamRescue (1 cards)
+
+🎉 เขียน data\complex.json
+   9 บท · 22 การ์ด รวม
+
+=== seq ===
+📂 subject='seq' พบ 9 ไฟล์
+
+  ✓ [01] SequenceSeriesRescueKit_Part1.html  → PART 1 · Arithmetic Sequence (3 cards)
+  ✓ [02] SequenceSeriesRescueKit_Part2.html  → PART 2 · Geometric Sequence (3 cards)
+  ✓ [03] SequenceSeriesRescueKit_Part3.html  → PART 3 · ArithmeticGeometric Series (4 cards)
+  ✓ [04] SequenceSeriesRescueKit_Part4.html  → PART 4 · InfiniteSeries (1 cards)
+  ✓ [05] SequenceSeriesRescueKit_Part5.html  → PART 5 · SigmaProperties (3 cards)
+  ✓ [06] SequenceSeriesRescueKit_Part6.html  → PART 6 · SummationFormulas (3 cards)
+  ✓ [07] SequenceSeriesRescueKit_Part7.html  → PART 7 · TelescopingSeries (4 cards)
+  ✓ [08] SequenceSeriesRescueKit_Part8.html  → PART 8 · FinancialMathematics (3 cards)
+  ✓ [09] SequenceSeriesRescueKit_Part9.html  → PART 9 · UltimateExamRescue (3 cards)
+
+🎉 เขียน data\seq.json
+   9 บท · 27 การ์ด รวม
+
+=== count ===
+📂 subject='count' พบ 9 ไฟล์
+
+  ✓ [01] CountingProbabilityRescueKit_Part1.html  → PART 1 · Counting Rules (2 cards)
+  ✓ [02] CountingProbabilityRescueKit_Part2.html  → PART 2 · Factorial (2 cards)
+  ✓ [03] CountingProbabilityRescueKit_Part3.html  → PART 3 · Permutation vs Combination (3 cards)
+  ✓ [04] CountingProbabilityRescueKit_Part4.html  → PART 4 · Combination Formulas (3 cards)
+  ✓ [05] CountingProbabilityRescueKit_Part5.html  → PART 5 · Together Rule (2 cards)
+  ✓ [06] CountingProbabilityRescueKit_Part6.html  → PART 6 · Separated Rule (2 cards)
+  ✓ [07] CountingProbabilityRescueKit_Part7.html  → PART 7 · Circular Permutation (2 cards)
+  ✓ [08] CountingProbabilityRescueKit_Part8.html  → PART 8 · At Least Trick (1 cards)
+  ✓ [09] CountingProbabilityRescueKit_Part9.html  → PART 9 · Probability Basics (2 cards)
+
+🎉 เขียน data\count.json
+   9 บท · 19 การ์ด รวม
+
+=== prob ===
+📂 subject='prob' พบ 18 ไฟล์
+
+  ✓ [01] ProbabilityBayesRescueKit_Part1.html  → PART 1 · Probability Basics (5 cards)
+  ✓ [02] ProbabilityBayesRescueKit_Part2.html  → PART 2 · Set Operations (4 cards)
+  ✓ [03] ProbabilityBayesRescueKit_Part3.html  → PART 3 · Conditional Probability (3 cards)
+  ✓ [04] ProbabilityBayesRescueKit_Part4.html  → PART 4 · Independence (1 cards)
+  ✓ [05] ProbabilityBayesRescueKit_Part5.html  → PART 5 · Tree Diagrams (1 cards)
+  ✓ [06] ProbabilityBayesRescueKit_Part6.html  → PART 6 · Total Probability (1 cards)
+  ✓ [07] ProbabilityBayesRescueKit_Part7.html  → PART 7 · Bayes Shortcut (1 cards)
+  ✓ [08] ProbabilityBayesRescueKit_Part8.html  → PART 8 · Counting in Probability (1 cards)
+  ✓ [09] ProbabilityBayesRescueKit_Part9.html  → PART 9 · Exam Rescue (1 cards)
+  ✓ [10] ProbabilityDistributionRescueKit_Part1.html  → PART 1 · Random Variables (3 cards)
+  ✓ [11] ProbabilityDistributionRescueKit_Part2.html  → PART 2 · Expected Value (2 cards)
+  ✓ [12] ProbabilityDistributionRescueKit_Part3.html  → PART 3 · Variance & SD (3 cards)
+  ✓ [13] ProbabilityDistributionRescueKit_Part4.html  → PART 4 · Binomial Distribution (2 cards)
+  ✓ [14] ProbabilityDistributionRescueKit_Part5.html  → PART 5 · Binomial Shortcuts (2 cards)
+  ✓ [15] ProbabilityDistributionRescueKit_Part6.html  → PART 6 · Poisson Distribution (2 cards)
+  ✓ [16] ProbabilityDistributionRescueKit_Part7.html  → PART 7 · Normal Distribution (1 cards)
+  ✓ [17] ProbabilityDistributionRescueKit_Part8.html  → PART 8 · Z Table Reading (1 cards)
+  ✓ [18] ProbabilityDistributionRescueKit_Part9.html  → PART 9 · Exam Rescue (1 cards)
+
+🎉 เขียน data\prob.json
+   18 บท · 35 การ์ด รวม
+
+=== stat ===
+📂 subject='stat' พบ 9 ไฟล์
+
+  ✓ [01] StatisticsRescueKit_Part1.html  → PART 1 · Data Types (2 cards)
+  ✓ [02] StatisticsRescueKit_Part2.html  → PART 2 · StemLeafHistogram (2 cards)
+  ✓ [03] StatisticsRescueKit_Part3.html  → PART 3 · BoxPlotOutliers (4 cards)
+  ✓ [04] StatisticsRescueKit_Part4.html  → PART 4 · CentralTendency (4 cards)
+  ✓ [05] StatisticsRescueKit_Part5.html  → PART 5 · PositionData (3 cards)
+  ✓ [06] StatisticsRescueKit_Part6.html  → PART 6 · Dispersion (3 cards)
+  ✓ [07] StatisticsRescueKit_Part7.html  → PART 7 · Data Transformation (4 cards)
+  ✓ [08] StatisticsRescueKit_Part8.html  → PART 8 · Distribution Shape (3 cards)
+  ✓ [09] StatisticsRescueKit_Part9.html  → PART 9 · Ultimate Exam Rescue (4 cards)
+
+🎉 เขียน data\stat.json
+   9 บท · 29 การ์ด รวม
+

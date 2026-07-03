@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>Calculus Rescue Kit — Part 3 Trigonometry Rescue</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700;800&family=Sarabun:wght@400;500;600;700;800&display=swap');
+
+  :root{
+    --concept:#2563eb;
+    --formula:#16a34a;
+    --trigger:#ea580c;
+    --mistake:#dc2626;
+    --tip:#9333ea;
+    --checklist:#1f2937;
+    --hack:#ca8a04;
+    --bg:#f7f7fb;
+    --card-bg:#ffffff;
+    --ink:#1f2330;
+    --muted:#6b7280;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0; padding:32px;
+    background:var(--bg);
+    font-family:'Sarabun','Noto Sans Thai',sans-serif;
+    color:var(--ink);
+  }
+
+  .grid{
+    display:flex; flex-wrap:wrap; gap:28px; justify-content:center;
+  }
+
+  .card{
+    width:420px;
+    background:var(--card-bg);
+    border-radius:18px;
+    box-shadow:0 6px 24px rgba(20,20,40,0.10);
+    overflow:hidden;
+    border:1px solid #ececf2;
+    display:flex; flex-direction:column;
+  }
+
+  .card-head{
+    padding:18px 20px 14px;
+    background:linear-gradient(135deg, var(--accent,#2563eb), color-mix(in srgb, var(--accent,#2563eb) 70%, black));
+    color:#fff;
+    position:relative;
+  }
+  .eyebrow{
+    font-size:11px; font-weight:700; letter-spacing:.08em;
+    text-transform:uppercase; opacity:.85; margin-bottom:4px;
+  }
+  .title{
+    font-size:21px; font-weight:800; line-height:1.25;
+  }
+
+  .trigger-box{
+    margin:14px 16px 0;
+    background:#fff7ed;
+    border:1.5px dashed var(--trigger);
+    border-radius:12px;
+    padding:10px 14px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .trigger-box .ic{font-size:20px;}
+  .trigger-box .txt{font-weight:700; font-size:15px; color:#7c2d12;}
+
+  .section{
+    margin:14px 16px 0;
+    padding:12px 14px;
+    border-radius:12px;
+    background:#fafafa;
+  }
+  .section:last-of-type{margin-bottom:16px;}
+  .sec-head{
+    display:flex; align-items:center; gap:7px;
+    font-weight:700; font-size:13.5px; margin-bottom:7px;
+  }
+  .sec-head .dot{width:9px;height:9px;border-radius:50%;flex:none;}
+
+  .when{background:#eff6ff;}
+  .when .dot{background:var(--concept);}
+  .when ul{margin:0; padding-left:18px; font-size:14px; line-height:1.65;}
+
+  .how{background:#f0fdf4;}
+  .how .dot{background:var(--formula);}
+  .how ol{margin:0; padding-left:20px; font-size:14px; line-height:1.7; font-weight:500;}
+
+  .mistake{background:#fef2f2;}
+  .mistake .dot{background:var(--mistake);}
+  .mistake ul{margin:0; padding-left:18px; font-size:13.5px; line-height:1.65; color:#7f1d1d;}
+
+  .hack{background:#fffbeb;}
+  .hack .dot{background:var(--hack);}
+  .hack .txt{font-size:14.5px; font-weight:700; color:#854d0e;}
+
+  .examtip{background:#faf5ff;}
+  .examtip .dot{background:var(--tip);}
+  .examtip p{margin:0; font-size:13.5px; line-height:1.6; color:#581c87;}
+
+  .checklist{background:#f4f4f5;}
+  .checklist .dot{background:var(--checklist);}
+  .checklist ul{list-style:none; margin:0; padding:0; font-size:13.5px; line-height:1.9;}
+  .checklist li::before{content:"☐  "; }
+
+  .card[data-accent="green"] .card-head{--accent:#16a34a;}
+  .card[data-accent="blue"] .card-head{--accent:#2563eb;}
+  .card[data-accent="orange"] .card-head{--accent:#ea580c;}
+  .card[data-accent="purple"] .card-head{--accent:#9333ea;}
+
+  .pagefoot{
+    text-align:center; font-size:11px; color:var(--muted);
+    padding:10px 16px 14px;
+  }
+
+  .katex { font-size: 1.05em; }
+</style>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+</head>
+<body>
+
+<div class="grid">
+
+  <!-- 1. Unit Circle -->
+  <div class="card" data-accent="blue">
+    <div class="card-head">
+      <div class="eyebrow">PART 3 · Trigonometry Rescue · 🔵 Concept</div>
+      <div class="title">Unit Circle</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">วงกลมหนึ่งหน่วย: จุดบนวงคือ \( (\cos\theta, \sin\theta) \)</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>หาค่า \( \sin\theta, \cos\theta \) ที่มุมต่างๆ</li>
+        <li>หาเครื่องหมายของฟังก์ชันตรีโกณในควอดรันต์ต่างๆ</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>จุดบนวงกลม = \( (\cos\theta,\sin\theta) \) รัศมี 1</li>
+        <li>มุมวัดทวนเข็มจากแกน x บวก</li>
+        <li>เครื่องหมาย: All-Sin-Tan-Cos (ASTC) ทวนเข็มจากควอดรันต์ 1</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>จำเครื่องหมายผิดควอดรันต์</li>
+        <li>สลับแกน x (cos) กับแกน y (sin)</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"All Students Take Calculus" (ASTC)</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>เป็นฐานของทุกโจทย์ตรีโกณ — ถ้าวาดวงกลมหนึ่งหน่วยไม่คล่อง จะเสียเวลาทั้งหมวดนี้</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เช็กเครื่องหมายตรงกับควอดรันต์ของมุม</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 2. Special Angles -->
+  <div class="card" data-accent="green">
+    <div class="card-head">
+      <div class="eyebrow">PART 3 · Trigonometry Rescue · 🟢 Formula</div>
+      <div class="title">Special Angles</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">มุม \( 30°, 45°, 60° \) → จำเป็นเศษส่วนรูปแบบ \( \frac{\sqrt{n}}{2} \)</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>\( \sin 30°, \cos 45°, \tan 60° \)</li>
+        <li>มุมในหน่วยเรเดียน \( \frac{\pi}{6}, \frac{\pi}{4}, \frac{\pi}{3} \)</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>\( \sin \): \( \frac{\sqrt{1}}{2}, \frac{\sqrt{2}}{2}, \frac{\sqrt{3}}{2} \) (30°→90° เรียง 1,2,3 ใต้ราก)</li>
+        <li>\( \cos \): กลับลำดับจาก sin</li>
+        <li>\( \tan = \frac{\sin}{\cos} \)</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>จำ \( \sin \) กับ \( \cos \) สลับมุมกัน</li>
+        <li>ลืมแปลงองศา↔เรเดียนก่อนใช้สูตร</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"sin ไล่ 1-2-3 ใต้ราก หาร 2 / cos กลับลำดับ"</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>ใช้เป็นค่าพื้นฐานในการหาลิมิตตรีโกณและอนุพันธ์ที่จุดเฉพาะ</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เช็กหน่วยมุม (องศา/เรเดียน) ตรงกับที่โจทย์ใช้</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 3. Basic Identities -->
+  <div class="card" data-accent="orange">
+    <div class="card-head">
+      <div class="eyebrow">PART 3 · Trigonometry Rescue · 🟠 Trigger</div>
+      <div class="title">Basic Identities</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">เห็น \( \sin^2+\cos^2 \) → นึกถึงเอกลักษณ์พีทาโกรัสทันที</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>พิสูจน์เอกลักษณ์ตรีโกณ</li>
+        <li>ลดรูปนิพจน์ที่มี \( \sin^2, \cos^2 \)</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>\( \sin^2\theta+\cos^2\theta=1 \)</li>
+        <li>\( 1+\tan^2\theta=\sec^2\theta \)</li>
+        <li>\( 1+\cot^2\theta=\csc^2\theta \)</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>จำสูตรลูกผสมผิด (สลับ tan กับ cot)</li>
+        <li>ลืมว่าเอกลักษณ์นี้ใช้ได้ทุกมุม ไม่ใช่แค่มุมพิเศษ</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"1 ตัวตั้ง บวกแทนเจนต์คู่ตัวเอง ได้ซีแคนต์คู่ตัวเอง"</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>เป็นเครื่องมือหลักในการลดรูปก่อนอินทิเกรตฟังก์ชันตรีโกณ</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เช็กว่าลดรูปจนง่ายที่สุดแล้ว</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 4. Reciprocal Identities -->
+  <div class="card" data-accent="purple">
+    <div class="card-head">
+      <div class="eyebrow">PART 3 · Trigonometry Rescue · 🟣 Exam Tip</div>
+      <div class="title">Reciprocal Identities</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">เห็น sec, csc, cot → แปลงกลับเป็น sin, cos, tan ก่อนเสมอ</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>นิพจน์ที่มี \( \sec, \csc, \cot \) ปนกัน</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>\( \sec\theta = \dfrac{1}{\cos\theta} \)</li>
+        <li>\( \csc\theta = \dfrac{1}{\sin\theta} \)</li>
+        <li>\( \cot\theta = \dfrac{1}{\tan\theta} = \dfrac{\cos\theta}{\sin\theta} \)</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>จำสลับคู่ผิด เช่นคิดว่า \( \sec=1/\sin \)</li>
+        <li>ลืมว่า \( \cot \) เป็นส่วนกลับของ \( \tan \) ไม่ใช่ของ \( \cos \)</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"sec คู่ cos / csc คู่ sin / cot คู่ tan"</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>แปลงทุกอย่างเป็น sin/cos ก่อนเสมอเพื่อให้จัดรูปและลดรูปง่ายขึ้น</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เช็กว่าแปลงกลับเป็น sin/cos ถูกคู่</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 5. Double Angle -->
+  <div class="card" data-accent="blue">
+    <div class="card-head">
+      <div class="eyebrow">PART 3 · Trigonometry Rescue · 🔵 Concept</div>
+      <div class="title">Double Angle</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">เห็น \( 2\theta \) → ใช้สูตรมุมสองเท่าแปลงเป็นมุม \( \theta \)</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>\( \sin 2\theta, \cos 2\theta, \tan 2\theta \)</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>\( \sin 2\theta = 2\sin\theta\cos\theta \)</li>
+        <li>\( \cos 2\theta = \cos^2\theta-\sin^2\theta = 2\cos^2\theta-1 = 1-2\sin^2\theta \)</li>
+        <li>\( \tan 2\theta = \dfrac{2\tan\theta}{1-\tan^2\theta} \)</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>คิดว่า \( \sin 2\theta = 2\sin\theta \) (ผิด! ลืมคูณ cos)</li>
+        <li>เลือกสูตร \( \cos 2\theta \) ผิดรูปแบบกับสิ่งที่โจทย์ให้มา</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"cos 2 มี 3 หน้า เลือกให้ตรงกับที่โจทย์ให้"</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>ใช้บ่อยในการหาอนุพันธ์/อินทิเกรตของ \( \sin^2x \) หรือ \( \cos^2x \) โดยแปลงรูปก่อน</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เช็กว่าเลือกสูตร cos 2θ รูปที่เหมาะกับโจทย์</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 6. Half Angle -->
+  <div class="card" data-accent="green">
+    <div class="card-head">
+      <div class="eyebrow">PART 3 · Trigonometry Rescue · 🟢 Formula</div>
+      <div class="title">Half Angle</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">เห็น \( \theta/2 \) → ใช้สูตรครึ่งมุม พร้อมเช็กเครื่องหมาย ±</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>\( \sin\frac{\theta}{2}, \cos\frac{\theta}{2} \)</li>
+        <li>ลดกำลังของ \( \sin^2x, \cos^2x \) ก่อนอินทิเกรต</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>\( \sin\frac{\theta}{2}=\pm\sqrt{\dfrac{1-\cos\theta}{2}} \)</li>
+        <li>\( \cos\frac{\theta}{2}=\pm\sqrt{\dfrac{1+\cos\theta}{2}} \)</li>
+        <li>เลือกเครื่องหมาย ± ตามควอดรันต์ของ \( \theta/2 \)</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>ลืมเช็กควอดรันต์เพื่อเลือกเครื่องหมาย</li>
+        <li>สลับสูตร sin กับ cos (เครื่องหมายในรากต่างกัน)</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"sin ลบ cos บวก ใต้ราก หาร 2"</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>ใช้บ่อยในการอินทิเกรต \( \sin^2x \) หรือ \( \cos^2x \) โดยลดกำลังก่อน</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เช็กเครื่องหมาย ± ตามควอดรันต์ของมุมครึ่ง</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 7. Sum and Difference -->
+  <div class="card" data-accent="orange">
+    <div class="card-head">
+      <div class="eyebrow">PART 3 · Trigonometry Rescue · 🟠 Trigger</div>
+      <div class="title">Sum and Difference</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">เห็น \( \sin(A\pm B) \) → "sin cos cos sin" / "cos cos sin sin สลับเครื่องหมาย"</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>\( \sin(A+B), \cos(A-B) \)</li>
+        <li>หาค่ามุมที่ไม่ใช่มุมพิเศษโดยแยกเป็นผลบวก/ลบของมุมพิเศษ</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>\( \sin(A\pm B)=\sin A\cos B\pm\cos A\sin B \)</li>
+        <li>\( \cos(A\pm B)=\cos A\cos B\mp\sin A\sin B \)</li>
+        <li>\( \tan(A\pm B)=\dfrac{\tan A\pm\tan B}{1\mp\tan A\tan B} \)</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>ลืมว่าสูตร cos สลับเครื่องหมาย (บวกกลายเป็นลบ)</li>
+        <li>คิดว่า \( \sin(A+B)=\sin A+\sin B \) (ผิด!)</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"sin: ไขว้บวก / cos: คูณตรงสลับเครื่องหมาย"</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>ใช้หาค่ามุม 15°, 75° จากการแยกเป็น 45°±30° เป็นต้น</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เช็กเครื่องหมายของสูตร cos สลับกับ sin หรือไม่</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 8. Product to Sum -->
+  <div class="card" data-accent="purple">
+    <div class="card-head">
+      <div class="eyebrow">PART 3 · Trigonometry Rescue · 🟣 Exam Tip</div>
+      <div class="title">Product to Sum</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">เห็นผลคูณของ sin/cos สองตัว → แปลงเป็นผลบวกก่อนอินทิเกรต</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>\( \sin A\cos B \), \( \cos A\cos B \), \( \sin A\sin B \)</li>
+        <li>อินทิเกรตที่มีผลคูณของฟังก์ชันตรีโกณคนละมุม</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>\( \sin A\cos B=\tfrac{1}{2}[\sin(A+B)+\sin(A-B)] \)</li>
+        <li>\( \cos A\cos B=\tfrac{1}{2}[\cos(A-B)+\cos(A+B)] \)</li>
+        <li>\( \sin A\sin B=\tfrac{1}{2}[\cos(A-B)-\cos(A+B)] \)</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>จำสูตรผิดสูตร (มี 3 แบบ คล้ายกันมาก)</li>
+        <li>ลืมตัวคูณ \( \tfrac{1}{2} \) ด้านหน้า</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"ครึ่งหนึ่งของ บวกมุมต่าง บวก/ลบ มุมรวม"</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>ใช้ในการอินทิเกรตผลคูณของฟังก์ชันตรีโกณที่มีความถี่ต่างกัน เช่นในอนุกรมฟูเรียร์เบื้องต้น</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เช็กว่าใช้สูตรตรงกับรูปแบบผลคูณ (sin-cos, cos-cos, sin-sin)</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <!-- 9. Inverse Trigonometric Functions -->
+  <div class="card" data-accent="blue">
+    <div class="card-head">
+      <div class="eyebrow">PART 3 · Trigonometry Rescue · 🔵 Concept</div>
+      <div class="title">Inverse Trigonometric Functions</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">เห็น \( \arcsin, \arccos, \arctan \) → คำตอบต้องอยู่ในช่วงหลักเท่านั้น</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>\( \sin^{-1}x, \cos^{-1}x, \tan^{-1}x \)</li>
+        <li>หามุมจากค่าฟังก์ชันตรีโกณที่กำหนด</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>\( \arcsin x \): ช่วง \( [-\frac{\pi}{2},\frac{\pi}{2}] \), โดเมน \( [-1,1] \)</li>
+        <li>\( \arccos x \): ช่วง \( [0,\pi] \), โดเมน \( [-1,1] \)</li>
+        <li>\( \arctan x \): ช่วง \( (-\frac{\pi}{2},\frac{\pi}{2}) \), โดเมนทุกจำนวนจริง</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>ตอบมุมนอกช่วงหลัก (range) ที่กำหนด</li>
+        <li>คิดว่า \( \sin^{-1}x = \dfrac{1}{\sin x} \) (ผิด! เป็นฟังก์ชันผกผัน ไม่ใช่ส่วนกลับ)</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"arcsin/arctan ครึ่งบน-ล่าง / arccos เต็มบน"</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>มักออกพร้อมการหาอนุพันธ์ของฟังก์ชันผกผันตรีโกณ ซึ่งมีสูตรเฉพาะที่ต้องจำแยก</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เช็กว่าคำตอบอยู่ในช่วงหลัก (principal range) ที่ถูกต้อง</li>
+        <li>เช็กโดเมนของอินพุตอยู่ใน [-1,1] สำหรับ arcsin/arccos</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+</div>
+</body>
+</html>

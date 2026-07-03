@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>Calculus Rescue Kit — Sample Cards</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700;800&family=Sarabun:wght@400;500;600;700;800&display=swap');
+
+  :root{
+    --concept:#2563eb;
+    --formula:#16a34a;
+    --trigger:#ea580c;
+    --mistake:#dc2626;
+    --tip:#9333ea;
+    --checklist:#1f2937;
+    --hack:#ca8a04;
+    --bg:#f7f7fb;
+    --card-bg:#ffffff;
+    --ink:#1f2330;
+    --muted:#6b7280;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0; padding:32px;
+    background:var(--bg);
+    font-family:'Sarabun','Noto Sans Thai',sans-serif;
+    color:var(--ink);
+  }
+
+  .grid{
+    display:flex; flex-wrap:wrap; gap:28px; justify-content:center;
+  }
+
+  .card{
+    width:420px;
+    background:var(--card-bg);
+    border-radius:18px;
+    box-shadow:0 6px 24px rgba(20,20,40,0.10);
+    overflow:hidden;
+    border:1px solid #ececf2;
+    display:flex; flex-direction:column;
+  }
+
+  .card-head{
+    padding:18px 20px 14px;
+    background:linear-gradient(135deg, var(--accent,#2563eb), color-mix(in srgb, var(--accent,#2563eb) 70%, black));
+    color:#fff;
+    position:relative;
+  }
+  .eyebrow{
+    font-size:11px; font-weight:700; letter-spacing:.08em;
+    text-transform:uppercase; opacity:.85; margin-bottom:4px;
+  }
+  .title{
+    font-size:21px; font-weight:800; line-height:1.25;
+  }
+
+  .trigger-box{
+    margin:14px 16px 0;
+    background:#fff7ed;
+    border:1.5px dashed var(--trigger);
+    border-radius:12px;
+    padding:10px 14px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .trigger-box .ic{font-size:20px;}
+  .trigger-box .txt{font-weight:700; font-size:15px; color:#7c2d12;}
+
+  .section{
+    margin:14px 16px 0;
+    padding:12px 14px;
+    border-radius:12px;
+    background:#fafafa;
+  }
+  .section:last-of-type{margin-bottom:16px;}
+  .sec-head{
+    display:flex; align-items:center; gap:7px;
+    font-weight:700; font-size:13.5px; margin-bottom:7px;
+  }
+  .sec-head .dot{width:9px;height:9px;border-radius:50%;flex:none;}
+
+  .when{background:#eff6ff;}
+  .when .dot{background:var(--concept);}
+  .when ul{margin:0; padding-left:18px; font-size:14px; line-height:1.65;}
+
+  .how{background:#f0fdf4;}
+  .how .dot{background:var(--formula);}
+  .how ol{margin:0; padding-left:20px; font-size:14px; line-height:1.7; font-weight:500;}
+
+  .mistake{background:#fef2f2;}
+  .mistake .dot{background:var(--mistake);}
+  .mistake ul{margin:0; padding-left:18px; font-size:13.5px; line-height:1.65; color:#7f1d1d;}
+
+  .hack{background:#fffbeb;}
+  .hack .dot{background:var(--hack);}
+  .hack .txt{font-size:14.5px; font-weight:700; color:#854d0e;}
+
+  .examtip{background:#faf5ff;}
+  .examtip .dot{background:var(--tip);}
+  .examtip p{margin:0; font-size:13.5px; line-height:1.6; color:#581c87;}
+
+  .checklist{background:#f4f4f5;}
+  .checklist .dot{background:var(--checklist);}
+  .checklist ul{list-style:none; margin:0; padding:0; font-size:13.5px; line-height:1.9;}
+  .checklist li::before{content:"☐  "; }
+
+  .card[data-accent="green"] .card-head{--accent:#16a34a;}
+  .card[data-accent="blue"] .card-head{--accent:#2563eb;}
+  .card[data-accent="orange"] .card-head{--accent:#ea580c;}
+  .card[data-accent="purple"] .card-head{--accent:#9333ea;}
+
+  .pagefoot{
+    text-align:center; font-size:11px; color:var(--muted);
+    padding:10px 16px 14px;
+  }
+
+  .katex { font-size: 1.05em; }
+</style>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+</head>
+<body>
+
+<div class="grid">
+
+  <div class="card" data-accent="green">
+    <div class="card-head">
+      <div class="eyebrow">PART 1 · Algebra Rescue · 🟢 Formula</div>
+      <div class="title">Exponent Rules</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">เห็นเลขชี้กำลัง... อย่าลืม "คูณบวก หารลบ"</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>\( x^3 \cdot x^5 \)</li>
+        <li>\( x^8 \div x^3 \)</li>
+        <li>\( (x^3)^4 \)</li>
+        <li>\( x^{-2} \), \( x^{\frac{1}{2}} \)</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>คูณฐานเดียวกัน → บวกเลขชี้กำลัง</li>
+        <li>หารฐานเดียวกัน → ลบเลขชี้กำลัง</li>
+        <li>ยกกำลังซ้อน → คูณเลขชี้กำลัง</li>
+        <li>เลขชี้กำลังลบ → กลับเศษส่วน</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>บวกฐานแทนที่จะบวกเลขชี้กำลัง</li>
+        <li>ลืมว่า \( x^0 = 1 \) (เมื่อ \( x \neq 0 \))</li>
+        <li>สับสนเครื่องหมายลบหน้าเลขชี้กำลัง</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"คูณ → บวก  /  หาร → ลบ  /  ยก → คูณ"</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>มักผสมกับการแปลงรูปก่อนหาลิมิตหรืออนุพันธ์ — ใช้เป็นขั้นตอนเตรียมโจทย์ ไม่ใช่คำตอบสุดท้าย</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เช็กฐานเดียวกันก่อนรวมเลขชี้กำลัง</li>
+        <li>เลขชี้กำลังลบแปลงกลับเศษส่วนแล้ว</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <div class="card" data-accent="blue">
+    <div class="card-head">
+      <div class="eyebrow">PART 1 · Algebra Rescue · 🔵 Concept</div>
+      <div class="title">Difference of Squares</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">เห็น \( a^2 - b^2 \) → แตกเป็น \( (a-b)(a+b) \) ทันที</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>\( x^2 - 9 \)</li>
+        <li>\( 4x^2 - 25 \)</li>
+        <li>ลิมิตรูป \( \frac{0}{0} \) ที่มีพจน์ยกกำลังสอง</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>เช็กว่าทั้งสองพจน์เป็นจำนวนยกกำลังสองสมบูรณ์</li>
+        <li>เขียนเป็น \( a^2 - b^2 \)</li>
+        <li>แตกเป็น \( (a - b)(a + b) \)</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>ใช้สูตรนี้กับ \( a^2 + b^2 \) (แตกไม่ได้แบบนี้)</li>
+        <li>ลืมรากที่สองของสัมประสิทธิ์ เช่น \( 4x^2 \rightarrow (2x)^2 \)</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"ลบเท่านั้น แตกได้ / บวกห้ามแตกแบบนี้"</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>นิยมซ่อนไว้ในโจทย์หาลิมิตรูป 0/0 เพื่อตัดพจน์ที่ทำให้ส่วนเป็นศูนย์</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เช็กเครื่องหมายในวงเล็บถูกด้าน (ลบ-บวก)</li>
+        <li>Simplify ผลลัพธ์ให้สุดแล้ว</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <div class="card" data-accent="orange">
+    <div class="card-head">
+      <div class="eyebrow">PART 1 · Algebra Rescue · 🟠 Trigger</div>
+      <div class="title">Completing the Square</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">เห็น \( x^2 + bx \) ลอยๆ → เติมครึ่งสัมประสิทธิ์ยกกำลังสอง</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>\( x^2 + 6x + 5 \) (หาจุดวกกลับ/หาค่าต่ำสุด)</li>
+        <li>สมการวงกลมที่ไม่อยู่ในรูปมาตรฐาน</li>
+        <li>อินทิเกรตที่มีรูป \( x^2 + bx \) ในส่วน</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>จัดให้เหลือ \( x^2 + bx \) อยู่ด้วยกัน</li>
+        <li>หาร \( b \) ด้วย 2 แล้วยกกำลังสอง: \( (\frac{b}{2})^2 \)</li>
+        <li>บวกและลบ \( (\frac{b}{2})^2 \) พร้อมกัน</li>
+        <li>จัดรูปเป็น \( (x + \frac{b}{2})^2 \) + ส่วนที่เหลือ</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>ลืมหาร \( b \) ด้วย 2 ก่อนยกกำลังสอง</li>
+        <li>บวกแต่ไม่ลบค่าที่เติมเข้าไป (สมการเพี้ยน)</li>
+        <li>ลืมจัดการสัมประสิทธิ์หน้า \( x^2 \) ก่อน ถ้าไม่เท่ากับ 1</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"หารสอง ยกสอง บวกแล้วลบ"</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>มักใช้ร่วมกับการหาจุดสูงสุด/ต่ำสุดของฟังก์ชันกำลังสอง หรือแปลงรูปก่อนอินทิเกรต</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เช็กว่าสัมประสิทธิ์หน้า \( x^2 \) ถูกดึงออกแล้ว</li>
+        <li>ตรวจค่าคงที่ที่บวก-ลบครบถ้วน</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <div class="card" data-accent="purple">
+    <div class="card-head">
+      <div class="eyebrow">PART 1 · Algebra Rescue · 🟣 Exam Tip</div>
+      <div class="title">Domain (โดเมน)</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">เห็นเศษส่วน / รากที่สอง / log → เช็กโดเมนก่อนเสมอ</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>\( f(x) = \frac{1}{x-3} \)</li>
+        <li>\( f(x) = \sqrt{x-2} \)</li>
+        <li>\( f(x) = \ln(5-x) \)</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>เศษส่วน → ตัวส่วน \( \neq 0 \)</li>
+        <li>รากที่สอง (เลขคู่) → ข้างใน \( \geq 0 \)</li>
+        <li>ลอการิทึม → ข้างใน \( > 0 \)</li>
+        <li>รวมเงื่อนไขทั้งหมดเป็นช่วงเดียว</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>ลืมเช็กโดเมนหลังจาก simplify เศษส่วน</li>
+        <li>ใช้ \( \geq 0 \) ผิดเป็น \( > 0 \) กับราก หรือกลับกันกับ log</li>
+        <li>ลืมรวมเงื่อนไขหลายตัวเข้าด้วยกัน</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"ส่วน \( \neq 0 \) / รากคู่ \( \geq 0 \) / log \( > 0 \)"</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>ชอบให้หาโดเมนของฟังก์ชันประกอบ (composite) ที่ต้องเช็กเงื่อนไขซ้อนกันหลายชั้น</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เขียนคำตอบเป็นช่วง (interval) ถูกแบบ</li>
+        <li>เช็กจุดที่ถูกตัดออกครบทุกเงื่อนไข</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <div class="card" data-accent="blue">
+    <div class="card-head">
+      <div class="eyebrow">PART 1 · Algebra Rescue · 🔵 Concept</div>
+      <div class="title">Radical Rules</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">เห็นรากที่สอง → แปลงเป็นเลขชี้กำลังเศษส่วนก่อนเสมอ</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>\( \sqrt{x} \), \( \sqrt[3]{x^2} \)</li>
+        <li>\( \sqrt{a} \cdot \sqrt{b} \)</li>
+        <li>\( \dfrac{\sqrt{a}}{\sqrt{b}} \)</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>\( \sqrt[n]{x^m} = x^{\frac{m}{n}} \)</li>
+        <li>\( \sqrt{a}\cdot\sqrt{b} = \sqrt{ab} \)</li>
+        <li>\( \dfrac{\sqrt{a}}{\sqrt{b}} = \sqrt{\dfrac{a}{b}} \)</li>
+        <li>Rationalize ส่วนที่มีราก โดยคูณ conjugate</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>คิดว่า \( \sqrt{a+b} = \sqrt{a}+\sqrt{b} \) (ผิด! ใช้ไม่ได้)</li>
+        <li>ลืมเงื่อนไข \( x \geq 0 \) เมื่อรากเป็นเลขคู่</li>
+        <li>ลืม rationalize ตัวส่วนก่อนส่งคำตอบ</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"รากแยกคูณ-หารได้ แต่แยกบวก-ลบไม่ได้"</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>มักให้ rationalize ตัวส่วนก่อนหาลิมิต โดยเฉพาะรูป \( \frac{0}{0} \) ที่มีรากในตัวเศษหรือส่วน</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เช็กเงื่อนไขโดเมนของรากที่เป็นเลขคู่</li>
+        <li>ตัวส่วนไม่มีรากเหลืออยู่แล้ว</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <div class="card" data-accent="orange">
+    <div class="card-head">
+      <div class="eyebrow">PART 1 · Algebra Rescue · 🟠 Trigger</div>
+      <div class="title">Fraction Rules</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">บวก-ลบเศษส่วน → หา ส.ค.ม. (LCD) ก่อนเสมอ</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>\( \dfrac{1}{x} + \dfrac{1}{x+1} \)</li>
+        <li>\( \dfrac{a}{b} \div \dfrac{c}{d} \)</li>
+        <li>เศษส่วนซ้อนเศษส่วน (complex fraction)</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>บวก/ลบ → หา LCD แล้วแปลงเศษให้ตัวส่วนเท่ากัน</li>
+        <li>คูณ → คูณเศษกับเศษ ส่วนกับส่วน</li>
+        <li>หาร → คูณด้วยส่วนกลับ (reciprocal)</li>
+        <li>Simplify โดย factor หาตัวร่วม</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>บวกเศษบวกเศษ ส่วนบวกส่วน (ผิดหลักการ)</li>
+        <li>ลืมกลับเศษส่วนตอนหาร</li>
+        <li>ตัดทอนผิด โดยตัดพจน์ที่ไม่ใช่ตัวประกอบร่วม</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"บวกลบหา LCD / หารกลับเศษส่วนแล้วคูณ"</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>นิยมออกเป็นเศษส่วนซ้อนในนิยามอนุพันธ์ \( \frac{f(x+h)-f(x)}{h} \) ที่ต้องจัดรูปก่อนแทนค่าลิมิต</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เช็กว่าตัดทอนเฉพาะตัวประกอบร่วมจริงๆ</li>
+        <li>ตรวจเงื่อนไขตัวส่วน \( \neq 0 \) ทุกตัว</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <div class="card" data-accent="purple">
+    <div class="card-head">
+      <div class="eyebrow">PART 1 · Algebra Rescue · 🟣 Exam Tip</div>
+      <div class="title">Polynomial Factorization</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">Factor ไม่ออก → ลองดึงตัวร่วมก่อน แล้วค่อยจัดกลุ่ม</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>\( 2x^3 + 4x^2 \) (มีตัวร่วม)</li>
+        <li>\( x^3 + x^2 + 2x + 2 \) (จัดกลุ่ม)</li>
+        <li>\( x^2 + 5x + 6 \) (trinomial)</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>ดึง GCF (ตัวร่วมมากสุด) ออกก่อนเสมอ</li>
+        <li>4 พจน์ → จัดกลุ่มสองคู่แล้วดึงร่วม</li>
+        <li>Trinomial → หาคู่เลขที่คูณ=c บวก=b</li>
+        <li>เช็กว่า factor ได้สุดแล้วหรือยัง</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>ลืมดึง GCF ก่อน ทำให้ตัวเลขใหญ่ขึ้นโดยไม่จำเป็น</li>
+        <li>จัดกลุ่มผิดคู่ทำให้ไม่เหลือตัวร่วม</li>
+        <li>หยุด factor ก่อนที่จะ factor ได้สุด</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"ดึงร่วมก่อนเสมอ แล้วค่อยจัดกลุ่ม"</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>เป็นทักษะพื้นฐานที่ซ่อนอยู่แทบทุกโจทย์ลิมิตและอนุพันธ์ — ถ้า factor ไม่คล่อง จะเสียเวลาทั้งข้อสอบ</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เช็กว่าดึง GCF ออกหมดแล้ว</li>
+        <li>กระจายกลับ (expand) เพื่อตรวจคำตอบ</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <div class="card" data-accent="green">
+    <div class="card-head">
+      <div class="eyebrow">PART 1 · Algebra Rescue · 🟢 Formula</div>
+      <div class="title">Perfect Square</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">เห็นหัว-ท้ายเป็นกำลังสอง กลางเป็น 2 เท่าของราก → เช็ก perfect square</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>\( x^2 + 6x + 9 \)</li>
+        <li>\( 4x^2 - 12x + 9 \)</li>
+        <li>สมการที่ต้องจัดเป็นรูปกำลังสองสมบูรณ์</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>เช็กพจน์แรก-ท้ายเป็นกำลังสองสมบูรณ์</li>
+        <li>เช็กพจน์กลาง = \( 2ab \)</li>
+        <li>\( a^2+2ab+b^2=(a+b)^2 \)</li>
+        <li>\( a^2-2ab+b^2=(a-b)^2 \)</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>ลืมเช็กเครื่องหมายพจน์กลางให้ตรงกับ \( \pm \)</li>
+        <li>คิดว่าทุก trinomial เป็น perfect square (ต้องเช็กก่อน)</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"หัวท้ายกำลังสอง กลางคือสองเท่าของราก"</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>ใช้บ่อยตอน completing the square และจัดรูปสมการวงกลม/พาราโบลา</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>กระจายกลับเพื่อเช็กว่าตรงกับโจทย์เดิม</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <div class="card" data-accent="blue">
+    <div class="card-head">
+      <div class="eyebrow">PART 1 · Algebra Rescue · 🔵 Concept</div>
+      <div class="title">Sum of Cubes</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">เห็น \( a^3+b^3 \) → ท่องสูตร "SOAP" ทันที</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>\( x^3 + 8 \)</li>
+        <li>\( 27x^3 + 1 \)</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>เขียนเป็นรูป \( a^3+b^3 \)</li>
+        <li>ใช้สูตร \( a^3+b^3=(a+b)(a^2-ab+b^2) \)</li>
+        <li>เช็กว่าตัวประกอบที่สอง factor ต่อไม่ได้แล้ว</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>จำสลับเครื่องหมายผิดระหว่าง sum กับ difference</li>
+        <li>พยายาม factor \( a^2-ab+b^2 \) ต่อ (factor ไม่ได้อีกแล้ว)</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">SOAP: Same, Opposite, Always Positive</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>มักผสมกับโจทย์ลิมิตที่ตัวเศษหรือส่วนเป็นผลบวกกำลังสาม เพื่อตัดพจน์ที่ทำให้ \( \frac{0}{0} \)</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เช็กเครื่องหมายกลางของวงเล็บที่สองเป็นลบ</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <div class="card" data-accent="orange">
+    <div class="card-head">
+      <div class="eyebrow">PART 1 · Algebra Rescue · 🟠 Trigger</div>
+      <div class="title">Difference of Cubes</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">เห็น \( a^3-b^3 \) → SOAP เหมือนเดิม แค่สลับเครื่องหมายแรก</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>\( x^3 - 27 \)</li>
+        <li>\( 8x^3 - 1 \)</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>เขียนเป็นรูป \( a^3-b^3 \)</li>
+        <li>ใช้สูตร \( a^3-b^3=(a-b)(a^2+ab+b^2) \)</li>
+        <li>เช็กว่า factor ต่อไม่ได้แล้ว</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>สลับเครื่องหมายผิดกับสูตร sum of cubes</li>
+        <li>คิดว่า \( a^2+ab+b^2 \) แตกเป็น \( (a+b)^2 \) ได้ (ผิด)</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">SOAP: Same, Opposite, Always Positive</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>ออกคู่กับ sum of cubes บ่อยมาก ข้อสอบชอบให้แยกแยะว่าเป็นบวกหรือลบก่อนเลือกสูตร</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เช็กเครื่องหมายกลางของวงเล็บที่สองเป็นบวก</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <div class="card" data-accent="purple">
+    <div class="card-head">
+      <div class="eyebrow">PART 1 · Algebra Rescue · 🟣 Exam Tip</div>
+      <div class="title">Partial Fraction</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">เศษส่วนซับซ้อนก่อนอินทิเกรต → แตกเป็นเศษส่วนย่อยก่อนเสมอ</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>\( \dfrac{1}{(x-1)(x+2)} \)</li>
+        <li>\( \dfrac{3x+1}{x^2-1} \)</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>Factor ตัวส่วนให้สุดก่อน</li>
+        <li>ตั้งรูป \( \dfrac{A}{x-a}+\dfrac{B}{x-b} \)</li>
+        <li>คูณทั้งสองข้างด้วยตัวส่วนรวม</li>
+        <li>แทนค่า x ที่ทำให้แต่ละพจน์เป็นศูนย์ เพื่อหา A, B</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>ลืม factor ตัวส่วนให้สุดก่อนตั้งสมการ</li>
+        <li>ดีกรีตัวเศษ ≥ ตัวส่วน ต้องหารยาวก่อน (ลืมขั้นนี้)</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"Factor ก่อน ตั้ง A/B แล้วแทนค่าที่ทำให้พจน์หาย"</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>เป็นขั้นเตรียมโจทย์ก่อนอินทิเกรตฟังก์ชันตรรกยะ (rational function) ที่อินทิเกรตตรงๆ ไม่ได้</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เช็กดีกรีเศษน้อยกว่าส่วนแล้วหรือยัง</li>
+        <li>รวมเศษส่วนย่อยกลับเพื่อตรวจคำตอบ</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+  <div class="card" data-accent="green">
+    <div class="card-head">
+      <div class="eyebrow">PART 1 · Algebra Rescue · 🟢 Formula</div>
+      <div class="title">Rational Expressions</div>
+    </div>
+    <div class="trigger-box">
+      <div class="ic">🎯</div>
+      <div class="txt">Simplify เศษส่วนพหุนาม → Factor ก่อน ตัดทอนทีหลัง</div>
+    </div>
+
+    <div class="section when">
+      <div class="sec-head"><span class="dot"></span>👀 เมื่อเจอโจทย์แบบนี้</div>
+      <ul>
+        <li>\( \dfrac{x^2-9}{x-3} \)</li>
+        <li>\( \dfrac{x^2-1}{x^2+3x+2} \)</li>
+      </ul>
+    </div>
+
+    <div class="section how">
+      <div class="sec-head"><span class="dot"></span>✅ วิธีคิด</div>
+      <ol>
+        <li>Factor ทั้งเศษและส่วนให้สุด</li>
+        <li>ตัดตัวประกอบที่เหมือนกัน</li>
+        <li>ระบุเงื่อนไขที่ตัวส่วนเดิม \( \neq 0 \) ไว้เสมอ</li>
+      </ol>
+    </div>
+
+    <div class="section mistake">
+      <div class="sec-head"><span class="dot"></span>❌ จุดที่พลาดบ่อย</div>
+      <ul>
+        <li>ตัดพจน์ที่บวก/ลบกันโดยตรง (ตัดได้เฉพาะตัวคูณ)</li>
+        <li>ลืมระบุว่า \( x \neq 3 \) หลังตัดทอน (รูแบบ removable)</li>
+      </ul>
+    </div>
+
+    <div class="section hack">
+      <div class="sec-head"><span class="dot"></span>🧠 เทคนิคจำ</div>
+      <div class="txt">"ตัดได้เฉพาะตัวคูณร่วม ไม่ใช่พจน์บวกลบ"</div>
+    </div>
+
+    <div class="section examtip">
+      <div class="sec-head"><span class="dot"></span>🎯 ข้อสอบชอบออก</div>
+      <p>เป็นเทคนิคหลักในการหาลิมิตรูป \( \frac{0}{0} \) — simplify แล้วค่อยแทนค่า</p>
+    </div>
+
+    <div class="section checklist">
+      <div class="sec-head"><span class="dot"></span>☑ Before You Submit</div>
+      <ul>
+        <li>เช็กว่า factor สุดแล้วก่อนตัดทอน</li>
+        <li>ระบุเงื่อนไขโดเมนที่ถูกตัดออกครบ</li>
+      </ul>
+    </div>
+    <div class="pagefoot">Calculus Rescue Kit · เปิดก่อนสอบ 10 นาที</div>
+  </div>
+
+</div>
+</body>
+</html>
