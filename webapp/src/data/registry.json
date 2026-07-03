@@ -1,0 +1,17 @@
+[
+  { "id": "calculus", "name": "Calculus", "th": "แคลคูลัส", "glyph": "∫", "accent": "#f5a524" },
+  { "id": "set", "name": "Sets", "th": "เซต", "glyph": "∪", "accent": "#2563eb" },
+  { "id": "logic", "name": "Logic", "th": "ตรรกศาสตร์", "glyph": "∴", "accent": "#9333ea" },
+  { "id": "real", "name": "Real Numbers", "th": "จำนวนจริงและพหุนาม", "glyph": "ℝ", "accent": "#16a34a" },
+  { "id": "func", "name": "Functions", "th": "ฟังก์ชัน", "glyph": "ƒ", "accent": "#ea580c" },
+  { "id": "explog", "name": "Exp & Log", "th": "ฟังก์ชันเอกซ์โพเนนเชียลและลอการิทึม", "glyph": "ℯ", "accent": "#2563eb" },
+  { "id": "trig", "name": "Trigonometry", "th": "ฟังก์ชันตรีโกณมิติ", "glyph": "△", "accent": "#9333ea" },
+  { "id": "analytic", "name": "Analytic Geometry", "th": "เรขาคณิตวิเคราะห์และภาคตัดกรวย", "glyph": "∡", "accent": "#16a34a" },
+  { "id": "matrix", "name": "Matrices", "th": "เมทริกซ์", "glyph": "▦", "accent": "#ea580c" },
+  { "id": "vector", "name": "Vectors 3D", "th": "เวกเตอร์ในสามมิติ", "glyph": "→", "accent": "#2563eb" },
+  { "id": "complex", "name": "Complex Numbers", "th": "จำนวนเชิงซ้อน", "glyph": "𝑖", "accent": "#9333ea" },
+  { "id": "seq", "name": "Sequences & Series", "th": "ลำดับและอนุกรม", "glyph": "Σ", "accent": "#16a34a" },
+  { "id": "count", "name": "Counting", "th": "หลักการนับเบื้องต้น", "glyph": "!", "accent": "#ea580c" },
+  { "id": "prob", "name": "Probability", "th": "ความน่าจะเป็นและการแจกแจง", "glyph": "P", "accent": "#2563eb" },
+  { "id": "stat", "name": "Statistics", "th": "สถิติ", "glyph": "x̄", "accent": "#9333ea" }
+]
