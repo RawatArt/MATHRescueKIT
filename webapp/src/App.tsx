@@ -9,6 +9,8 @@ import { PartModal } from './components/PartModal';
 import { Subject, SubjectMeta, Part } from './types';
 import registry from './data/registry.json';
 
+import { Analytics } from '@vercel/analytics/react';
+
 export default function App() {
   const [subjectsData, setSubjectsData] = useState<Record<string, Subject>>({});
   const [selectedSubject, setSelectedSubject] = useState<Subject | null>(null);
@@ -111,6 +113,8 @@ export default function App() {
           />
         )}
       </AnimatePresence>
+
+      <Analytics />
     </div>
   );
 }
