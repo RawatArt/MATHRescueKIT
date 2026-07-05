@@ -43,8 +43,8 @@ export function PartTile({ part, onClick }: PartTileProps) {
             {part.cardCount} การ์ด
           </div>
         </div>
-        <div className="font-bold text-ink leading-snug">{part.name}</div>
-        {part.th && <div className="text-sm text-mute mt-1">{part.th}</div>}
+        <div className="font-bold text-ink leading-snug">{part.th || part.name}</div>
+        {part.name !== part.th && <div className="text-sm text-mute mt-1">{part.name}</div>}
       </div>
     </motion.div>
   );

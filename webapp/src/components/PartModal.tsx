@@ -73,7 +73,7 @@ export function PartModal({ part, onClose }: PartModalProps) {
             </button>
             <div className="h-4 w-px bg-gray-300"></div>
             <h3 className="font-bold text-lg text-gray-900">
-              {part.num} · {part.name} <span className="text-gray-500 font-normal text-base ml-2">{part.th}</span>
+              {part.num} · {part.th || part.name} {part.name !== part.th && <span className="text-gray-500 font-normal text-base ml-2">{part.name}</span>}
             </h3>
           </div>
 
