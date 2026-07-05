@@ -11,7 +11,7 @@ interface SubjectModalProps {
 
 export function SubjectModal({ subject, onClose, onSelectPart }: SubjectModalProps) {
   return (
-    <div className="fixed inset-0 z-40 flex items-center justify-center p-4 sm:p-8 overflow-y-auto">
+    <div className="fixed inset-0 z-40 flex p-4 sm:p-8 overflow-y-auto">
       {/* Overlay */}
       <motion.div 
         initial={{ opacity: 0 }}
@@ -26,7 +26,7 @@ export function SubjectModal({ subject, onClose, onSelectPart }: SubjectModalPro
       <motion.div 
         layoutId={`subject-${subject.id}`}
         transition={{ type: 'spring', stiffness: 300, damping: 33, mass: 0.9 }}
-        className="relative w-full max-w-5xl mx-auto rounded-[22px] overflow-hidden border border-edge shadow-[0_50px_130px_rgba(0,0,0,.6)]"
+        className="relative w-full max-w-5xl m-auto rounded-[22px] overflow-hidden border border-edge shadow-[0_50px_130px_rgba(0,0,0,.6)]"
         style={{ 
           background: 'var(--panel)',
           // inset clamp
